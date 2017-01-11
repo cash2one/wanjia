@@ -1,5 +1,7 @@
 <template>
-    <div class="eventDiv">
+    <div class="eventDiv"  v-infinite-scroll="loadMore"
+  infinite-scroll-disabled="loading"
+  infinite-scroll-distance="10" >
         <div class="eventHead">
             <img :src="event.goodsThumb" alt="">
             <div class="eventTime">
@@ -83,6 +85,7 @@ export default {
       return {
           event:{},
           publisher:{},
+          busy: false
       }
     },
     mounted(){
@@ -96,6 +99,12 @@ export default {
     },
      components: {
         openApp
+    },
+    methods:{
+        loadMore(){
+             this.busy = true
+             
+        }
     }
 }
 </script>
