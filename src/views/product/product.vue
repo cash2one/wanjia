@@ -23,9 +23,9 @@
                费用包含服务
            </div>
            <div class="productServiceList">
-               <span v-for="service in services">
+               <span v-for="service in services" @click="serviceClick(service,$event)">
                    <img :src="service.isInclude ?  service.serviceThumbSelect : service.serviceThumb" alt="">
-                   <span>{{service.serviceName}}</span>
+                   <span v-bind:class="{selectedService:service.isInclude}" >{{service.serviceName}}</span>
                </span>
            </div>
        </div>
@@ -52,7 +52,7 @@
        </div>
        <div class="openAppDiv">
            <img class="imgLogo" src="./wanjia_logo.png" alt="">
-           <button type="" class="btnOpenApp">打开APP</button>
+           <a href=https://itunes.apple.com/cn/app/id1176755755><button type="" @click="openApp" class="btnOpenApp">打开APP</button></a> 
        </div>
      <spinner :show="loading" ></spinner>
     </div>
@@ -85,6 +85,7 @@
                 let ser =  that.product.goodsInclude
                 for(var s of ser){
                     s.isInclude = true
+                    s.mustSelect = true
                 }
                 that.address = that.product.goodsService
                 that.services = ser.concat(that.product.goodsAddition)
@@ -98,6 +99,26 @@
         // }).catch(function(response) {
 		//  	console.log(response)
 		// })
+    },
+    methods:{
+        serviceClick:function(service,event){
+            let index = this.services.indexOf(service)
+            console.log(index)
+            if(!service.mustSelect){
+                service.isInclude = !service.isInclude
+            }
+            Vue.set(this.services,index,service)  
+         },
+         openApp:function(){
+             var ifr = document.createElement('iframe'); 
+                ifr.src = 'wanjia://'; 
+                ifr.style.display = 'none'; 
+                document.body.appendChild(ifr); 
+                window.setTimeout(function(){ 
+                document.body.removeChild(ifr); 
+                },3000) 
+          
+         }
     },
     components: {
         swiper,
@@ -145,9 +166,9 @@ div.swiper-pagination span{
 div.productNum{
     position: absolute;
     right: 0.3rem;
-    top: 7rem;
+    top: 7.1rem;
     z-index: 100;
-    font-size: 0.4rem;
+    font-size: 0.35rem;
     color: white;
     padding: 0.2rem 0rem;
 }
@@ -177,6 +198,9 @@ div.productServiceList{
     display: flex;
     overflow: scroll;
 
+}
+span.selectedService{
+    color:#14CC81;
 }
 div.productServiceList span{
     font-size: 0.4rem;
