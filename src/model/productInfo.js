@@ -7,7 +7,7 @@ const productInfo = {
 };
 
 function getProducts(category) { 
-    const url = "http://45.32.23.77:8880/index/goods/detail/id/" + category
+    const url = "http://localhost:8880/index/goods/detail/id/" + category
     return new Promise(function(resolve,reject){
         axios.get(url).then(response=>{
             var res = response.data;

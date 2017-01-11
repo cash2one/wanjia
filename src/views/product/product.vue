@@ -50,10 +50,9 @@
                 </span>
            </div>
        </div>
-       <div class="openAppDiv">
-           <img class="imgLogo" src="./wanjia_logo.png" alt="">
-           <a href=https://itunes.apple.com/cn/app/id1176755755><button type="" @click="openApp" class="btnOpenApp">打开APP</button></a> 
-       </div>
+
+       <openApp></openApp>
+
      <spinner :show="loading" ></spinner>
     </div>
 </template>
@@ -62,6 +61,7 @@
  import { swiper, swiperSlide } from 'vue-awesome-swiper'
  import Spinner  from '../../components/spinner.vue'
  import productInfo from '../../model/productInfo'
+ import openApp from '../../components/openApp.vue'
   export default {
     data() {
       return {
@@ -114,8 +114,9 @@
                 ifr.src = 'wanjia://'; 
                 ifr.style.display = 'none'; 
                 document.body.appendChild(ifr); 
+                console.log(ifr)
                 window.setTimeout(function(){ 
-                document.body.removeChild(ifr); 
+                  document.body.removeChild(ifr); 
                 },3000) 
           
          }
@@ -123,7 +124,8 @@
     components: {
         swiper,
         swiperSlide,
-        Spinner
+        Spinner,
+        openApp
     }
   }
 </script>
