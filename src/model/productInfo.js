@@ -6,8 +6,9 @@ const productInfo = {
     img:'http://d.5857.com/xg_161228/001.jpg',
 };
 
-function getProducts(category) { 
-    const url = "http://45.32.23.77:8880/index/goods/detail/id/" + category
+function getProducts(id) { 
+    const url = "http://45.32.23.77:8880/index/goods/detail/id/" + id
+    //const url = "http://localhost:8880/index/goods/detail/id/" + id
     return new Promise(function(resolve,reject){
         axios.get(url).then(response=>{
             var res = response.data;
