@@ -7,8 +7,8 @@ const eventInfo = {
 };
 
 function getEvent(eventId) { 
-    const url = "http://45.32.23.77:8880/index/xueyuan/detail/id/" + eventId
-    //const url = "http://localhost:8880/index/xueyuan/detail/id/" + eventId
+    //const url = "http://45.32.23.77:8880/index/xueyuan/detail/id/" + eventId
+    const url = "http://localhost:8880/index/xueyuan/detail/id/" + eventId
     console.log(url)
     return new Promise(function(resolve,reject){
         axios.get(url).then(response=>{
