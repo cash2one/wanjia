@@ -1,5 +1,7 @@
 <template>
-    <div class="eventDiv">
+    <div class="eventDiv" v-infinite-scroll="loadMore"
+  infinite-scroll-disabled="loading"
+  infinite-scroll-distance="10">
         <div class="eventHead">
             <img :src="event.goodsThumb" alt="">
             <div class="eventTime">
@@ -83,20 +85,48 @@ export default {
       return {
           event:{},
           publisher:{},
+          loading:false
       }
     },
     mounted(){
-        var that = this
-        eventInfo.getEvent(60).then(function(data){
-                that.event = data.data
-                that.publisher = that.event.goodsService
-            },function(error){
-                console.log(data.msg)
-            })
+        
     },
      components: {
         openApp
+    },
+    methods:{
+        loadMore(){
+            var that = this
+            //this.loading = true
+            //这个页面不做下拉刷新了
+            var pageIndex = 0
+            if(!isEmplyObject(this.event)){
+                pageIndex = that.event.comments.length / 15
+            }
+            if(pageIndex == 0){
+                 eventInfo.getEvent(60,pageIndex).then(function(data){
+                that.event = data.data
+                that.loading = false
+                that.publisher = that.event.goodsService
+                },function(error){
+                    console.log(data.msg)
+                })
+            }
+            else{
+                
+            }
+           
+        }
     }
+}
+
+function isEmplyObject(obj){
+   
+  for (var key in obj) {
+    return false;
+  }
+  return true;
+
 }
 </script>
 <style>
@@ -142,7 +172,7 @@ button.applyEvent{
     border: 0px;
     border-radius: 0.1rem;
     color: white;
-    padding: 0.12rem 0.02rem;
+    padding: 0.15rem 0.02rem;
     background: green;
 }
 div.eventInfo{
