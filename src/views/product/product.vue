@@ -80,7 +80,7 @@
     },
     mounted(){
         var that = this
-        productInfo.getProducts(23).then(function(data){
+        productInfo.getProducts(45).then(function(data){
                 that.product = data.data
                 let ser =  that.product.goodsInclude
                 for(var s of ser){
