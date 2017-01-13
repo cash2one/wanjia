@@ -3,6 +3,7 @@
        <router-link :to="{ name: 'product', params: { id: 123 }}">商品</router-link>
         <router-link :to="{ name: 'event', params: { id: 123 }}">活动</router-link>
         <router-link :to="{ name: 'applyVip'}">申请VIP</router-link>
+        <router-link :to="{ name: 'applySuccess'}">申请VIP成功</router-link>
    </div>
 </template>
 <script>
@@ -23,5 +24,9 @@ div.mainDiv{
     max-width: 750px;
     min-width: 320px;
     background: #eee;
+    font-size: 1rem;
+}
+div.mainDiv a{
+   display: block
 }
 </style>

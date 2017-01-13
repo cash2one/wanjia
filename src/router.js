@@ -3,6 +3,7 @@ import index from './views/index.vue'
 import product from './views/product/product.vue'
 import collegeEvent from './views/event/collegeEvent.vue'
 import applyVip from './views/vip/applyVip.vue'
+import applySuccess from './views/vip/applySuccess.vue'
 export default[{
    path:'/',
    component:index,
@@ -22,5 +23,10 @@ export default[{
    path:'/vip/apply',
    component:applyVip,
    name:'applyVip'
+},
+{
+   path:'/vip/applySuccess',
+   component:applySuccess,
+   name:'applySuccess'
 },
 ]

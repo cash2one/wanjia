@@ -203,7 +203,7 @@ div.eventPrice{
 
 button.applyEvent{
     position: absolute;
-    right: 0.2rem;
+    right: 0.3rem;
     top: 6.8rem;
     width: 1.6rem;
     font-size: 0.25rem;
@@ -211,7 +211,7 @@ button.applyEvent{
     border-radius: 0.1rem;
     color: white;
     padding: 0.15rem 0.02rem;
-    background: green;
+    background: #14CC81;
 }
 div.eventInfo{
     margin-top: 0.3rem;
@@ -234,13 +234,15 @@ div.publisher span{
     font-size: 0.38rem;
 }
 div.publisher button{
-    border: 1px solid green;
-    padding: 0.1rem 0.4rem;
+    border: 1px solid #14CC81;
     border-radius: 0.1rem;
     float: right;
+    height: 0.5rem;
+    font-size: 0.24rem;
     margin-top: 0.3rem;
     background: white;
     color: green;
+    width: 1.6rem;
 }
 div.line_left{
     width: 1.5rem;
@@ -340,4 +342,19 @@ div.commentLine{
     height: 1px;
     margin-top: 0.3rem;
 }
+/*img{
+    position: relative
+}
+img:after { 
+  content: url('../../static/img/placeholder.png');
+  display: block;
+  position: absolute;
+  
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}*/
 </style>
