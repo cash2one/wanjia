@@ -1,4 +1,4 @@
-var APPCommon = {
+export const APPCommon = {
     iphoneSchema: 'wanjia://',
     iphoneDownUrl: 'https://itunes.apple.com/cn/app/id1176755755',
     androidSchema: 'scheme://wanjia/',
@@ -45,6 +45,4 @@ var APPCommon = {
     }
 };
 
-export function openApp(){
-    APPCommon.openApp()
-}
+     

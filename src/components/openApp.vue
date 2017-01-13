@@ -5,14 +5,14 @@
        </div>
 </template>
 <script>
-    import openApp from '../tool/openApp'
+    import {APPCommon} from '../tool/openApp' //明白了，要用{}把里面的东西拮起来
     export default {
         data(){
             return{}
         },
         methods:{
             openApp:function(){
-                console.log(openApp)
+               APPCommon.openApp()
             }
         }
     }
