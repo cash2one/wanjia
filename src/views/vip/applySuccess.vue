@@ -9,12 +9,13 @@
             <button class="enterWanjiaButton" @click="openApp" type="">进入玩+APP</button>
         </div>
         <div class="imgAppluSuccess">
-            <img src="http://d.5857.com/xgdxmn_161124/001.jpg" alt="">
+            <img src = "http://d.5857.com/mgqs_161124/001.jpg" alt=""></ie>
         </div>
     </div>
 </template>
 <script>
     import {APPCommon} from '../../tool/openApp'
+    import ie from '../../components/image.vue'
     export default {
     data() {
       return {
@@ -25,7 +26,11 @@
         openApp(){
             APPCommon.openApp()
         }
+    },
+    components:{
+        ie
     }
+    
    }
 </script>
 <style>

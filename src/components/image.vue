@@ -1,29 +1,28 @@
 <template>
-    <img :src="s" alt="" @onload="loading" @onerror="showError">
+    <img src="./placeholder.png" ref="loadImage" alt="" >
 </template>
 <script>
+    import axios from 'axios'
+    import path from 'path'
     export default {
-        props: {
-            imgSrc: {
-                type: String
-            }
-        },
+        props: ['imgSrc'],
         data(){
             return{
-                s:''
+                
             }
         },
+        //目前能力还是找不到好的方案
         mounted(){
-            this.s = this.imgSrc
+             this.$refs.loadImage.onerror = function (e) {
+                 console.log('aaa')
+                 this.src = './placeholder.png'
+                 e.handle = true
+             }
+           
+             
         },
-        methods:{
-            loading(){
-                this.s = '../static/img/placeholder.png'
-            },
-            showError(){
-                console.log('image fail')
-                this.s = '../static/img/placeholder.png'
-            },
+        computed: {
+         
         }
     }
 </script>
