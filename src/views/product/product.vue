@@ -80,7 +80,8 @@
     },
     mounted(){
         var that = this
-        productInfo.getProducts(45).then(function(data){
+        let id = this.$route.params.id
+        productInfo.getProducts(id).then(function(data){
                 that.product = data.data
                 let ser =  that.product.goodsInclude
                 for(var s of ser){
