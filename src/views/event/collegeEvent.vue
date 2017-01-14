@@ -1,7 +1,8 @@
 <template>
-    <div class="eventDiv" v-infinite-scroll="loadMore"
+    <div class="eventDiv"  v-infinite-scroll="loadMore"
   infinite-scroll-disabled="loading"
-  infinite-scroll-distance="10">
+  infinite-scroll-distance="10" >
+
         <div class="eventHead">
             <img :src="event.goodsThumb" alt="">
             <div class="eventTime">
