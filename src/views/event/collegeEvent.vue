@@ -86,11 +86,11 @@ export default {
       return {
           event:{},
           publisher:{},
-          loading:false
+          loading:true
       }
     },
     mounted(){
-        
+        this.loadMore()
     },
      components: {
         openApp
@@ -101,11 +101,12 @@ export default {
             //this.loading = true
             //这个页面不做下拉刷新了
             var pageIndex = 0
+            let id = this.$route.params.id
             if(!isEmplyObject(this.event)){
                 pageIndex = that.event.comments.length / 15
             }
             if(pageIndex == 0){
-                 eventInfo.getEvent(60,pageIndex).then(function(data){
+                eventInfo.getEvent(id,pageIndex).then(function(data){
                 that.event = data.data
                 that.loading = false
                 that.publisher = that.event.goodsService

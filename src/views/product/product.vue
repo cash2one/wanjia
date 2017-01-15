@@ -82,6 +82,7 @@
         var that = this
         let id = this.$route.params.id
         productInfo.getProducts(id).then(function(data){
+            console.log(data)
                 that.product = data.data
                 let ser =  that.product.goodsInclude
                 for(var s of ser){
