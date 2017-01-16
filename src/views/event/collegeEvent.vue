@@ -73,7 +73,7 @@
                 <div class="commentLine"></div>
             </div>
         </div>
-         <openApp></openApp>
+        <openApp></openApp>
     </div>
 </template>
 <script>
@@ -185,7 +185,7 @@ div.eventTime{
     top: 5.4rem;
     padding-left: 0.5rem;
     background: #444;
-    width: 100%;
+    width: 95%;
     height: 0.9rem;
     line-height: 0.9rem;
     color: white; 
@@ -214,6 +214,7 @@ button.applyEvent{
     color: white;
     padding: 0.15rem 0.02rem;
     background: #14CC81;
+    height: 0.6rem;
 }
 div.eventInfo{
     margin-top: 0.3rem;
@@ -239,7 +240,7 @@ div.publisher button{
     border: 1px solid #14CC81;
     border-radius: 0.1rem;
     float: right;
-    height: 0.5rem;
+    height: 0.6rem;
     font-size: 0.24rem;
     margin-top: 0.3rem;
     background: white;
@@ -303,6 +304,7 @@ div.commentCell{
     height: 1rem;
     border-radius: 1rem;
     margin-right: 0.1rem;
+    position: relative
 }
 span.commenter{
     position: relative;
@@ -346,16 +348,20 @@ div.commentLine{
 }
 /*img{
     position: relative
-}
+}*/
 img:after { 
-  content: url('../../static/img/placeholder.png');
-  display: block;
+  background-image: url('../../static/img/placeholder.png');
+  /*display: block;*/
   position: absolute;
   z-index: 2;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  right: 0;
+  content: '';
+  /*width: 100%;
+  height: 100%;*/
+  background-size: cover;
   background-color: #fff;
-}*/
+}
 </style>

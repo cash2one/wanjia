@@ -15,7 +15,6 @@
 </template>
 <script>
     import {APPCommon} from '../../tool/openApp'
-    import ie from '../../components/image.vue'
     export default {
     data() {
       return {
@@ -26,9 +25,6 @@
         openApp(){
             APPCommon.openApp()
         }
-    },
-    components:{
-        ie
     }
     
    }
