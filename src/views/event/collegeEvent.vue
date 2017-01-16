@@ -14,13 +14,13 @@
             <div class="eventPrice">
                 <span style="font-size: 0.3rem">￥</span> <span style="font-size: 0.5rem">{{event.goodsPrice}}</span>
             </div>
-            <button class="applyEvent" type="">我要报名</button>
+            <button class="applyEvent" type="" @click="joinEvent">我要报名</button>
         </div>
         <div class="eventInfo">
             <div class="publisher">
                 <img :src="publisher.thumb" alt="">
                 <span>{{publisher.businessName}}</span>
-                <button type="">+    关注</button>
+                <button type="" @click="joinEvent" >+    关注</button>
             </div>
             <div style="display: flex;justify-content: center">
                 <div class="line_left">  </div>
@@ -81,6 +81,8 @@
  import Spinner  from '../../components/spinner.vue'
  import eventInfo from '../../model/eventInfo'
  import openApp from '../../components/openApp.vue'
+import { Toast } from 'mint-ui';
+ import 'mint-ui/lib/toast/style.css'
 export default {
     data() {
       return {
@@ -118,7 +120,17 @@ export default {
                 
             }
            
-        }
+        },
+        joinEvent(){
+            this.toast('请打开APP')
+        },
+        toast(msg){
+            Toast({
+            message: msg,
+            position: 'bottom',
+            duration: 2000
+            })
+      }
     },
     computed:{
         eventTime(){
@@ -352,7 +364,7 @@ div.commentLine{
     position: relative
 }*/
 img:after { 
-  background-image: url('../../static/img/placeholder.png');
+  background-image: url(http://45.32.23.77/placeholder.png);
   /*display: block;*/
   position: absolute;
   z-index: 2;

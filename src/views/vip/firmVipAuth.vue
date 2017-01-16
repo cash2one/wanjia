@@ -65,7 +65,7 @@
              Toast({
                 message: msg,
                 position: 'bottom',
-                duration: 10000
+                duration: 2000
             })
         }
     }
