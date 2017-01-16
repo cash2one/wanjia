@@ -9,7 +9,7 @@
             <button class="enterWanjiaButton" @click="openApp" type="">进入玩+APP</button>
         </div>
         <div class="imgAppluSuccess">
-            <img src = "http://d.5857.com/mgqs_161124/001.jpg" alt=""></ie>
+            <img src = "http://img1.gamersky.com/image2017/01/20170114_zl_91_12/gamersky_05origin_09_201711416316C2.jpg" alt=""></ie>
         </div>
     </div>
 </template>

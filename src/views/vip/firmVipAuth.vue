@@ -16,7 +16,7 @@
         <input class="applyInput" type="text" name="" v-model="companyName" placeholder="请输入公司单位名称">
         <button class="applyButton" @click="submitApply" type="">提 交</button>
         <div class="imgVipAuth">
-            <img src = "http://d.5857.com/mgqs_161124/001.jpg" alt=""></ie>
+            <img src = "http://img1.gamersky.com/image2017/01/20170114_zl_91_12/gamersky_05origin_09_201711416316C2.jpg" alt=""></ie>
         </div>
     </div>
 </template>

@@ -208,13 +208,14 @@ button.applyEvent{
     right: 0.3rem;
     top: 6.8rem;
     width: 1.6rem;
-    font-size: 0.25rem;
+    font-size: 0.3rem;
     border: 0px;
     border-radius: 0.1rem;
     color: white;
     padding: 0.15rem 0.02rem;
     background: #14CC81;
     height: 0.6rem;
+    line-height: 0.2rem;
 }
 div.eventInfo{
     margin-top: 0.3rem;
@@ -241,11 +242,12 @@ div.publisher button{
     border-radius: 0.1rem;
     float: right;
     height: 0.6rem;
-    font-size: 0.24rem;
+    font-size: 0.3rem;
     margin-top: 0.3rem;
     background: white;
     color: green;
     width: 1.6rem;
+    line-height: 0.5rem;
 }
 div.line_left{
     width: 1.5rem;
