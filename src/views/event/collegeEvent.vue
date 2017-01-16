@@ -298,7 +298,7 @@ div.comment{
 div.commentCell{
     padding: 0.3rem 0.3rem 0.05rem 0.3rem;
 }
-commenterHead{
+.commenterHead{
     width: 1rem;
     height: 1rem;
     border-radius: 1rem;
@@ -351,7 +351,6 @@ img:after {
   content: url('../../static/img/placeholder.png');
   display: block;
   position: absolute;
-  
   z-index: 2;
   top: 0;
   left: 0;
