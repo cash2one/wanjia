@@ -1,6 +1,6 @@
 <template>
     <div class="applyVipMainDiv">
-        <img class="imgVip" src="http://d.5857.com/xgdxmn_161124/001.jpg" alt="">
+        <img class="imgVip" src="http://img1.gamersky.com/image2017/01/20170114_zl_91_12/gamersky_05origin_09_201711416316C2.jpg" alt="">
         <div class="getVip">
            <img src="./IWantGet.png" alt="">
         </div>

@@ -14,13 +14,13 @@
             <div class="eventPrice">
                 <span style="font-size: 0.3rem">￥</span> <span style="font-size: 0.5rem">{{event.goodsPrice}}</span>
             </div>
-            <button class="applyEvent" type="">我要报名</button>
+            <button class="applyEvent" type="" @click="joinEvent">我要报名</button>
         </div>
         <div class="eventInfo">
             <div class="publisher">
                 <img :src="publisher.thumb" alt="">
                 <span>{{publisher.businessName}}</span>
-                <button type="">+    关注</button>
+                <button type="" @click="joinEvent" >+    关注</button>
             </div>
             <div style="display: flex;justify-content: center">
                 <div class="line_left">  </div>
@@ -73,7 +73,7 @@
                 <div class="commentLine"></div>
             </div>
         </div>
-         <openApp></openApp>
+        <openApp></openApp>
     </div>
 </template>
 <script>
@@ -81,6 +81,8 @@
  import Spinner  from '../../components/spinner.vue'
  import eventInfo from '../../model/eventInfo'
  import openApp from '../../components/openApp.vue'
+import { Toast } from 'mint-ui';
+ import 'mint-ui/lib/toast/style.css'
 export default {
     data() {
       return {
@@ -118,7 +120,17 @@ export default {
                 
             }
            
-        }
+        },
+        joinEvent(){
+            this.toast('请打开APP')
+        },
+        toast(msg){
+            Toast({
+            message: msg,
+            position: 'bottom',
+            duration: 2000
+            })
+      }
     },
     computed:{
         eventTime(){
@@ -185,7 +197,7 @@ div.eventTime{
     top: 5.4rem;
     padding-left: 0.5rem;
     background: #444;
-    width: 100%;
+    width: 95%;
     height: 0.9rem;
     line-height: 0.9rem;
     color: white; 
@@ -208,12 +220,14 @@ button.applyEvent{
     right: 0.3rem;
     top: 6.8rem;
     width: 1.6rem;
-    font-size: 0.25rem;
+    font-size: 0.3rem;
     border: 0px;
     border-radius: 0.1rem;
     color: white;
     padding: 0.15rem 0.02rem;
     background: #14CC81;
+    height: 0.6rem;
+    line-height: 0.2rem;
 }
 div.eventInfo{
     margin-top: 0.3rem;
@@ -239,12 +253,13 @@ div.publisher button{
     border: 1px solid #14CC81;
     border-radius: 0.1rem;
     float: right;
-    height: 0.5rem;
-    font-size: 0.24rem;
+    height: 0.6rem;
+    font-size: 0.3rem;
     margin-top: 0.3rem;
     background: white;
     color: green;
     width: 1.6rem;
+    line-height: 0.5rem;
 }
 div.line_left{
     width: 1.5rem;
@@ -298,11 +313,12 @@ div.comment{
 div.commentCell{
     padding: 0.3rem 0.3rem 0.05rem 0.3rem;
 }
-commenterHead{
+.commenterHead{
     width: 1rem;
     height: 1rem;
     border-radius: 1rem;
     margin-right: 0.1rem;
+    position: relative
 }
 span.commenter{
     position: relative;
@@ -346,17 +362,20 @@ div.commentLine{
 }
 /*img{
     position: relative
-}
+}*/
 img:after { 
-  content: url('../../static/img/placeholder.png');
-  display: block;
+  background-image: url(http://45.32.23.77/placeholder.png);
+  /*display: block;*/
   position: absolute;
-  
   z-index: 2;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  right: 0;
+  content: '';
+  /*width: 100%;
+  height: 100%;*/
+  background-size: cover;
   background-color: #fff;
-}*/
+}
 </style>

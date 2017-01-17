@@ -164,6 +164,9 @@
     -webkit-align-items: center;
     align-items: center;
   }
+div.swiper-pagination{
+    opacity: 0.7;
+}
 div.swiper-pagination span{
     background: white;
 }
@@ -207,7 +210,7 @@ span.selectedService{
     color:#14CC81;
 }
 div.productServiceList span{
-    font-size: 0.4rem;
+    font-size: 0.37rem;
     display: block;
     text-align: center;
     margin-left: 0.15rem;
