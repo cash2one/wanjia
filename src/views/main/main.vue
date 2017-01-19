@@ -12,7 +12,7 @@
       
       <swiper :options="swiperOption" class="swiper-box headSwiper">
           <swiper-slide class="swiper-item" v-for="baner in pageData.banner">
-              <img style="width: 100%;height: 8rem;" :src="baner.imagePath">
+              <img style="width: 100%;height: 8rem;" :src="baner.imagePath" @click="gotoAd(baner)">
           </swiper-slide>
           <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
       </swiper>
@@ -65,7 +65,7 @@
            <img src="./hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
          </div>
          <div class="hotProjects">
-           <div class="hotProjectItem" v-for="pro in hotProjects" @click="gotoProduct(pro)">
+           <div class="hotProjectItem" v-for="pro in hotProjects" @click="gotoProduct(pro.id)">
               <img :src="pro.goodsThumb" alt="">
               <div>
                 {{pro.goodsName}}
@@ -145,8 +145,17 @@
         //     }
         // })
       },
-      gotoProduct(product){
-        this.$router.push({ name: 'product', params: { id: product.id }})
+      gotoAd(adInfo){
+        console.log(adInfo.type)
+        if(adInfo.type == 1){
+          this.gotoProduct(adInfo.id)
+        }
+        else{
+          
+        }
+      },
+      gotoProduct(id){
+        this.$router.push({ name: 'product', params: { id:id }})
       }
     }
  }
@@ -261,12 +270,12 @@ div.hotProjects{
   padding-top: 0.3rem;
 }
 div.hotProjectItem{
-  width: 45%;
+  width: 46%;
   padding: 0.2rem;
   float: left;
   height: 3.6rem;
   overflow: hidden;
-  font-size: 0.25rem;
+  font-size: 0.28rem;
   text-align: left;
   position: relative;
 }
@@ -281,7 +290,7 @@ span.productZan{
   padding: 0.05rem 0.1rem;
   border-radius: 0.1rem;
   position: absolute;
-  left: 3.9rem;
+  right: 0.5rem;
   top: 0.4rem;
 }
 span.productZan img{
