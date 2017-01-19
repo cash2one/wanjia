@@ -1,9 +1,15 @@
 <template>
-    <div class="indexPage">
+  <div>
+    <div>
       <mt-header fixted class="mainHead" title="玩+" >
-         <mt-button slot="left" style="font-size: 0.5rem !important" >深圳</mt-button>
-          <mt-button icon="more" slot="right"></mt-button>
-      </mt-header>
+          <mt-button slot="left" style="font-size: 0.5rem !important" >深圳</mt-button>
+            <mt-button icon="more" slot="right"></mt-button>
+        </mt-header>
+    </div>
+    <div class="indexPage"   v-infinite-scroll="loadMore"
+  infinite-scroll-disabled="loading"
+  infinite-scroll-distance="10" >
+      
       <swiper :options="swiperOption" class="swiper-box headSwiper">
           <swiper-slide class="swiper-item" v-for="baner in pageData.banner">
               <img style="width: 100%;height: 8rem;" :src="baner.imagePath">
@@ -16,6 +22,60 @@
           这个组件好像只有自己写了
         </span>
       </div>
+      <div class="productCatDiv">
+        <div class="fourCatDic">
+           <div v-for="cat in pageData.ad_category">
+             <img :src="cat.adImage" alt="">
+             <span style="display: inline-block">{{cat.adText}}</span>
+           </div>
+        </div>
+        <div class="twoCatDic">
+          <img :src="car.adImage" v-for="car in pageData.ad_mall_finance" alt="">
+        </div>
+      </div>
+      <div class="newProductsDiv">
+         <img class="imgTitle" src="./new.png" alt="">
+         <div class="catImageDiv">
+            <img  :src="cat.adImage" v-for="cat in pageData.ad_new" alt="">
+         </div>
+      </div>
+      <div class="newProductsDiv">
+          <img class="imgTitle" src="./recommend.png" alt="">
+          <img class="imgBigCat" :src="recommendBigImg.adImage" alt="">
+         <div class="catImageDiv">
+            <img  :src="cat.adImage" v-for="cat in recommendSmallImages" alt="">
+         </div>
+      </div>
+       <div class="newProductsDiv">
+          <img class="imgTitle" src="./popular.png" alt="">
+          <img class="imgBigCat" :src="popularBigImage.adImage" alt="">
+         <div class="catImageDiv">
+            <img  :src="cat.adImage" v-for="cat in popularSmallImage" alt="">
+         </div>
+      </div>
+       <div class="newProductsDiv">
+          <img class="imgTitle" src="./custom.png" alt="">
+          <img class="imgBigCat" :src="customBigImage.adImage" alt="">
+         <div class="catImageDiv">
+            <img  :src="cat.adImage" v-for="cat in customSmallImage" alt="">
+         </div>
+      </div>
+      <div class="hotProject">
+         <div>
+           <img src="./hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
+         </div>
+         <div class="hotProjects">
+           <div class="hotProjectItem" v-for="pro in hotProjects" @click="gotoProduct(pro)">
+              <img :src="pro.goodsThumb" alt="">
+              <div>
+                {{pro.goodsName}}
+              </div>
+              <span class="productZan"> <img src="./like.png" alt=""> <span style="vertical-align: middle">{{pro.zan}}</span> </span>
+           </div>
+           <div style="clear: both"></div>
+         </div>
+      </div>
+    </div>
     </div>
 </template>
 <script>
@@ -32,16 +92,33 @@
           spaceBetween: 5,
           mousewheelControl: true
         },
-        loading:true,
+        loading:false,
         pageData:{},
+        recommendBigImg:{},
+        recommendSmallImages:{},
+        popularBigImage:{},
+        popularSmallImage:{},
+        customBigImage:{},
+        customSmallImage:{},
+        hotProjects:{},
+        pageIndex:0
       }
     },
     mounted(){
-      let url = "http://localhost:8880/index/index/index?page=0"
+      let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
       axios.get(url).then(response=>{
             var res = response.data;
             if(res.ret_code == 0) {
+                this.pageIndex ++ 
+                console.log(this.pageIndex)
                 this.pageData = res.data
+                this.hotProjects = this.pageData.product
+                this.recommendBigImg = this.pageData.ad_recommend[0]
+                this.recommendSmallImages = this.pageData.ad_recommend.splice(1,3)
+                this.popularBigImage = this.pageData.ad_popular[0]
+                this.popularSmallImage = this.pageData.ad_popular.splice(1,3)
+                this.customBigImage = this.pageData.ad_custom[0]
+                this.customSmallImage = this.pageData.ad_custom.splice(1,3)
             }
             else{
                 
@@ -51,14 +128,40 @@
      components: {
         swiper,
         swiperSlide,
+    },
+    methods:{
+      loadMore(){
+        console.log('load more')
+        // this.loading = true
+        // console.log(this.pageIndex)
+        // let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
+        // axios.get(url).then(response=>{
+        //     var res = response.data;
+        //     if(res.ret_code == 0) {
+        //        this.hotProjects = this.hotProjects.concat(res.data)
+        //     }
+        //     else{
+                
+        //     }
+        // })
+      },
+      gotoProduct(product){
+        this.$router.push({ name: 'product', params: { id: product.id }})
+      }
     }
  }
 </script>
 <style>
+div.indexPage{
+  font-size: 0.5rem;
+}
 .mainHead{
   height: 1.5rem !important;
   background: #383f49 !important;
   font-size: 0.7rem !important;
+  position: fixed !important;
+  width: 100%;
+  z-index: 100;
 }
  .swiper-box {
     width: 100%;
@@ -92,15 +195,98 @@ div.swiper-pagination span{
 }
 div.wanplustoutiaoDiv{
   background: white;
-
+padding: 0.2rem 0.3rem;
+vertical-align: middle;
 }
 img.wanplusToutiao{
   width: 2rem;
+  vertical-align: middle;
 
 }
 span.scrollAd{
   font-size: 0.35rem;
   color: #aaa;
- 
+}
+div.productCatDiv{
+  background: white;
+}
+div.fourCatDic{
+  font-size: 0.4rem;
+ text-align: center;
+  display: flex;
+  margin-top: 0.3rem;
+  padding-top: 0.4rem;
+}
+div.fourCatDic div{
+  width:25%;
+
+}
+div.fourCatDic div img{
+  width: 65%;
+}
+
+div.twoCatDic img{
+  width: 45%;
+  padding-top: 0.3rem;
+  padding-left: 0.35rem;
+}
+div.newProductsDiv{
+  background: white;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+.imgTitle{
+  height: 0.45rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.2rem;
+}
+.catImageDiv{
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 0.3rem;
+}
+.catImageDiv img{
+  width: 3rem;
+  height: 3rem;
+}
+.imgBigCat{
+  width: 94%;
+  margin-bottom: 0.2rem;
+}
+div.hotProject{
+  text-align: center;
+}
+div.hotProjects{
+  background: white;
+  padding-top: 0.3rem;
+}
+div.hotProjectItem{
+  width: 45%;
+  padding: 0.2rem;
+  float: left;
+  height: 3.6rem;
+  overflow: hidden;
+  font-size: 0.25rem;
+  text-align: left;
+  position: relative;
+}
+div.hotProjectItem img{
+  width: 100%;
+  height: 3rem;
+}
+span.productZan{
+  background: #444;
+  opacity: 0.5;
+  color: white;
+  padding: 0.05rem 0.1rem;
+  border-radius: 0.1rem;
+  position: absolute;
+  left: 3.9rem;
+  top: 0.4rem;
+}
+span.productZan img{
+  width: 0.2rem;
+  height: 0.2rem;
+  vertical-align: middle;
 }
 </style>

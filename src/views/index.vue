@@ -1,6 +1,6 @@
 <template>
    <div class="mainDiv">
-        <router-link :to="{ name: 'mainPage'}">商品</router-link>
+        <router-link :to="{ name: 'mainPage'}">首页</router-link>
         <router-link :to="{ name: 'product', params: { id: 6 }}">商品</router-link>
         <router-link :to="{ name: 'event', params: { id: 60 }}">活动</router-link>
         <router-link :to="{ name: 'applyVip'}">申请VIP</router-link>
