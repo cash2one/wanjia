@@ -3,6 +3,7 @@
         <router-link :to="{ name: 'mainPage'}">首页</router-link>
         <router-link :to="{ name: 'product', params: { id: 6 }}">商品</router-link>
         <router-link :to="{ name: 'event', params: { id: 60 }}">活动</router-link>
+        <router-link :to="{ name: 'dynamic'}">动态</router-link>
         <router-link :to="{ name: 'applyVip'}">申请VIP</router-link>
         <router-link :to="{ name: 'applySuccess'}">申请VIP成功</router-link>
         <router-link :to="{ name: 'firmVipAuth'}">企业主认证</router-link>
@@ -27,7 +28,7 @@ div.mainDiv{
     max-width: 750px;
     min-width: 320px;
     background: #eee;
-    font-size: 1rem;
+    font-size: 0.5rem;
 }
 div.mainDiv a{
    display: block

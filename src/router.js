@@ -7,6 +7,7 @@ import applySuccess from './views/vip/applySuccess.vue'
 import firmVipAuth from './views/vip/firmVipAuth.vue'
 import firmApplied from './views/vip/firmApplied.vue'
 import mainPage from './views/main/main.vue'
+import dynamic from './views/wanplus/dynamic.vue'
 export default[{
    path:'/',
    component:index,
@@ -46,5 +47,10 @@ export default[{
    path:'/main',
    component:mainPage,
    name:'mainPage'
+},
+{
+   path:'/dynamic',
+   component:dynamic,
+   name:'dynamic'
 },
 ]
