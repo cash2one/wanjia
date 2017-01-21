@@ -20,7 +20,7 @@
             <div class="publisher">
                 <img :src="publisher.thumb" alt="">
                 <span>{{publisher.businessName}}</span>
-                <button type="" @click="joinEvent" >+    关注</button>
+                <button @click="joinEvent" >+    关注</button>
             </div>
             <div style="display: flex;justify-content: center">
                 <div class="line_left">  </div>
