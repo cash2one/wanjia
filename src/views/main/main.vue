@@ -4,11 +4,10 @@
       <mt-header fixted class="mainHead" title="玩+" >
           <mt-button slot="left" style="font-size: 0.5rem !important" >深圳</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
-        </mt-header>
+      </mt-header>
     </div>
-    <div class="indexPage"   v-infinite-scroll="loadMore"
-  infinite-scroll-disabled="loading"
-  infinite-scroll-distance="10" >
+    <mt-loadmore  :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  ref="loadmore">
+    <div class="indexPage"   >
       
       <swiper :options="swiperOption" class="swiper-box headSwiper">
           <swiper-slide class="swiper-item" v-for="baner in pageData.banner">
@@ -26,7 +25,7 @@
         <div class="fourCatDic">
            <div v-for="cat in pageData.ad_category">
              <img :src="cat.adImage" alt="">
-             <span style="display: inline-block">{{cat.adText}}</span>
+             <span style="display: inline-block;font-size: 0.36rem">{{cat.adText}}</span>
            </div>
         </div>
         <div class="twoCatDic">
@@ -75,12 +74,24 @@
            <div style="clear: both"></div>
          </div>
       </div>
+   
+   
+   
+   
+   
+   
+   
+   
+   
     </div>
+    </mt-loadmore>
     </div>
 </template>
 <script>
  import Vue from 'vue'
  import { swiper, swiperSlide } from 'vue-awesome-swiper'
+ import { Toast } from 'mint-ui'
+ import 'mint-ui/lib/toast/style.css'
  import axios from 'axios'
  export default{
     data() {
@@ -92,7 +103,7 @@
           spaceBetween: 5,
           mousewheelControl: true
         },
-        loading:false,
+        allLoaded:false,
         pageData:{},
         recommendBigImg:{},
         recommendSmallImages:{},
@@ -101,7 +112,7 @@
         customBigImage:{},
         customSmallImage:{},
         hotProjects:{},
-        pageIndex:0
+        pageIndex:0,
       }
     },
     mounted(){
@@ -128,22 +139,27 @@
      components: {
         swiper,
         swiperSlide,
+        
     },
     methods:{
-      loadMore(){
+      loadBottom(id){
+        this.$refs.loadmore.onBottomLoaded();
         console.log('load more')
-        // this.loading = true
-        // console.log(this.pageIndex)
-        // let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
-        // axios.get(url).then(response=>{
-        //     var res = response.data;
-        //     if(res.ret_code == 0) {
-        //        this.hotProjects = this.hotProjects.concat(res.data)
-        //     }
-        //     else{
-                
-        //     }
-        // })
+        this.allLoaded = true
+        console.log(this.pageIndex)
+        let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
+        axios.get(url).then(response=>{
+            var res = response.data;
+            if(res.ret_code == 0) {
+              this.pageIndex ++ 
+              this.allLoaded = false
+               this.hotProjects = this.hotProjects.concat(res.data)
+            }
+            else{
+                this.allLoaded = true
+                this.toast('已经全部加载完')
+            }
+        })
       },
       gotoAd(adInfo){
         console.log(adInfo.type)
@@ -156,6 +172,13 @@
       },
       gotoProduct(id){
         this.$router.push({ name: 'product', params: { id:id }})
+      },
+      toast(msg){
+             Toast({
+                message: msg,
+                position: 'bottom',
+                duration: 2000
+            })
       }
     }
  }
