@@ -23,40 +23,40 @@
       </div>
       <div class="productCatDiv">
         <div class="fourCatDic">
-           <div v-for="cat in pageData.ad_category">
+           <div v-for="cat in pageData.ad_category" @click="gotoProductList(cat)">
              <img :src="cat.adImage" alt="">
-             <span style="display: inline-block;font-size: 0.36rem">{{cat.adText}}</span>
+             <span style="display: block;font-size: 0.36rem">{{cat.adText}}</span>
            </div>
         </div>
         <div class="twoCatDic">
-          <img :src="car.adImage" v-for="car in pageData.ad_mall_finance" alt="">
+          <img :src="car.adImage" v-for="car in pageData.ad_mall_finance" alt="" @click="gotoAd(car)">
         </div>
       </div>
       <div class="newProductsDiv">
          <img class="imgTitle" src="./new.png" alt="">
          <div class="catImageDiv">
-            <img  :src="cat.adImage" v-for="cat in pageData.ad_new" alt="">
+            <img  :src="cat.adImage" v-for="cat in pageData.ad_new" alt="" @click="gotoAd(cat)" >
          </div>
       </div>
       <div class="newProductsDiv">
           <img class="imgTitle" src="./recommend.png" alt="">
           <img class="imgBigCat" :src="recommendBigImg.adImage" alt="">
          <div class="catImageDiv">
-            <img  :src="cat.adImage" v-for="cat in recommendSmallImages" alt="">
+            <img  :src="cat.adImage" v-for="cat in recommendSmallImages" alt="" @click="gotoAd(cat)">
          </div>
       </div>
        <div class="newProductsDiv">
           <img class="imgTitle" src="./popular.png" alt="">
           <img class="imgBigCat" :src="popularBigImage.adImage" alt="">
          <div class="catImageDiv">
-            <img  :src="cat.adImage" v-for="cat in popularSmallImage" alt="">
+            <img  :src="cat.adImage" v-for="cat in popularSmallImage" alt="" @click="gotoAd(cat)">
          </div>
       </div>
        <div class="newProductsDiv">
           <img class="imgTitle" src="./custom.png" alt="">
           <img class="imgBigCat" :src="customBigImage.adImage" alt="">
          <div class="catImageDiv">
-            <img  :src="cat.adImage" v-for="cat in customSmallImage" alt="">
+            <img  :src="cat.adImage" v-for="cat in customSmallImage" alt="" @click="gotoAd(cat)">
          </div>
       </div>
       <div class="hotProject">
@@ -162,16 +162,19 @@
         })
       },
       gotoAd(adInfo){
-        console.log(adInfo.type)
+        console.log(adInfo)
         if(adInfo.type == 1){
           this.gotoProduct(adInfo.id)
         }
         else{
-          
+          window.location.href = adInfo.adUrl
         }
       },
       gotoProduct(id){
         this.$router.push({ name: 'product', params: { id:id }})
+      },
+      gotoProductList(type){
+         this.$router.push({ name: 'productList', params: { type:type.id }})
       },
       toast(msg){
              Toast({

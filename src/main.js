@@ -14,7 +14,10 @@ import { Button } from 'mint-ui';
 
 Vue.component(Button.name, Button);
 
+import { Navbar, TabItem } from 'mint-ui';
 
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
 
 Vue.use(VueRouter)
 Vue.use(vueResource)
