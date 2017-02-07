@@ -116,7 +116,8 @@
       }
     },
     mounted(){
-      let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
+     // let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
+      let url = "https://app.playnet.cc/index/index/index?page=" + this.pageIndex
       axios.get(url).then(response=>{
             var res = response.data;
             if(res.ret_code == 0) {
@@ -147,7 +148,8 @@
         console.log('load more')
         this.allLoaded = true
         console.log(this.pageIndex)
-        let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
+        //let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
+        let url = "https://app.playnet.cc/index/index/index?page=" + this.pageIndex
         axios.get(url).then(response=>{
             var res = response.data;
             if(res.ret_code == 0) {

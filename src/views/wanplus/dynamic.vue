@@ -50,7 +50,8 @@ import axios from 'axios'
             }
         },
         mounted(){
-            let url = "http://localhost:8880/index/discovery/index/page/" + this.pageIndex
+             let url = "https://app.playnet.cc/index/discovery/index/page/" + this.pageIndex
+            //let url = "http://localhost:8880/index/discovery/index/page/" + this.pageIndex
             axios.get(url).then(response=>{
             var res = response.data;
                 if(res.ret_code == 0) {
@@ -157,7 +158,7 @@ img.zanCountImg{
 }
 .zanCommentImg img{
      width: 0.3rem;
-    height: 0.3rem;
+    height: 0.25rem;
     vertical-align: middle;
 }
 span.zanCount{
@@ -169,7 +170,7 @@ span.zanBorder{
     text-align: center;
     height: 0.45rem;
     border-radius: 0.1rem;
-
+    padding-top: 0.05rem;
 }
 div.commenters{
     margin: 0.2rem 0.3rem;

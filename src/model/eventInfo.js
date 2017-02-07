@@ -7,7 +7,8 @@ const eventInfo = {
 };
 
 function getEvent(eventId,pageIndex) { 
-    const url = "http://45.32.23.77:3000/index/xueyuan/detail/id/" + eventId
+    //const url = "http://45.32.23.77:3000/index/xueyuan/detail/id/" + eventId
+    const url = "https://app.playnet.cc/index/xueyuan/detail/id/" + eventId
     //const url = "http://localhost:3000/index/xueyuan/detail/id/" + eventId + "/page/"+pageIndex
     console.log(url)
     return new Promise(function(resolve,reject){

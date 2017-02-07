@@ -8,7 +8,8 @@ const productInfo = {
 
 function getProducts(id) { 
     //const url = "http://45.32.23.77:3000/index/goods/detail/id/" + id
-    const url = "http://localhost:8880/index/goods/detail/id/" + id
+    const url = "https://app.playnet.cc/index/goods/detail/id/" + id
+     //const url = "http://localhost:8880/index/goods/detail/id/" + id
     console.log(url)
     return new Promise(function(resolve,reject){
         axios.get(url).then(response=>{

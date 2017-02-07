@@ -173,7 +173,7 @@ div.swiper-pagination span{
 div.productNum{
     position: absolute;
     right: 0.3rem;
-    top: 7.1rem;
+    top: 6.1rem;
     z-index: 100;
     font-size: 0.35rem;
     color: white;
