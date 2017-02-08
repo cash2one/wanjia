@@ -1,9 +1,12 @@
 <template>
   <div>
-        <div>
+        
             <mt-header fixted class="mainHead"  >
-                <mt-button v-link="'/'" icon="back" slot="left">返回</mt-button>
+                <mt-button v-link="'/'" icon="back" slot="left" style="font-size: 0.5rem" @click="back" > </mt-button>
             </mt-header>
+        
+        <div class="productdivFrame">
+             <iframe class="productFrame" :src="src"></iframe>
         </div>
     </div>
 </template>
@@ -11,24 +14,37 @@
  export default{
     data() {
       return {
-       
+       src:''
       }
     },
     mounted(){
-    
+        this.src = this.$store.state.webViewUrl
+        console.log(this.src)
+        let applyBgDiv = document.getElementsByClassName('productFrame')[0]
+        console.log(applyBgDiv)
+        applyBgDiv.style.height = (screen.height) + 'px'
     },
     components: {
       
         
     },
     methods:{
-     
-      
+      back(){
+        this.$router.back()
+      }
     }
  }
 </script>
 <style>
+.productdivFrame{
+    position: absolute;
+    top: 1.7rem;
+    width: 100%;
 
-
+}
+.productFrame{
+    width: 100%;
+    border: 0px;
+}
 
 </style>

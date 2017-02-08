@@ -87,6 +87,7 @@
         var that = this
         let id = this.$route.params.id
         this.$store.commit('setWebUrl', 'https://app.playnet.cc/index/goods/content/id/' + id)
+        console.log('the url is :' + this.$store.state.webViewUrl)
         productInfo.getProducts(id).then(function(data){
             console.log(data)
                 that.product = data.data
@@ -95,6 +96,7 @@
                     s.isInclude = true
                     s.mustSelect = true
                 }
+                document.title = that.product.goodsName
                 that.address = that.product.goodsService
                 that.services = ser.concat(that.product.goodsAddition)
                 that.loading = false

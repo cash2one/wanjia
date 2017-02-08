@@ -169,7 +169,8 @@
           this.gotoProduct(adInfo.id)
         }
         else{
-          window.location.href = adInfo.adUrl
+          this.$store.commit('setWebUrl', adInfo.adUrl)
+          this.$router.push({ name: 'webView'})
         }
       },
       gotoProduct(id){

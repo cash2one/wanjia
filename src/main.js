@@ -22,6 +22,18 @@ import { Navbar, TabItem } from 'mint-ui';
 Vue.component(Navbar.name, Navbar);
 Vue.component(TabItem.name, TabItem);
 
+
+
+import { TabContainer, TabContainerItem } from 'mint-ui'
+
+Vue.component(TabContainer.name, TabContainer)
+Vue.component(TabContainerItem.name, TabContainerItem)
+
+
+import { Cell } from 'mint-ui'
+
+Vue.component(Cell.name, Cell)
+
 Vue.use(VueRouter)
 Vue.use(vueResource)
 Vue.use(Vuex)
@@ -35,6 +47,7 @@ const store = new Vuex.Store({
   },
   mutations: {
    setWebUrl(state,url){
+       console.log(url)
     state.webViewUrl = url
    }
   },

@@ -109,9 +109,10 @@ export default {
             }
             if(pageIndex == 0){
                 eventInfo.getEvent(id,pageIndex).then(function(data){
-                that.event = data.data
-                that.loading = false
-                that.publisher = that.event.goodsService
+                    that.event = data.data
+                    that.loading = false
+                    that.publisher = that.event.goodsService
+                    document.title = that.event.goodsName
                 },function(error){
                     console.log(data.msg)
                 })
