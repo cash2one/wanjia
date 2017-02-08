@@ -2,7 +2,7 @@
     <div class="productImg">
         <swiper :options="swiperOption" class="swiper-box">
             <swiper-slide class="swiper-item" v-for="img in product.goodsImg">
-                <img style="width: 100%;height: 8rem;" :src="img.pic">
+                <img style="width: 100%;height: 9rem;" :src="img.pic">
             </swiper-slide>
             <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
        </swiper>
@@ -50,7 +50,10 @@
                 </span>
            </div>
        </div>
-
+       <div style="text-align: center">
+           <button class="btnCheckDetail" type="" @click="checkDetail">查看商品详情</button>
+       </div>
+       
        <openApp></openApp>
 
      <spinner :show="loading" ></spinner>
@@ -75,12 +78,15 @@
         loading:true,
         product:{},
         services:[],
-        address:{}
+        address:{},
+     
       }
     },
     mounted(){
+      
         var that = this
         let id = this.$route.params.id
+        this.$store.commit('setWebUrl', 'https://app.playnet.cc/index/goods/content/id/' + id)
         productInfo.getProducts(id).then(function(data){
             console.log(data)
                 that.product = data.data
@@ -121,6 +127,9 @@
                   document.body.removeChild(ifr); 
                 },3000) 
           
+         },
+         checkDetail(){
+             this.$router.push({ name: 'webView'})
          }
     },
     components: {
@@ -142,7 +151,7 @@
   }
   .swiper-box {
     width: 100%;
-    height: 8rem;
+    height: 9rem;
     margin: 0 auto;
   }
   .swiper-item {
@@ -265,7 +274,7 @@ div.commentDiv{
     font-size: 0.4rem;
     background: white;
     margin-top: 0.15rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 div.customComment{
     padding-top: 0.1rem;
@@ -293,5 +302,15 @@ div.commentTag span{
     display:inline-block;
     margin-bottom: 0.2rem;
     margin-right: 0.1rem;
+}
+.btnCheckDetail{
+    width: 85%;
+    margin-bottom: 2rem;
+    background: #fe6734;
+    color: white;
+    height: 1rem;
+    border: 0px;
+    border-radius: 0.1rem;
+    font-size: 0.4rem;
 }
 </style>

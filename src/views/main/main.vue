@@ -9,7 +9,7 @@
     <mt-loadmore  :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  ref="loadmore">
     <div class="indexPage"   >
       
-      <swiper :options="swiperOption" class="swiper-box headSwiper">
+      <swiper :options="swiperOption" class="swiper-box-main headSwiper">
           <swiper-slide class="swiper-item" v-for="baner in pageData.banner">
               <img style="width: 100%;height: 8rem;" :src="baner.imagePath" @click="gotoAd(baner)">
           </swiper-slide>
@@ -200,7 +200,7 @@ div.indexPage{
   width: 100%;
   z-index: 100;
 }
- .swiper-box {
+ .swiper-box-main {
     width: 100%;
     height: 7rem;
     margin: 0 auto;

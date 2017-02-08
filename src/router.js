@@ -9,6 +9,7 @@ import firmApplied from './views/vip/firmApplied.vue'
 import mainPage from './views/main/main.vue'
 import dynamic from './views/wanplus/dynamic.vue'
 import productList from './views/product/productList.vue'
+import webView from './views/web/webView.vue'
 export default[{
    path:'/',
    component:index,
@@ -58,5 +59,10 @@ export default[{
    path:'/productList/:type',
    component:productList,
    name:'productList'
+},
+{
+   path:'/webview',
+   component:webView,
+   name:'webView'
 },
 ]
