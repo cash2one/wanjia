@@ -1,3 +1,4 @@
+import './tool/tool'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vueResource from 'vue-resource'

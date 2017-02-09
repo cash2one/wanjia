@@ -24,3 +24,18 @@ export function validate(type,value){
     }
 }
 
+
+// Object.prototype.isEmpty = function(){
+//     console.log(this)
+// }
+
+
+global.isEmpty = function(obj){
+    for (var key in obj) {
+        if(key == 'isEmpty'){
+            continue
+        }
+        return false;
+    }
+    return true;
+    }
