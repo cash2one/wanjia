@@ -1,10 +1,7 @@
 <template>
   <div>
     <div>
-      <mt-header fixted class="mainHead" title="玩+" >
-          <mt-button slot="left" style="font-size: 0.5rem !important" >深圳</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
-      </mt-header>
+      
     </div>
     <mt-loadmore  :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  ref="loadmore">
     <div class="indexPage"   >
@@ -144,7 +141,6 @@
     },
     methods:{
       loadBottom(id){
-        return
         this.$refs.loadmore.onBottomLoaded();
         console.log('load more')
         this.allLoaded = true

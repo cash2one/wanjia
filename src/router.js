@@ -8,6 +8,7 @@ import firmVipAuth from './views/vip/firmVipAuth.vue'
 import firmApplied from './views/vip/firmApplied.vue'
 import mainPage from './views/main/main.vue'
 import dynamic from './views/wanplus/dynamic.vue'
+import dynamicInfo from './views/wanplus/dynamicInfo.vue'
 import productList from './views/product/productList.vue'
 import webView from './views/web/webView.vue'
 export default[{
@@ -54,6 +55,11 @@ export default[{
    path:'/dynamic',
    component:dynamic,
    name:'dynamic'
+},
+{
+   path:'/dynamic/:id',
+   component:dynamicInfo,
+   name:'dynamicInfo'
 },
 {
    path:'/productList/:type',

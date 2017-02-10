@@ -1,6 +1,6 @@
 <template>
-    <div style="font-size: 0.5rem;margin-bottom: 1rem;">
-        <div style="background: white;margin-top: 0.3rem" v-for="item in dynamics" @click="dynamicInfo(item)" >
+    <div>
+         <div style="background: white;margin-top: 0.3rem">
             <div class="dynamicHead">
                 <img :src="item.avatar" alt="">
                 <span class="postName">{{item.userName}}</span>
@@ -70,9 +70,6 @@ import axios from 'axios'
             position: 'bottom',
             duration: 2000
             })
-          },
-          dynamicInfo(item){
-              this.$router.push({ name: 'dynamicInfo', params: { id:item.id }})
           }
       },
       components:{
