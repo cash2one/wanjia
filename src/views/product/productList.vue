@@ -12,7 +12,7 @@
        </div>
       
         <mt-tab-container  class="productItem" v-model="selected">
-            <mt-tab-container-item id="0">
+            <mt-tab-container-item id="0" class="productScroll1">
                 <div class="catProductList">
                     <div v-bind:class="[{catProductListItemSelected:item == selectedCat1} ,'catProductListItem']" v-for="item in cat1" @click="selectCat(item,$event)">
                         <img :src="item.thumb" alt="">
@@ -145,6 +145,7 @@
 <script>
 import axios from 'axios'
 import Vue from 'vue'
+import BScroll from 'better-scroll'
   export default {
     data() {
       return {
@@ -167,6 +168,10 @@ import Vue from 'vue'
       let selectedId = this.$route.params.type
       this.selected = (selectedId - 1).toString()
       this.loadData(selectedId.toString())
+      this.$nextTick(() => {
+        this._initScroll()
+      })
+        
   },
   methods:{
       selectCat(item,event){
@@ -239,6 +244,12 @@ import Vue from 'vue'
       },
       gotoProduct(pro){
         this.$router.push({ name: 'product', params: { id:pro.id }})
+      },
+      _initScroll(){
+        // this.productScroll1 = new BScroll(document.getElementsByClassName('productScroll1')[0], {
+        //   click: true
+        // });
+
       }
   },
   watch:{
@@ -278,6 +289,8 @@ import Vue from 'vue'
     background: white;
     z-index: 102;
      height: 1.3rem;
+     width: 100%;
+     position: fixed;
 }
 .titleTabBar{
     position: fixed;
