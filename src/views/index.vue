@@ -8,6 +8,7 @@
         <router-link :to="{ name: 'applySuccess'}">申请VIP成功</router-link>
         <router-link :to="{ name: 'firmVipAuth'}">企业主认证</router-link>
         <router-link  v-bind:class="[{ active: isActive }, 'errorClass']" :to="{ name: 'firmApplied'}">企业主认证申请成功</router-link>
+         <router-link :to="{ name: 'wbmain'}">微信</router-link>
    </div>
 </template>
 <script>

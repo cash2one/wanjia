@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div>
-      
+   
+    <mt-loadmore  :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  ref="loadmore" style="margin-bottom: 1.5rem;">
+     <div class="mainHeader">
+      <img src="../main/LOGO.png" alt="">
     </div>
-    <mt-loadmore  :bottom-method="loadBottom" :bottom-all-loaded="allLoaded"  ref="loadmore">
     <div class="indexPage"   >
       
       <swiper :options="swiperOption" class="swiper-box-main headSwiper">
@@ -13,7 +14,7 @@
           <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
       </swiper>
       <div class="wanplustoutiaoDiv">
-        <img class="wanplusToutiao" src="./wanplustoutiao.png" alt="">
+        <img class="wanplusToutiao" src="../main/wanplustoutiao.png" alt="">
         <span class="scrollAd">
           这个组件好像只有自己写了
         </span>
@@ -30,27 +31,27 @@
         </div>
       </div>
       <div class="newProductsDiv">
-         <img class="imgTitle" src="./new.png" alt="">
+         <img class="imgTitle" src="../main/new.png" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in pageData.ad_new" alt="" @click="gotoAd(cat)" >
          </div>
       </div>
       <div class="newProductsDiv">
-          <img class="imgTitle" src="./recommend.png" alt="">
+          <img class="imgTitle" src="../main/recommend.png" alt="">
           <img class="imgBigCat" :src="recommendBigImg.adImage" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in recommendSmallImages" alt="" @click="gotoAd(cat)">
          </div>
       </div>
        <div class="newProductsDiv">
-          <img class="imgTitle" src="./popular.png" alt="">
+          <img class="imgTitle" src="../main/popular.png" alt="">
           <img class="imgBigCat" :src="popularBigImage.adImage" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in popularSmallImage" alt="" @click="gotoAd(cat)">
          </div>
       </div>
        <div class="newProductsDiv">
-          <img class="imgTitle" src="./custom.png" alt="">
+          <img class="imgTitle" src="../main/custom.png" alt="">
           <img class="imgBigCat" :src="customBigImage.adImage" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in customSmallImage" alt="" @click="gotoAd(cat)">
@@ -58,7 +59,7 @@
       </div>
       <div class="hotProject">
          <div>
-           <img src="./hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
+           <img src="../main/hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
          </div>
          <div class="hotProjects">
            <div class="hotProjectItem" v-for="pro in hotProjects" @click="gotoProduct(pro.id)">
@@ -66,22 +67,18 @@
               <div>
                 {{pro.goodsName}}
               </div>
-              <span class="productZan"> <img src="./like.png" alt=""> <span style="vertical-align: middle">{{pro.zan}}</span> </span>
+              <span class="productZan"> <img src="../main/like.png" alt=""> <span style="vertical-align: middle">{{pro.zan}}</span> </span>
            </div>
            <div style="clear: both"></div>
          </div>
       </div>
    
    
-   
-   
-   
-   
-   
-   
-   
+
     </div>
     </mt-loadmore>
+    <openApp class="openAppClass"></openApp>
+    <bottomMenu ></bottomMenu>
     </div>
 </template>
 <script>
@@ -90,6 +87,8 @@
  import { Toast } from 'mint-ui'
  import 'mint-ui/lib/toast/style.css'
  import axios from 'axios'
+ import openApp from '../../components/openApp.vue'
+ import bottomMenu from './wbfoot.vue'
  export default{
     data() {
       return {
@@ -137,7 +136,8 @@
      components: {
         swiper,
         swiperSlide,
-        
+        openApp,
+        bottomMenu
     },
     methods:{
       loadBottom(id){
@@ -191,13 +191,16 @@
 div.indexPage{
   font-size: 0.5rem;
 }
-.mainHead{
-  height: 1.5rem !important;
-  background: #383f49 !important;
-  font-size: 0.7rem !important;
-  position: fixed !important;
-  width: 100%;
-  z-index: 100;
+.mainHeader{
+  background: #383f49;
+  height: 1.5rem;
+  text-align: center;
+  line-height: 1.5rem;
+}
+.mainHeader img{
+  width: 1.5rem;
+  height: 0.8rem;
+  vertical-align: middle;
 }
  .swiper-box-main {
     width: 100%;
@@ -324,5 +327,9 @@ span.productZan img{
   width: 0.2rem;
   height: 0.2rem;
   vertical-align: middle;
+}
+.openAppClass{
+  top: 0px;
+  height: 1.5rem;
 }
 </style>
