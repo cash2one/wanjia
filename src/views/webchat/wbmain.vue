@@ -175,7 +175,7 @@
       },
       gotoProductList(type){
         console.log(type)
-         this.$router.push({ name: 'productList', params: { type:type.id - 3 }})
+         this.$router.push({ name: 'webproductList', params: { type:type.id - 3 }})
       },
       toast(msg){
              Toast({

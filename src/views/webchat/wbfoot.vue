@@ -26,15 +26,19 @@
     bottom: 0px;
     width: 100%;
     justify-content: space-around;
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     
 }
 .itemMenu{
     vertical-align: middle;
     border-right: 1px solid red;
-    height: 0.8rem;
-   width: 25%;
-   text-align: center;
-   margin-top: 0.3rem;
+    height: 0.7rem;
+    width: 25%;
+    text-align: center;
+    margin-top: 0.3rem;
+    line-height: 0.7rem;
+}
+.itemMenu:last-child{
+    border-right: 0px ;
 }
 </style>

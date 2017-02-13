@@ -12,6 +12,8 @@ import dynamicInfo from './views/wanplus/dynamicInfo.vue'
 import productList from './views/product/productList.vue'
 import webView from './views/web/webView.vue'
 import webchatMain from './views/webchat/wbmain.vue'
+import webProductList from './views/webchat/wbProductList.vue'
+import webProduct from './views/webchat/wbProduct.vue'
 export default[{
    path:'/',
    component:index,
@@ -76,5 +78,15 @@ export default[{
    path:'/wb',
    component:webchatMain,
    name:'wbmain'
+},
+{
+   path:'/wb/productList/:type',
+   component:webProductList,
+   name:'webproductList'
+},
+{
+   path:'/wb/product/:id',
+   component:webProduct,
+   name:'webProduct'
 },
 ]
