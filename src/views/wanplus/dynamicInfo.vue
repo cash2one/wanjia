@@ -2,33 +2,37 @@
     <div>
          <div style="background: white;margin-top: 0.3rem">
             <div class="dynamicHead">
-                <img :src="item.avatar" alt="">
-                <span class="postName">{{item.userName}}</span>
-                <span class="postTime">{{item.create_time}} 来自"{{item.boardName}}"</span>
+                <img :src="dynamic.avatar" alt="">
+                <span class="postName">{{dynamic.userName}}</span>
+                <span class="postTime">{{dynamic.create_time}} 来自"{{dynamic.boardName}}"</span>
                 <button class="btnConcern" @click="toast('请打开APP')" >+ 关注</button>
             </div>
             <div class="dynamicContent">
-                {{item.content}}
+                {{dynamic.content}}
             </div>
             <div class="dynamicImages">
-                <img :src="img" v-for="img in item.imgList.split(',')" alt="">
+              <img :src="img" v-for="img in imgList" alt="">
             </div>
             <div class="zan">
-                <span > <img class="imgAddress" src="./address.png" alt=""> <span> {{item.position}} </span></span>
+                <span > <img class="imgAddress" src="./address.png" alt=""> <span> {{dynamic.position}} </span></span>
                 <span class="zanBorder zanCommentImg" > <img  src="../event/学院评论图标.png" alt=""> </span>
-                <span class="zanCount zanBorder"> <img class="zanCountImg" src="../event/学院赞图标.png" alt=""> <span>  {{item.zan}} </span></span>
+                <span class="zanCount zanBorder"> <img class="zanCountImg" src="../event/学院赞图标.png" alt=""> <span>  {{dynamic.zan}} </span></span>
             </div>
-            <template v-if="item.zanlist.length>0">
+            <template v-if="zanList.length>0">
                 <div class="commenters" >
                     <img class="commentImg" src="../event/学院赞图标.png" alt="">
-                    <img class="commenterImg" :src="img.avatar" v-for="img in item.zanlist" alt="">
+                    <img class="commenterImg" :src="img.avatar" v-for="img in dynamic.zanlist" alt="">
                     <img class="commenterMore" src="./more.png" alt="">
                 </div>
             </template>
             <div class="comments">
-                <div v-for="com in item.pinglun">
-                    <span style="color: limegreen">{{com.userName}}: </span>
-                    <span>{{com.content}}</span>
+                <div v-for="com in comments">
+                    <img class="commentHeadImg" :src="com.avatar" alt="">
+                    <span  style="display: inline-flex;flex-direction: column;vertical-align: top;margin-left: 0.1rem">
+                        <span class="commentUsername" >{{com.userName}} </span>
+                        <span class="commentContent">{{com.content}}</span>
+                        <span class="commentTime">{{com.create_time}}</span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -45,18 +49,24 @@ import axios from 'axios'
 
         data(){
             return{
-                dynamics:{},
-                pageIndex:0,
+                dynamic:{},
+                imgList:[],
+                zanList:[],
+                comments:[],
             }
         },
         mounted(){
-             let url = "https://app.playnet.cc/index/discovery/index/page/" + this.pageIndex
+            document.title = "玩+"
+             let id = this.$route.params.id
+             let url = "https://app.playnet.cc/index/content/detailforh5/id/" + id
             //let url = "http://localhost:8880/index/discovery/index/page/" + this.pageIndex
             axios.get(url).then(response=>{
             var res = response.data;
                 if(res.ret_code == 0) {
-                    this.pageIndex ++ 
-                    this.dynamics = res.data.list
+                    this.dynamic = res.data.detail
+                    this.imgList = this.dynamic.imgList.split(',')
+                    this.zanList = this.dynamic.zanlist
+                    this.comments = res.data.comment
                 }
                 else{
                     
@@ -197,5 +207,32 @@ div.comments{
     margin: 0rem 0.2rem;
     font-size: 0.35rem;
     padding-bottom: 0.3rem;
+   
+}
+div.comments div{
+    padding-bottom: 0.3rem;
+     border-bottom: 1px solid #ddd;
+     padding-top: 0.2rem;
+     position: relative;
+     vertical-align: top;
+}
+.commentHeadImg{
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.6rem;
+}
+.commentUsername{
+    color: #aaa;
+    font-size: 0.3rem;
+}
+.commentContent{
+    margin-top: 0.5rem;
+    font-size: 0.35rem;
+}
+.commentTime{
+  font-size: 0.3rem;
+  margin-top: 0.1rem;
+}div.comments div:last-child{
+    border-bottom: 0px;
 }
 </style>

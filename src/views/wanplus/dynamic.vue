@@ -33,6 +33,7 @@
             </div>
         </div>
           <openApp></openApp>
+
     </div>
 </template>
 <script>
@@ -40,6 +41,7 @@ import axios from 'axios'
  import openApp from '../../components/openApp.vue'
  import { Toast } from 'mint-ui';
  import 'mint-ui/lib/toast/style.css'
+ import imgBoswer from '../../components/photoBowser.vue'
     // https://app.playnet.cc/index/discovery/index/page/0/wjkey/wj_587de84111e5c6.15126938
     export default{
 
@@ -47,6 +49,7 @@ import axios from 'axios'
             return{
                 dynamics:{},
                 pageIndex:0,
+                
             }
         },
         mounted(){
@@ -72,11 +75,13 @@ import axios from 'axios'
             })
           },
           dynamicInfo(item){
+              console.log(item)
               this.$router.push({ name: 'dynamicInfo', params: { id:item.id }})
           }
       },
       components:{
-          openApp
+          openApp,
+          imgBoswer
       }
     }
 </script>
