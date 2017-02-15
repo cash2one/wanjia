@@ -11,7 +11,8 @@
                 {{item.content}}
             </div>
             <div class="dynamicImages">
-                <img :src="img" v-for="img in item.imgList.split(',')" alt="">
+                <img :src="img" v-for="(img,index) in item.imgList.split(',')" 
+                @click="listImage(item.imgList.split(','),index)" alt="">
             </div>
             <div class="zan">
                 <span > <img class="imgAddress" src="./address.png" alt=""> <span> {{item.position}} </span></span>
@@ -32,8 +33,8 @@
                 </div>
             </div>
         </div>
-          <openApp></openApp>
-
+        <openApp></openApp>
+        <imgBoswer v-show='showImgs'></imgBoswer>
     </div>
 </template>
 <script>
@@ -49,7 +50,7 @@ import axios from 'axios'
             return{
                 dynamics:{},
                 pageIndex:0,
-                
+                showImgs:false,
             }
         },
         mounted(){
@@ -77,6 +78,9 @@ import axios from 'axios'
           dynamicInfo(item){
               console.log(item)
               this.$router.push({ name: 'dynamicInfo', params: { id:item.id }})
+          },
+          listImage(imgs,index){
+              console.log(index)
           }
       },
       components:{
