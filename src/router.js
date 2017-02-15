@@ -14,10 +14,16 @@ import webView from './views/web/webView.vue'
 import webchatMain from './views/webchat/wbmain.vue'
 import webProductList from './views/webchat/wbProductList.vue'
 import webProduct from './views/webchat/wbProduct.vue'
+import demo from './views/demo.vue'
 export default[{
    path:'/',
    component:index,
    name:'index'
+},
+{
+   path:'/demo',
+   component:demo,
+   name:'demo'
 },
 {
    path:'/product/:id',

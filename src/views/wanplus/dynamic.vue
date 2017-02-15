@@ -34,7 +34,7 @@
             </div>
         </div>
         <openApp></openApp>
-        <imgBoswer v-show='showImgs'></imgBoswer>
+        <imgBoswer v-show='showImgs'  ></imgBoswer>
     </div>
 </template>
 <script>
@@ -81,6 +81,9 @@ import axios from 'axios'
           },
           listImage(imgs,index){
               console.log(index)
+          },
+          back(){
+              console.log('back')
           }
       },
       components:{
