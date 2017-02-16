@@ -234,17 +234,18 @@ div.swiper-pagination span{
 }
 div.wanplustoutiaoDiv{
   background: white;
-padding: 0.2rem 0.3rem;
-vertical-align: middle;
+    display: flex;
+ vertical-align: middle;
 }
 img.wanplusToutiao{
   width: 2rem;
   vertical-align: middle;
-
+  padding: 0.25rem 0.3rem;
 }
 span.scrollAd{
-  font-size: 0.35rem;
+  font-size: 0.37rem;
   color: #aaa;
+  padding: 0rem 0.3rem;
 }
 div.productCatDiv{
   background: white;

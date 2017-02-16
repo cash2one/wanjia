@@ -17,9 +17,9 @@
       </swiper>
       <div class="wanplustoutiaoDiv">
         <img class="wanplusToutiao" src="./wanplustoutiao.png" alt="">
-        <span class="scrollAd">
-          这个组件好像只有自己写了
-        </span>
+        <div class="scrollAd">
+              <marquee class="scrollAdMarquee"  :msgs = "marqueeStrings"></marquee>
+        </div>
       </div>
       <div class="productCatDiv">
         <div class="fourCatDic">
@@ -93,6 +93,7 @@
  import { Toast } from 'mint-ui'
  import 'mint-ui/lib/toast/style.css'
  import axios from 'axios'
+ import marquee from '../../components/marquee.vue'
  export default{
     data() {
       return {
@@ -101,7 +102,8 @@
           slidesPerView: 1,
           paginationClickable: true,
           spaceBetween: 5,
-          mousewheelControl: true
+          mousewheelControl: true,
+          autoplay: 3000,
         },
         allLoaded:false,
         pageData:{},
@@ -113,6 +115,8 @@
         customSmallImage:{},
         hotProjects:{},
         pageIndex:0,
+        marquees:[],
+        marqueeStrings:[]
       }
     },
     mounted(){
@@ -131,6 +135,12 @@
                 this.popularSmallImage = this.pageData.ad_popular.splice(1,3)
                 this.customBigImage = this.pageData.ad_custom[0]
                 this.customSmallImage = this.pageData.ad_custom.splice(1,3)
+                this.marquees = res.data.ad_marquee
+                var msgTemp = []
+                for(var m of this.marquees){
+                  msgTemp.push(m.title)
+                }
+                this.marqueeStrings = msgTemp
             }
             else{
                 
@@ -140,7 +150,7 @@
      components: {
         swiper,
         swiperSlide,
-        
+        marquee
     },
     methods:{
       loadBottom(id){
@@ -151,6 +161,7 @@
         console.log(this.pageIndex)
         //let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
         let url = "https://app.playnet.cc/index/index/index?page=" + this.pageIndex
+        console.log('首页url:' + url)
         axios.get(url).then(response=>{
             var res = response.data;
             if(res.ret_code == 0) {
@@ -235,17 +246,24 @@ div.swiper-pagination span{
 }
 div.wanplustoutiaoDiv{
   background: white;
-padding: 0.2rem 0.3rem;
-vertical-align: middle;
+
+  vertical-align: middle;
+  display: flex;
+  height: 1rem;
 }
 img.wanplusToutiao{
   width: 2rem;
   vertical-align: middle;
-
+  padding: 0.25rem 0.3rem;
 }
-span.scrollAd{
-  font-size: 0.35rem;
+div.scrollAd{
+  font-size: 0.37rem;
   color: #aaa;
+  padding: 0rem 0.3rem;
+}
+.scrollAdMarquee{
+  height: 1rem;
+  width: 100%;
 }
 div.productCatDiv{
   background: white;
