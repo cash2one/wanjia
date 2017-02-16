@@ -3,7 +3,7 @@
         <div  >
             <swiper ref = "marqueeSwiper" :options="swiperOption" class="swiper-marquee" >
                 <swiper-slide class="swiper-marquee-item" v-for = "msg in cMsgs">
-                  {{msg}}
+                  {{msg.title}}
                 </swiper-slide>
                 
             </swiper>
@@ -25,17 +25,16 @@
           autoplay: 3000,
           mousewheelControl: true,
           direction : 'vertical',
+          loop:true,
           autoplayDisableOnInteraction:false, //用户操作swiper之后，是否禁止autoplay。默认为true：停止如果设置为false，用户操作swiper之后自动切换不会停止，每次都会重新启动autoplay。
           onSlideChangeEnd(swiper){
-            console.log(swiper.activeIndex)
+            
           },
-          onClick: function(swiper){
-              this.click(swiper.activeIndex)
-          }
        
         },
         cMsgs:[],
-        count:0
+        count:0,
+        currentIndex:0,
       }
     },
     props: {   
@@ -44,17 +43,24 @@
         },
         
     },
-    methods:{
-        click(index){
-          console.log(ind)
-        }
-    },
-
+    mounted(){
+      // this.swiper.swiperOption.onClick = function(swiper){
+      //   console.log('123')
+      // }
+     // console.log(this.swiper.params.onClick)
+      var that = this
+      this.swiper.params.onClick = function(swiper){  //终于找到了
+        // console.log()
+         that.$emit('click',that.cMsgs[swiper.realIndex])
+      }
+      
+  },
     computed: {
       swiper() {
         return this.$refs.marqueeSwiper.swiper
       }
     },
+  
     components: {
         swiper,
         swiperSlide
@@ -66,7 +72,8 @@
             //   tem.push(first)
             //it has a loop bug
             this.cMsgs = val
-        }
+        },
+
     },
    
   }

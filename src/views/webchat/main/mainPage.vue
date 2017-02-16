@@ -16,7 +16,7 @@
           <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
       </swiper>
       <div class="wanplustoutiaoDiv">
-        <img class="wanplusToutiao" src="./wanplustoutiao.png" alt="">
+        <img class="wanplusToutiao" src="../../main/wanplustoutiao.png" alt="">
         <div class="scrollAd">
               <marquee class="scrollAdMarquee"  :msgs = "marquees" @click='click' ></marquee>
         </div>
@@ -33,27 +33,27 @@
         </div>
       </div>
       <div class="newProductsDiv">
-         <img class="imgTitle" src="./new.png" alt="">
+         <img class="imgTitle" src="../../main/new.png" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in pageData.ad_new" alt="" @click="gotoAd(cat)" >
          </div>
       </div>
       <div class="newProductsDiv">
-          <img class="imgTitle" src="./recommend.png" alt="">
+          <img class="imgTitle" src="../../main/recommend.png" alt="">
           <img class="imgBigCat" :src="recommendBigImg.adImage" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in recommendSmallImages" alt="" @click="gotoAd(cat)">
          </div>
       </div>
        <div class="newProductsDiv">
-          <img class="imgTitle" src="./popular.png" alt="">
+          <img class="imgTitle" src="../../main/popular.png" alt="">
           <img class="imgBigCat" :src="popularBigImage.adImage" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in popularSmallImage" alt="" @click="gotoAd(cat)">
          </div>
       </div>
        <div class="newProductsDiv">
-          <img class="imgTitle" src="./custom.png" alt="">
+          <img class="imgTitle" src="../../main/custom.png" alt="">
           <img class="imgBigCat" :src="customBigImage.adImage" alt="">
          <div class="catImageDiv">
             <img  :src="cat.adImage" v-for="cat in customSmallImage" alt="" @click="gotoAd(cat)">
@@ -61,7 +61,7 @@
       </div>
       <div class="hotProject">
          <div>
-           <img src="./hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
+           <img src="../../main/hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
          </div>
          <div class="hotProjects">
            <div class="hotProjectItem" v-for="pro in hotProjects" @click="gotoProduct(pro.id)">
@@ -69,22 +69,14 @@
               <div>
                 {{pro.goodsName}}
               </div>
-              <span class="productZan"> <img src="./like.png" alt=""> <span style="vertical-align: middle">{{pro.zan}}</span> </span>
+              <span class="productZan"> <img src="../../main/like.png" alt=""> <span style="vertical-align: middle">{{pro.zan}}</span> </span>
            </div>
            <div style="clear: both"></div>
          </div>
       </div>
-   
-   
-   
-   
-   
-   
-   
-   
-   
     </div>
     </mt-loadmore>
+  <openApp class="topOpenApp"></openApp>
     </div>
 </template>
 <script>
@@ -93,7 +85,8 @@
  import { Toast } from 'mint-ui'
  import 'mint-ui/lib/toast/style.css'
  import axios from 'axios'
- import marquee from '../../components/marquee.vue'
+ import marquee from '../../../components/marquee.vue'
+import openApp from '../../../components/openApp.vue'
  export default{
     data() {
       return {
@@ -145,7 +138,8 @@
      components: {
         swiper,
         swiperSlide,
-        marquee
+        marquee,
+        openApp
     },
     methods:{
       loadBottom(id){
@@ -177,7 +171,7 @@
         }
         else{
           this.$store.commit('setWebUrl', adInfo.adUrl)
-          this.$router.push({ name: 'webView'})
+          this.$router.push({ name: 'webchatWeb'})
         }
       },
       gotoProduct(id){
@@ -203,147 +197,9 @@
  }
 </script>
 <style>
-div.indexPage{
-  font-size: 0.5rem;
-}
-.mainHead{
-  height: 1.5rem !important;
-  background: #383f49 !important;
-  font-size: 0.7rem !important;
-  position: fixed !important;
-  width: 100%;
-  z-index: 100;
-}
- .swiper-box-main {
-    width: 100%;
-    height: 7rem;
-    margin: 0 auto;
+  .topOpenApp{
+    top: 0px;
+    z-index: 100;
+    height: 1.5rem;
   }
-  .swiper-item {
-    height: 100%;
-    text-align: center;
-    font-size: 18px ;
-    background: #fff;
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-  }
-div.swiper-pagination{
-    opacity: 0.7;
-}
-div.swiper-pagination span{
-    background: white;
-}
-div.wanplustoutiaoDiv{
-  background: white;
-  vertical-align: middle;
-  display: flex;
-  height: 1rem;
-}
-img.wanplusToutiao{
-  width: 2rem;
-  vertical-align: middle;
-  padding: 0.28rem 0.3rem;
-}
-div.scrollAd{
-  font-size: 0.37rem;
-  color: #aaa;
-  padding: 0rem 0.3rem;
-}
-.scrollAdMarquee{
-  height: 1rem;
-  width: 100%;
-}
-div.productCatDiv{
-  background: white;
-}
-div.fourCatDic{
-  font-size: 0.4rem;
- text-align: center;
-  display: flex;
-  margin-top: 0.3rem;
-  padding-top: 0.4rem;
-}
-div.fourCatDic div{
-  width:25%;
-
-}
-div.fourCatDic div img{
-  width: 65%;
-}
-
-div.twoCatDic img{
-  width: 45%;
-  padding-top: 0.3rem;
-  padding-left: 0.35rem;
-}
-div.newProductsDiv{
-  background: white;
-  margin-top: 0.3rem;
-  text-align: center;
-}
-.imgTitle{
-  height: 0.45rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.2rem;
-}
-.catImageDiv{
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 0.3rem;
-}
-.catImageDiv img{
-  width: 3rem;
-  height: 3rem;
-}
-.imgBigCat{
-  width: 94%;
-  margin-bottom: 0.2rem;
-}
-div.hotProject{
-  text-align: center;
-}
-div.hotProjects{
-  background: white;
-  padding-top: 0.3rem;
-}
-div.hotProjectItem{
-  width: 46%;
-  padding: 0.2rem;
-  float: left;
-  height: 3.6rem;
-  overflow: hidden;
-  font-size: 0.28rem;
-  text-align: left;
-  position: relative;
-}
-div.hotProjectItem img{
-  width: 100%;
-  height: 3rem;
-}
-span.productZan{
-  background: #444;
-  opacity: 0.5;
-  color: white;
-  padding: 0.05rem 0.1rem;
-  border-radius: 0.1rem;
-  position: absolute;
-  right: 0.5rem;
-  top: 0.4rem;
-}
-span.productZan img{
-  width: 0.2rem;
-  height: 0.2rem;
-  vertical-align: middle;
-}
 </style>

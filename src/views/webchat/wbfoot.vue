@@ -1,9 +1,9 @@
 <template>
     <div class="mainFootDiv">
-        <span class="itemMenu">首页</span>
-        <span class="itemMenu">订单</span>
-        <span class="itemMenu">我是</span>
-        <span class="itemMenu">道出</span>
+        <span class="itemMenu" @click='mainPage' >首页</span>
+        <span class="itemMenu" @click='orderPage'>订单</span>
+        <span class="itemMenu" @click='myPage'>我的</span>
+        <span class="itemMenu" @click='outPage'>退出</span>
     </div>
 </template>
 <script>
@@ -13,7 +13,18 @@
             return{}
         },
         methods:{
-            
+            mainPage(){
+                this.$emit('mainPageClick')
+            },
+            orderPage(){
+                this.$emit('orderPageClick')
+            },
+            myPage(){
+                this.$emit('myPageClick')
+            },
+            outPage(){
+                this.$emit('outPageClick')
+            },
         }
     }
 </script>
