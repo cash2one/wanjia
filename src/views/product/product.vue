@@ -8,13 +8,17 @@
        </swiper>
        <div class="productNum" >产品编号{{product.goodsCode}}</div>
        <div class="productTitleInfo">
-           <div class="productTitle">
+           <div>
                {{product.goodsName}}
            </div>
-           <div class="productPrice">
-               <span style="font-size: 0.4rem">￥</span>
-               <span style="font-size: 0.8rem;font-weight: bold">{{product.goodsPrice}}</span>
-               <span style="font-size: 0.5rem">/人</span>
+           <div class="productPriceClass">
+               <span style="font-size: 0.5rem">￥</span>
+               <span style="font-size: 0.6rem;font-weight: bold">{{product.goodsPrice}}</span>
+               <span style="font-size: 0.4rem">/{{product.goodsDw}}</span>
+           </div>
+           <div>
+               <span>积分</span>
+          
            </div>
        </div>
 
@@ -56,7 +60,7 @@
        
        <openApp></openApp>
 
-     <spinner :show="loading" ></spinner>
+   
     </div>
 </template>
 <script>
@@ -191,16 +195,21 @@ div.productNum{
     padding: 0.2rem 0rem;
 }
 div.productTitleInfo{
-    text-align: center;
     background: white;
+   
 }
-div.productTitle{
+div.productTitleInfo div{
     font-size: 0.4rem;
     padding: 0.1rem;
-    /* background: white; */
+    font-size: 0.55rem;
+    margin-left: 0.2rem;
 }
-div.productPrice{
+
+div.productPriceClass{
     color: #fe6734;
+    text-align: center;
+    margin-right: 0.2rem;
+    border-bottom: solid 1px #aaa;
 }
 div.productService{
     background: white;

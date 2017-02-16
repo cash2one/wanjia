@@ -179,12 +179,11 @@ import openApp from '../../../components/openApp.vue'
       },
       gotoProductList(type){
         console.log(type)
-         this.$router.push({ name: 'productList', params: { type:type.id - 3 }})
+         this.$router.push({ name: 'webchatProductList', params: { type:type.id - 3 }})
       },
       click(msg){
-  
         this.$store.commit('setWebUrl', msg.url)
-        this.$router.push({ name: 'webView'})
+        this.$router.push({ name: 'webchatWeb'})
       },
       toast(msg){
              Toast({

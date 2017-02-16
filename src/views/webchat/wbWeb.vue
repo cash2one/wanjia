@@ -1,8 +1,8 @@
 <template>
   <div>
-        <div class="productdivFrame">
+        
              <iframe class="productFrame" :src="src"></iframe>
-        </div>
+        
     </div>
 </template>
 <script>
@@ -30,16 +30,3 @@
     }
  }
 </script>
-<style>
-.productdivFrame{
-    position: absolute;
-    top: 1.7rem;
-    width: 100%;
-
-}
-.productFrame{
-    width: 100%;
-    border: 0px;
-}
-
-</style>
