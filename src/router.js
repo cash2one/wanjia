@@ -102,7 +102,7 @@ export default[{
    name:'webchatProduct'
 },
 {
-   path:'/wborder',
+   path:'/wborder/:id',
    component:webchatOrder,
    name:'webchatOrder'
 },

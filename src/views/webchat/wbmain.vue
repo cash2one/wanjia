@@ -38,23 +38,65 @@
     mounted(){
       document.title = "玩加"
       console.log(isWebchat())
-      //先看有没有UID
-      // if(!isWebchat()){
-      //   return
-      // }
+      
+      if(localStorage.key){
+        this.getUserInfo()
+        localStorage.key = 'wj_58510d203709d4.01008923'
+        console.log(localStorage.key)
+        return
+      }
+      if(localStorage.uid){
+        console.log(localStorage.uid)
+        this.login()
+        return
+      }
+      let code = window.location.href.match(/=[\S]*&/).toString().replace('=','').replace('&','')
      
-      // if(localStorage.uid)
-      // {
-
-      // }
-      console.log(window.location.href)
-      //let code = window.location.href.match(/=[\S]*&/).toString().replace('=','').replace('&','')
-      let code = '001F7voI15B7L50ZzvpI1w7soI1F7voD'
       let url = 'http://wap.playnet.cc/html/wb.php?code=' + code
-       console.log(code)
+     
+       var that = this
        axios.get(url).then(response=>{
-           console.log(response)
+            let data = response.data  
+            if(data.unionid){
+              localStorage.uid = data.unionid
+              that.login()
+            }
+            else{
+              console.log('数据错误，重新登录')
+            } 
        })
+
+      
+    },
+    methods:{
+      login(){
+        let para = {'uid':localStorage.uid}
+        axios.post('https://app.playnet.cc/index/member/wxlogin',para).then(response=>{
+           var res = response.data;
+            if(res.ret_code == 0) {
+              console.log(res)
+               localStorage.key = res.data
+            }
+            else{
+               console.log('登录失败')
+            }
+           
+       })
+      },
+      getUserInfo(){
+        let url = 'https://app.playnet.cc/index/assist/userInfo/wjkey/' + localStorage.key
+        axios.get(url).then(response=>{
+           var res = response.data;
+            if(res.ret_code == 0) {
+              console.log(res)
+              //这里弄到积分
+            }
+            else{
+               console.log('请求失败')
+            }
+           
+       })
+      }
     },
     components:{
       mainPage

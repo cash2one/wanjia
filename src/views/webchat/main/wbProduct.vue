@@ -124,7 +124,7 @@
          },
          order(){
              this.$store.commit('setProduct', this.product)
-             this.$router.push({ name: 'webchatOrder'})
+             this.$router.push({ name: 'webchatOrder', params: { id:this.product.id }})
          }
     },
     components: {
