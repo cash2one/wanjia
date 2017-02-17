@@ -20,7 +20,6 @@
                 isActive:false,
             }
         },
-      
         methods:{
            
         }

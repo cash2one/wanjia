@@ -54,7 +54,7 @@
            <button class="btnCheckDetail" type="" @click="checkDetail">查看商品详情</button>
        </div>
 
-
+       <button class="byButtonClass" @click="order">开始预定</button>
    
     </div>
 </template>
@@ -120,7 +120,11 @@
          },
          
          checkDetail(){
-             this.$router.push({ name: 'webView'})
+             this.$router.push({ name: 'webchatWeb'})
+         },
+         order(){
+             this.$store.commit('setProduct', this.product)
+             this.$router.push({ name: 'webchatOrder'})
          }
     },
     components: {
@@ -132,5 +136,14 @@
 </script>
 
 <style>
-
+.byButtonClass{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 1.3rem;
+    background: #fe6734;
+    color: white;
+    font-size: 0.6rem;
+    border: 0px;
+}
 </style>

@@ -14,6 +14,7 @@ import webView from './views/web/webView.vue'
 import webchatMain from './views/webchat/wbmain.vue'
 import webchatProductList from './views/webchat/main/wbProductList.vue'
 import webchatProduct from './views/webchat/main/wbProduct.vue'
+import webchatOrder from './views/webchat/main/wbOrder.vue'
 import webchatWeb from './views/webchat/wbWeb.vue'
 import demo from './views/demo.vue'
 export default[{
@@ -27,9 +28,24 @@ export default[{
    name:'demo'
 },
 {
+   path:'/webview',
+   component:webView,
+   name:'webView'
+},
+{
+   path:'/main',
+   component:mainPage,
+   name:'mainPage'
+},
+{
    path:'/product/:id',
    component:product,
    name:'product'
+},
+{
+   path:'/productList/:type',
+   component:productList,
+   name:'productList'
 },
 {
    path:'/event/:id',
@@ -56,11 +72,7 @@ export default[{
    component:firmApplied,
    name:'firmApplied'
 },
-{
-   path:'/main',
-   component:mainPage,
-   name:'mainPage'
-},
+
 {
    path:'/dynamic',
    component:dynamic,
@@ -70,6 +82,14 @@ export default[{
    path:'/dynamic/:id',
    component:dynamicInfo,
    name:'dynamicInfo'
+},
+
+
+
+{
+   path:'/wb',
+   component:webchatMain,
+   name:'wbmain'
 },
 {
    path:'/wbproductList/:type',
@@ -82,20 +102,11 @@ export default[{
    name:'webchatProduct'
 },
 {
-   path:'/webview',
-   component:webView,
-   name:'webView'
+   path:'/wborder',
+   component:webchatOrder,
+   name:'webchatOrder'
 },
-{
-   path:'/wb',
-   component:webchatMain,
-   name:'wbmain'
-},
-{
-   path:'/wbproductList/:type',
-   component:productList,
-   name:'productList'
-},
+
 {
    path:'/wb/web',
    component:webchatWeb,

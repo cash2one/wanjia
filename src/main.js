@@ -46,12 +46,16 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    webViewUrl:''
+    webViewUrl:'',
+    product:{}
   },
   mutations: {
    setWebUrl(state,url){
        console.log(url)
     state.webViewUrl = url
+   },
+   setProduct(state,product){
+     state.product = product
    }
   },
   actions: {

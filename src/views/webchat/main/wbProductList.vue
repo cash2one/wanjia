@@ -243,7 +243,7 @@ import Vue from 'vue'
           })
       },
       gotoProduct(pro){
-        this.$router.push({ name: 'product', params: { id:pro.id }})
+        this.$router.push({ name: 'webchatProduct', params: { id:pro.id }})
       },
       _initScroll(){
         // this.productScroll1 = new BScroll(document.getElementsByClassName('productScroll1')[0], {
