@@ -19,7 +19,7 @@
                         {{date.price}}
                     </div>
                 </div>
-                <div class="wbDateItem">
+                <div class="wbDateItem" @click="MoreCal"> 
                      <div>
                         更多
                     </div>
@@ -93,13 +93,14 @@
         </div>
 
         <button class="wbPayButton" >{{}}元 <span>立刻支付></span></button>
-
+        <cal v-show='showCal' :value='currentDate' :events="product.goodsCalendar" ></cal>
     </div>
 </template>
 <script>
-     import Vue from 'vue'
-     import productInfo from '../../../model/productInfo'
-     import counter from '../../../components/counter.vue'
+import Vue from 'vue'
+import productInfo from '../../../model/productInfo'
+import counter from '../../../components/counter.vue'
+import cal from '../../../components/CalendarPicker.vue'
  export default{
     data() {
       return {
@@ -109,7 +110,9 @@
        productCat:[],
        productService:[],
        integral:0,
-       integralDeduction:0
+       integralDeduction:0,
+       showCal:false,
+       currentDate:''
       }
     },
     mounted(){
@@ -118,6 +121,7 @@
       this.integralDeduction = this.integral / 10
       if(!isEmpty(this.product)){
         this.listedDates = this.product.goodsCalendar.splice(0,4)
+        
         this.productCat = this.product.goodsGuige
         this.productService = this.product.goodsInclude
       }
@@ -139,11 +143,15 @@
       }
     },   
     components:{
-        counter
+        counter,
+        cal
     },
     methods:{
         selectDate(item){
             this.selectedDate = item
+        },
+        MoreCal(){
+            this.showCal = !this.showCal
         }
     }
  }
