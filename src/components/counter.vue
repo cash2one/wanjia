@@ -46,18 +46,21 @@
 <style>
   .counterClass{
     display: inline-flex;
-    border: 1px solid red;
+    border: 1px solid #ccc;
     border-radius: 0.1rem;
     justify-content: space-around;
     text-align: center;
   }
   .cartMinus{
-    border-right: 1px solid red;
+    border-right: 1px solid #ccc;
   
     width: 27%;
   }
   .cartAdd{
-    border-left: 1px solid red;
+    border-left: 1px solid #ccc;
     width: 27%;
+  }
+  .cart-count{
+    font-size: 0.5rem;
   }
 </style>

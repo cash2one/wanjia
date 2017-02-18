@@ -29,6 +29,7 @@
  import Vue from 'vue'
  import mainPage from './main/mainPage.vue'
  import axios from 'axios'
+ import qs from 'qs'
  export default{
     data() {
       return {
@@ -37,21 +38,21 @@
     },
     mounted(){
       document.title = "玩加"
-      console.log(isWebchat())
-      
-      if(localStorage.key){
+      console.log(isWebchat())  //是不是微信
+      if(localStorage.key && typeof(localStorage.key) == 'string'){  //如果存在 Key，就获取用户信息
         this.getUserInfo()
-        localStorage.key = 'wj_58510d203709d4.01008923'
-        console.log(localStorage.key)
         return
       }
-      if(localStorage.uid){
+      if(localStorage.uid){//如果不存在 Key，看有没有uid， 有的话就登录 
         console.log(localStorage.uid)
         this.login()
         return
       }
-      let code = window.location.href.match(/=[\S]*&/).toString().replace('=','').replace('&','')
-     
+      //没有的话就获取uid
+      let code = '0111JxaU0OaTcW19yQ8U0CWtaU01JxaK'
+      if(isWebchat()){
+         code = window.location.href.match(/=[\S]*&/).toString().replace('=','').replace('&','')
+      }
       let url = 'http://wap.playnet.cc/html/wb.php?code=' + code
      
        var that = this
@@ -70,26 +71,35 @@
     },
     methods:{
       login(){
-        let para = {'uid':localStorage.uid}
-        axios.post('https://app.playnet.cc/index/member/wxlogin',para).then(response=>{
+        let para = {uid:localStorage.uid}
+        console.log(para)
+        let that = this
+        axios.post('https://app.playnet.cc/index/member/wxlogin',qs.stringify(para)).then(response=>{
            var res = response.data;
             if(res.ret_code == 0) {
               console.log(res)
                localStorage.key = res.data
+               that.getUserInfo()
             }
             else{
                console.log('登录失败')
             }
            
        })
-      },
+     
+     },
       getUserInfo(){
+        console.log('localStorage.key' + localStorage.key)
         let url = 'https://app.playnet.cc/index/assist/userInfo/wjkey/' + localStorage.key
+        
         axios.get(url).then(response=>{
            var res = response.data;
+           console.log(res.ret_code)
             if(res.ret_code == 0) {
               console.log(res)
               //这里弄到积分
+              localStorage.integral = res.data.integral
+              console.log(localStorage.integral)
             }
             else{
                console.log('请求失败')

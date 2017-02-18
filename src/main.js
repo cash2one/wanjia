@@ -7,6 +7,8 @@ import routes from './router.js'
 import { Loadmore } from 'mint-ui';
 import Vuex from 'vuex'
 
+import axios from 'axios'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 Vue.component(Loadmore.name, Loadmore)
 import { Header } from 'mint-ui'

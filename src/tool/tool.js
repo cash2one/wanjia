@@ -1,3 +1,4 @@
+
 const realNameRegex = /\S+/
 const phoneRegex = /(13|14|15|17|18)\d{9}$/
 export function validate(type,value){

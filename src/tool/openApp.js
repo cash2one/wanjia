@@ -7,11 +7,7 @@ export const APPCommon = {
         var this_  =  this;
         //微信
         if(this_.isWeixin()){
-            $(".weixin-tip").css("height",$(window).height());
-            $(".weixin-tip").show();
-            $('.weixin-tip').on('touchstart', function () {
-                $(".weixin-tip").hide();
-            });
+            location.href = 'wx8eb3461b50e5eba3://openwebview/?ret=0'
  
         }else{//非微信浏览器
             if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
