@@ -11,7 +11,7 @@
                 选择日期
             </div>
             <div class="wbDateList">
-                <div v-bind:class="[{wbDateItemSelected:date == selectedDate} ,'wbDateItem']" v-for="date in listedDates" @click="selectDate(date)">
+                <div v-bind:class="[{wbDateItemSelected:date.date == selectedDateString} ,'wbDateItem']" v-for="date in listedDates" @click="selectDate(date)">
                     <div>
                         {{date.date.substring(5,10)}}
                     </div>
@@ -93,7 +93,7 @@
         </div>
 
         <button class="wbPayButton" >{{}}元 <span>立刻支付></span></button>
-        <cal v-show='showCal' :value='currentDate' :events="product.goodsCalendar" ></cal>
+        <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" :title="product.goodsName" @close="close" ></cal>
     </div>
 </template>
 <script>
@@ -106,22 +106,21 @@ import cal from '../../../components/CalendarPicker.vue'
       return {
        product:{},
        listedDates:[],
-       selectedDate:'',
+       selectedDateString:'',
+       
        productCat:[],
        productService:[], //其他服务 
        integral:0,
        integralDeduction:0,
        showCal:false,
-       currentDate:''
       }
     },
     mounted(){
       this.product = this.$store.state.product
       this.integral = localStorage.integral
       this.integralDeduction = this.integral / 10
-      this.currentDate = '2017-02-26'
       if(!isEmpty(this.product)){
-        this.listedDates = this.product.goodsCalendar.splice(0,4)
+        this.listedDates = this.product.goodsCalendar.slice(0,4)
         this.productCat = this.product.goodsGuige
         this.productService = this.product.goodsInclude
       }
@@ -131,7 +130,7 @@ import cal from '../../../components/CalendarPicker.vue'
         productInfo.getProducts(id).then(function(data){
             console.log(data)
                 that.product = data.data
-                that.listedDates =  that.product.goodsCalendar.splice(0,4)
+                that.listedDates =  that.product.goodsCalendar.slice(0,4)
                 that.productCat = that.product.goodsGuige
                 that.productService = that.product.goodsInclude
             },function(error){
@@ -147,11 +146,14 @@ import cal from '../../../components/CalendarPicker.vue'
     },
     methods:{
         selectDate(item){
-            this.selectedDate = item
+            this.selectedDateString = item.date
         },
         MoreCal(){
             this.showCal = !this.showCal
-        }
+        },
+        close(){
+            this.showCal = !this.showCal
+      }
     }
  }
 </script>

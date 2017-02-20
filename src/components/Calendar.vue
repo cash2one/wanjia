@@ -211,6 +211,7 @@ export default {
     },
     value:function(val){
       this.currDate =  this.parse(val)
+      log(this.currDate)
     }
   },
   computed: {
@@ -482,15 +483,16 @@ export default {
             if (week === parseInt(el, 10)) sclass = 'datepicker-item-disable'
           })
           if (i === this.currDate.getDate()) {
-            if (this.inputValue) {
+            // if (this.inputValue) {  //为什么要这样
               const valueDate = this.parse(this.inputValue)
               if (valueDate) {
                 if (this.parse(this.value).getFullYear() === time.year && this.parse(this.value).getMonth() == time.month) {
                   sclass = 'datepicker-dateRange-item-active'
                 }
               }
-            }
+            // }
           }
+          // log('date'+date+'class'+sclass)
           this.dateRange[p].push({
             text: i,
             date: date,

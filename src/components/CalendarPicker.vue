@@ -1,9 +1,10 @@
 <template>
   <div class="calBgDiv" >
-      <div>
-          
+      <div class="calTitleDiv" >
+          <button type="" @click="close">X</button>
+          <!--<span>{{title}}</span>-->
       </div>
-       <cal class="event-calendar" :value="data" :disabled-days-of-week="disabled" :format="format" :clear-button="clear" :placeholder="placeholder" :pane="1" :has-input="false" :change-pane="changePane"  :special-days="_dateMap" :on-day-click="onDayClick">
+       <cal class="event-calendar" :value="value" :disabled-days-of-week="disabled" :format="format" :clear-button="clear" :placeholder="placeholder" :pane="1" :has-input="false" :change-pane="changePane"  :special-days="_dateMap" :on-day-click="onDayClick">
         <div class="event" v-for="evt in events" :slot="evt.date">
                 ￥{{evt.price}}
             </div>
@@ -54,13 +55,16 @@
         },
         events:{
             type:Array,
+        },
+        title:{
+           type: String,
         }
     },
     mounted(){
        let bg = document.getElementsByClassName('calBgDiv')[0]
        bg.style.height = screen.height + 'px'
-    //    let cal = document.getElementsByClassName('event-calendar')[0]
-    //    cal.style.bottom = '0px'
+       let cal = document.getElementsByClassName('event-calendar')[0]
+       cal.style.bottom = '0px'
     },
     components: {
         cal
@@ -69,7 +73,7 @@
         _dateMap () {
           return this._createDateMap()
         },
-        data(){
+        date(){
             if(this.value){
                 console.log('the value is exist' + this.value)
                 return this.value
@@ -85,6 +89,9 @@
         show(){
             this.$refs.imgSwipers.show();
         },
+        close(){
+            this.$emit('close')
+        },
         onDayClick (date, str,event) {
           console.log('onDayClick' + str)
           this.value = str
@@ -94,8 +101,6 @@
              ele = ele.parentNode
           }
           ele = ele.parentNode
-          
-
           if(ele.classList.contains('datepicker-item-gray')){
              return
           }
@@ -104,24 +109,11 @@
           if(s.length == 0){
               return
           }
-
-        //   let cell = document.getElementsByClassName('datepicker-dateRange-item-active')[0]
-         
-        //   if(cell)
-        //   {
-        //     cell.className = 'day-cell'
-        //   }
-        
-        
-        // ele.className += ' datepicker-dateRange-item-active'
-         
         },
         changePane (year, month, pane) {
             // ajax data or ...
             console.log(this.value)
         },
-  
-    
     stringify (v) {
       if (!this.isDate(v)) return null
       return v.getFullYear() + '-' + this.filled(v.getMonth() * 1 + 1) + '-' + this.filled(v.getDate())
@@ -152,16 +144,25 @@
 </script>
 <style lang="scss">
     .calBgDiv{
-        background: rgba(150, 150, 150, 0.5);
+        background: rgba(50, 50, 50, 0.9);
         position: absolute;
         width: 100%;
         top:0px;
         
     }
+    .calTitleDiv{
+
+    }
+    .calTitleDiv button{
+        color: white;
+        width: 1rem;
+        font-size: 0.6rem;
+    }
     .event-calendar {
         width: 100%;
         bottom: 0px;
         background: white;
+        position: absolute !important;
     .datepicker-inner{
         width: 10rem;
         font-size:0.4rem;
