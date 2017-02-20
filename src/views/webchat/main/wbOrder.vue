@@ -93,7 +93,8 @@
         </div>
 
         <button class="wbPayButton" >{{}}元 <span>立刻支付></span></button>
-        <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" :title="product.goodsName" @close="close" ></cal>
+        <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" @dateSelected="selectedDate(date,str)"
+         :title="product.goodsName" @close="close" ></cal>
     </div>
 </template>
 <script>
@@ -153,7 +154,10 @@ import cal from '../../../components/CalendarPicker.vue'
         },
         close(){
             this.showCal = !this.showCal
-      }
+       },
+       selectedDate(date,str){
+           console.log(date)
+       }
     }
  }
 </script>

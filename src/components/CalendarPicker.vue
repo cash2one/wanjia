@@ -95,6 +95,7 @@
         onDayClick (date, str,event) {
           console.log('onDayClick' + str)
           this.value = str
+          this.$emit('dateSelected',date,str)
           let ele = event.target
           
           while(ele.parentNode.tagName != 'SPAN'){

@@ -24,7 +24,7 @@
                         {{item.fullName}}
                     </div>
                     <div>
-                        <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products1[item]">
+                        <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products1[item.id]">
                             <img class="productImg" :src="pros.goodsThumb" alt="">
                             <div class="divLike">
                                 <img src="./like.png" alt="">
@@ -56,7 +56,7 @@
                         {{item.fullName}}
                     </div>
                     <div>
-                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products2[item]">
+                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products2[item.id]">
                             <img class="productImg" :src="pros.goodsThumb" alt="">
                              <div class="divLike">
                                 <img src="./like.png" alt="">
@@ -88,7 +88,7 @@
                         {{item.fullName}}
                     </div>
                     <div>
-                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products3[item]">
+                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products3[item.id]">
                             <img class="productImg" :src="pros.goodsThumb" alt="">
                              <div class="divLike">
                                 <img src="./like.png" alt="">
@@ -119,7 +119,7 @@
                         {{item.fullName}}
                     </div>
                     <div>
-                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products4[item]">
+                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products4[item.id]">
                             <img class="productImg" :src="pros.goodsThumb" alt="">
                              <div class="divLike">
                                 <img src="./like.png" alt="">
@@ -209,7 +209,7 @@ import Vue from 'vue'
                     }
                     let products = {}
                     for(let c of catExist){
-                        products[c] = res.data[c.id]
+                        products[c.id] = res.data[c.id]
                     }
                     switch (cat) {
                         case '1':
