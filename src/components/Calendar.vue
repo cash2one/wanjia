@@ -211,7 +211,6 @@ export default {
     },
     value:function(val){
       this.currDate =  this.parse(val)
-      log(this.currDate)
     }
   },
   computed: {

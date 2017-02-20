@@ -33,12 +33,14 @@
         
           this.count ++
         
-        this.$emit('increment', event.target); // 子组件通过 $emit触发父组件的方法 increment   还
+        this.$emit('increment', count); // 子组件通过 $emit触发父组件的方法 increment   还
       },
       minus(event) {
         if(this.count > 0){
           this.count --
+          this.$emit('decrement', count); // 子组件通过 $emit触发父组件的方法 increment   还
         }
+        
       }
     }
   };

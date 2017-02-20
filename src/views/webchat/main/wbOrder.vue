@@ -41,7 +41,7 @@
                 <span class="wbProductCatPrice">
                     单价￥{{cat.price}}
                 </span>
-                <counter class="wbCounter" :count = "0" :maxCount="10"></counter>
+                <counter class="wbCounter" :count = "0" :maxCount="10" @increment="increment" @decrement="decrement"  ></counter>
             </div>
         </div>
 
@@ -93,7 +93,7 @@
         </div>
 
         <button class="wbPayButton" >{{}}元 <span>立刻支付></span></button>
-        <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" @dateSelected="selectedDate(date,str)"
+        <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" @dateSelected="selectedDate"
          :title="product.goodsName" @close="close" ></cal>
     </div>
 </template>
@@ -102,13 +102,13 @@ import Vue from 'vue'
 import productInfo from '../../../model/productInfo'
 import counter from '../../../components/counter.vue'
 import cal from '../../../components/CalendarPicker.vue'
+import axios from 'axios'
  export default{
     data() {
       return {
        product:{},
        listedDates:[],
        selectedDateString:'',
-       
        productCat:[],
        productService:[], //其他服务 
        integral:0,
@@ -148,6 +148,7 @@ import cal from '../../../components/CalendarPicker.vue'
     methods:{
         selectDate(item){
             this.selectedDateString = item.date
+            this.loadProductService(this.selectedDateString)
         },
         MoreCal(){
             this.showCal = !this.showCal
@@ -155,9 +156,30 @@ import cal from '../../../components/CalendarPicker.vue'
         close(){
             this.showCal = !this.showCal
        },
-       selectedDate(date,str){
-           console.log(date)
+       loadProductService(str){
+         let url = 'https://app.playnet.cc/index/goods/get_price/dates/'+str+'/goodsid/' + this.product.id
+         if(localStorage.key && typeof(localStorage.key) == 'string'){
+             url = url + '/wjkey/' + localStorage.key
+         }
+         let that = this
+         axios.get(url).then(response=>{
+            var res = response.data;
+            if(res.ret_code == 0) {
+               that.productCat = res.data
+            }
+            else{
+                
+            }
+        })
+       },
+       selectedDate(str){
+           this.loadProductService(str)
        }
+    },
+    computed:{
+        amount(){
+
+        }
     }
  }
 </script>

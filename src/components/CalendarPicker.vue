@@ -93,9 +93,8 @@
             this.$emit('close')
         },
         onDayClick (date, str,event) {
-          console.log('onDayClick' + str)
           this.value = str
-          this.$emit('dateSelected',date,str)
+          this.$emit('dateSelected',str)
           let ele = event.target
           
           while(ele.parentNode.tagName != 'SPAN'){
@@ -175,7 +174,8 @@
         vertical-align: top;
         }
         .event{
-        color: #E56700;
+         color: #E56700;
+         font-size: 0.35rem;
         }
         .low{
         color: red;
