@@ -209,9 +209,9 @@ export default {
     currDate () {
       this.getDateRange()
     },
-    // value:function(val){
-    //   console.log('current' + val)
-    // }
+    value:function(val){
+      this.currDate =  this.parse(val)
+    }
   },
   computed: {
     text () {
@@ -339,6 +339,12 @@ export default {
       this.displayMonthView = true
       this.currDate = new Date(year, this.currDate.getMonth(), this.currDate.getDate())
     },
+     monthSelect (year, index) {
+      this.displayMonthView = false
+      this.displayDayView = true
+      this.currDate = new Date(year, index, this.currDate.getDate())
+      this.changePane(year, index, this.pane)
+    },
     daySelect (date, event) {
       let el = event.target    
       if (el.classList[0] === 'datepicker-item-disable') {
@@ -363,12 +369,6 @@ export default {
     switchDecadeView () {
       this.displayMonthView = false
       this.displayYearView = true
-    },
-    monthSelect (year, index) {
-      this.displayMonthView = false
-      this.displayDayView = true
-      this.currDate = new Date(year, index, this.currDate.getDate())
-      this.changePane(year, index, this.pane)
     },
     getYearMonth (year, month) {
       if (month > 11) {
@@ -485,7 +485,7 @@ export default {
             if (this.inputValue) {
               const valueDate = this.parse(this.inputValue)
               if (valueDate) {
-                if (valueDate.getFullYear() === time.year && valueDate.getMonth() === time.month) {
+                if (this.parse(this.value).getFullYear() === time.year && this.parse(this.value).getMonth() == time.month) {
                   sclass = 'datepicker-dateRange-item-active'
                 }
               }

@@ -1,8 +1,11 @@
 <template>
   <div class="calBgDiv" >
+      <div>
+          
+      </div>
        <cal class="event-calendar" :value="data" :disabled-days-of-week="disabled" :format="format" :clear-button="clear" :placeholder="placeholder" :pane="1" :has-input="false" :change-pane="changePane"  :special-days="_dateMap" :on-day-click="onDayClick">
         <div class="event" v-for="evt in events" :slot="evt.date">
-                ￥{{evt.price}} <i :class="{low : evt.low}" v-if="evt.low">↓</i>
+                ￥{{evt.price}}
             </div>
         </cal>
   </div>
@@ -48,15 +51,16 @@
     props: {
         value: {
           type: String,
-          
         },
         events:{
             type:Array,
-           
         }
     },
     mounted(){
-        console.log('in the picker value is :' + this.value)
+       let bg = document.getElementsByClassName('calBgDiv')[0]
+       bg.style.height = screen.height + 'px'
+    //    let cal = document.getElementsByClassName('event-calendar')[0]
+    //    cal.style.bottom = '0px'
     },
     components: {
         cal
@@ -67,8 +71,10 @@
         },
         data(){
             if(this.value){
+                console.log('the value is exist' + this.value)
                 return this.value
             }
+            console.log('the value is not exist' )
             return this.stringify(new Date())
         }
     },
@@ -80,9 +86,10 @@
             this.$refs.imgSwipers.show();
         },
         onDayClick (date, str,event) {
-         console.log('onDayClick' + str)
+          console.log('onDayClick' + str)
           this.value = str
           let ele = event.target
+          
           while(ele.parentNode.tagName != 'SPAN'){
              ele = ele.parentNode
           }
@@ -92,20 +99,26 @@
           if(ele.classList.contains('datepicker-item-gray')){
              return
           }
-          let cell = document.getElementsByClassName('datepicker-dateRange-item-active')[0]
-         
-          if(cell)
-          {
-            cell.className = 'day-cell'
+
+          let s = findChildWithClass(ele,'event')
+          if(s.length == 0){
+              return
           }
+
+        //   let cell = document.getElementsByClassName('datepicker-dateRange-item-active')[0]
+         
+        //   if(cell)
+        //   {
+        //     cell.className = 'day-cell'
+        //   }
         
         
-        ele.className += ' datepicker-dateRange-item-active'
+        // ele.className += ' datepicker-dateRange-item-active'
          
         },
         changePane (year, month, pane) {
             // ajax data or ...
-
+            console.log(this.value)
         },
   
     
@@ -139,9 +152,16 @@
 </script>
 <style lang="scss">
     .calBgDiv{
-        background: rgba(150, 150, 150, 0.5)
+        background: rgba(150, 150, 150, 0.5);
+        position: absolute;
+        width: 100%;
+        top:0px;
+        
     }
     .event-calendar {
+        width: 100%;
+        bottom: 0px;
+        background: white;
     .datepicker-inner{
         width: 10rem;
         font-size:0.4rem;

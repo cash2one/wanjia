@@ -108,7 +108,7 @@ import cal from '../../../components/CalendarPicker.vue'
        listedDates:[],
        selectedDate:'',
        productCat:[],
-       productService:[],
+       productService:[], //其他服务 
        integral:0,
        integralDeduction:0,
        showCal:false,
@@ -119,9 +119,9 @@ import cal from '../../../components/CalendarPicker.vue'
       this.product = this.$store.state.product
       this.integral = localStorage.integral
       this.integralDeduction = this.integral / 10
+      this.currentDate = '2017-02-26'
       if(!isEmpty(this.product)){
         this.listedDates = this.product.goodsCalendar.splice(0,4)
-        
         this.productCat = this.product.goodsGuige
         this.productService = this.product.goodsInclude
       }
@@ -134,7 +134,6 @@ import cal from '../../../components/CalendarPicker.vue'
                 that.listedDates =  that.product.goodsCalendar.splice(0,4)
                 that.productCat = that.product.goodsGuige
                 that.productService = that.product.goodsInclude
-                
             },function(error){
                 console.log(data.msg)
         })

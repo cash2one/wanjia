@@ -49,3 +49,25 @@ global.isWebchat = function (){
 		return false;
 	}
 }
+
+global.findChildWithClass = function(ele,name){
+            let result = []
+            function childWithClass(element,className){
+            if(element.nodeType == 1 && element.className == className){
+                result.push(element)
+            }
+            else{
+                for(var i = 0;i<element.childNodes.length;i++){
+                    childWithClass(element.childNodes[i],className)
+                }
+            }
+
+          }
+          childWithClass(ele,name)
+          return result
+ }
+
+
+global.log = function(obj){
+    console.log(obj)
+}
