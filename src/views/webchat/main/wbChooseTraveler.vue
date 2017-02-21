@@ -6,10 +6,9 @@
            </div>
        </div>
         <div class="travererList">
-            <div class="oneTraverer" v-for="tra in travelers">
-
+            <div class="oneTraverer" v-for="tra in travelers" @click="chooseTravel(tra)" >
                     <span class="chooseTravelIcon">
-                        <img src="../../../static/img/select_gray.png" alt="">
+                        <img class="imgNotChoosed" :id="tarId(tra)" alt="">
                     </span>
                     <span class="travelInfo">
                         <div>
@@ -23,29 +22,31 @@
                         </div>
                     </span>
                     <span class="alterTravel"><img src="../../../static/img/alter_travel.png" alt="" @click="editTralver(tra)" ></span>
-
+                    
             </div>
-            <div class="bottomLine">
-                
-            </div>
+           
         </div>
+
+         <button type="" class="btnCheckDetail saveTraveler" @click="sure" >确定</button>
+
     </div>
 </template>
 <script>
 import axios from 'axios'
 import Vue from 'vue'
+import { Toast } from 'mint-ui'
   export default {
     data() {
       return {
         travelers:[],
-        selectedTraveler:{}
-
+        selectedTraveler:[]
       }
   },
   mounted(){
       if(!isWebchat()){
         login()
       }
+      this.$store.commit('setEditPeople', {})
       let url = 'https://app.playnet.cc/index/assist/get_contacts/wjkey/' + localStorage.key
       log(url)
       let that = this
@@ -53,13 +54,16 @@ import Vue from 'vue'
             var res = response.data;
             if(res.ret_code == 0) {
                that.travelers = res.data
-               
+               //已经选择好的进来就让选择好这一功能暂时不做
             }
             else{
                 
             }
         })
         
+  },
+ components:{
+      Toast
   },
   methods:{
       addTraveler(){
@@ -68,7 +72,43 @@ import Vue from 'vue'
       editTralver(tra){
           this.$store.commit('setEditPeople', tra)
           this.$router.push({ name: 'wbAddTraveler'})
+      },
+      chooseTravel(tra){
+        let index = this.selectedTraveler.indexOf(tra)
+        let img = document.getElementById('travelerImg' + tra.id)
+          if(img.className == 'imgChoosed'){
+            img.className = 'imgNotChoosed'
+            if(index >= 0){
+                this.selectedTraveler.splice(index,1)
+            }
+          }
+          else{
+             img.className = 'imgChoosed'
+             if(index < 0){
+                this.selectedTraveler.push(tra)
+             } 
+          }
+      },
+      tarId(tra){
+        return "travelerImg" + tra.id
+      },
+      sure(){
+        if(this.selectedTraveler.length>localStorage.travel){
+            this.toast('你最多只能选择'+localStorage.travel+'名行人')
+            return
+        }
+        this.$store.commit('setChoosedPeople',this.selectedTraveler)
+        log(this.$store.choosedPeople)
+        this.$router.back()
+      },
+      toast(msg){
+         Toast({
+            message: msg,
+            position: 'bottom',
+            duration: 2000
+        })
       }
+      
     
   },
 }
@@ -101,6 +141,16 @@ import Vue from 'vue'
         background: white;
         font-size: 0.4rem;
         border-bottom: 1px solid #ddd;
+        margin-bottom: 0.2rem;
+    }
+    .imgNotChoosed{
+        background-image: url('../../../static/img/select_gray.png');
+        
+        
+    }
+    .imgChoosed{
+        background-image: url('../../../static/img/select_green.png');
+
         
     }
     .bottomLine{
@@ -115,8 +165,9 @@ import Vue from 'vue'
     
     .chooseTravelIcon img{
         width: 0.5rem;
+        height: 0.5rem;
         margin-top: 0.07rem;
-        margin-top: 0.2rem;
+        background-size: 0.5rem 0.5rem;
     }
     .travelInfo{
         width: 75%;

@@ -49,7 +49,8 @@ const store = new Vuex.Store({
   state: {
     webViewUrl:'',
     product:{},
-    editPeople:{}
+    editPeople:{},
+    choosedPeople:[]
   },
   mutations: {
    setWebUrl(state,url){
@@ -61,6 +62,9 @@ const store = new Vuex.Store({
    },
    setEditPeople(state,people){
      state.editPeople = people
+   },
+   setChoosedPeople(state,people){
+     state.choosedPeople = people
    },
   },
   actions: {

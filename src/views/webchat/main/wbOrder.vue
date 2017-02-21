@@ -73,15 +73,15 @@
             </div>
         </div>
 
-        <div class="wbContacter">
+        <div class="wbContacter" v-if="traveler > 0">
             <div>
                 出行人信息
 
                 <button type="" @click="chooseTraveler">选择出行人</button>
             </div>
-            <div class="wbContacterItem">
+            <div class="wbContacterItem" v-for="n in traveler">
               <span class="catName">成人</span>
-              <input class="inputName" placeholder="姓名">
+              <input class="inputName" placeholder="姓名" :id="travelId(n)" >
             </div>
         </div>
 
@@ -130,13 +130,21 @@ import axios from 'axios'
        showCal:false,
        selectedProductCat:[],
        selectedProductService:[],
-       amount:0.00
+       amount:0.00,
+       traveler:localStorage.travel
       }
     },
     mounted(){
       this.product = this.$store.state.product
       this.integral = localStorage.integral
       this.integralDeduction = this.integral / 10
+      let peoples = this.$store.state.choosedPeople
+      if(!isEmpty(peoples)){
+        for(var i = 0;i<peoples.length;i++){
+            let ele = document.getElementById('travelId'+(i+1))
+            ele.value = peoples[i].name
+        }
+      }
       if(!isEmpty(this.product)){
         this.listedDates = this.product.goodsCalendar.slice(0,4)
         this.productCat = this.product.goodsGuige
@@ -163,6 +171,9 @@ import axios from 'axios'
         cal
     },
     methods:{
+        travelId(n){
+            return "travelId" + n
+        },
         selectDate(item){
             this.selectedDateString = item.date
             this.loadProductService(this.selectedDateString)

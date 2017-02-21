@@ -20,7 +20,7 @@
            </div>
            <div class="addTravelerInfo">
                <span class="leftTitle">证件号码</span>
-                <input class="addTravelerInput" placeholder="所持证件号码" type="number" v-model="identity">
+                <input class="addTravelerInput" placeholder="所持证件号码" type="number"  >
            </div>
        </div>   
        
@@ -49,19 +49,23 @@ import { Toast } from 'mint-ui'
         peopleId:0,
         name:"",
         identity:"",
-        contact:""
+        contact:"",
+        inputIdentity:{}
       }
   },
   mounted(){
       if(!isWebchat()){
         login()
       }
+      this.inputIdentity = document.getElementsByClassName('addTravelerInput')[1]
+
       document.title = "添加行人"
       if(!isEmpty(this.$store.state.editPeople)){
          let people = this.$store.state.editPeople
          this.peopleId = people.id
          this.name = people.name
          this.identity = people.identityCard
+         this.inputIdentity.value = this.identity
          document.title = "编辑出行人"
       }
       
@@ -73,6 +77,7 @@ import { Toast } from 'mint-ui'
               this.toast('姓名不能为空')
               return
           }
+          this.identity = this.inputIdentity.value
           if(!/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(this.identity)){
               this.toast('身份证格式错误')
               return
@@ -87,19 +92,19 @@ import { Toast } from 'mint-ui'
               para.id = this.peopleId
           }
           let url = 'https://app.playnet.cc/index/assist/mod_contacts/wjkey/' + localStorage.key
-          log(url)
           let that = this
-          axios.post(url,qs.stringify(para)).then(response=>{
+          axios.post(url,qs.stringify(para)).then(response=>{ //目前不能添加，只能个性，不知道为什么
             var res = response.data;
             if(res.ret_code == 0) {
-                this.toast('行人成功保存')
-            
+                that.toast('行人成功保存')
+                that.$router.back()
             }
             else{
                 
             }
         })
       },
+     
       toast(msg){
          Toast({
             message: msg,

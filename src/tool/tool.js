@@ -68,6 +68,7 @@ global.findChildWithClass = function(ele,name){
  }
 
 
+
 global.log = function(obj){
     console.log(obj)
 }

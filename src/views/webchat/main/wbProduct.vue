@@ -99,6 +99,7 @@
                 that.address = that.product.goodsService
                 that.services = ser.concat(that.product.goodsAddition)
                 that.loading = false
+                localStorage.travel = that.product.isTraveler
             },function(error){
                 console.log(data.msg)
                 that.loading = false
