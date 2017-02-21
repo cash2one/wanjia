@@ -210,7 +210,9 @@ export default {
       this.getDateRange()
     },
     value:function(val){
+      console.log('in the cal  changed value' + val)
       this.currDate =  this.parse(val)
+      console.log('in the cal  changed value and currDate changed' + val)
     }
   },
   computed: {

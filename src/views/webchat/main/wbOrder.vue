@@ -29,8 +29,6 @@
                   
                 </div>
             </div>
-
-            
         </div>
 
          <div class="wbProductCat">
@@ -65,11 +63,11 @@
         <div class="wbContacter">
             <div class="wbContacterItem">
               <span class="catName">联系人</span>
-              <input class="inputName" placeholder="姓名">
+              <input class="inputName" placeholder="姓名" v-model="contactName">
             </div>
             <div class="wbContacterItem">
               <span class="catName">手机号</span>
-              <input class="inputPhone" placeholder="仅支持中国大陆手机号" type="tel">
+              <input class="inputPhone" placeholder="仅支持中国大陆手机号" type="tel" v-model="contactPhone">
             </div>
         </div>
 
@@ -88,7 +86,7 @@
         <div class="wbproductIntegral">
             <span class="catName">积分</span>
             <span class="wbUntegralNum">可用{{integral}}玩+积分抵￥{{integralDeduction}}</span>
-            <input class="wbUseUntegral" type="checkbox">
+            <input class="wbUseUntegral" type="checkbox" v-model="checkToUseIntegral">
         </div>
 
         <div class="wbproductPay">
@@ -99,14 +97,12 @@
             <div class="wbPayWay">
                 <img src="./webchat.jpeg" alt="">
                 <span>微信支付</span>
-                <input type="radio" >
+                <input type="radio" checked="checked"  >
             </div>
-
-
 
         </div>
 
-        <button class="wbPayButton" >{{amount}}元 <span>立刻支付></span></button>
+        <button class="wbPayButton" @click="pay" >{{amount}}元 <span>立刻支付></span></button>
         <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" @dateSelected="selectedDate"
          :title="product.goodsName" @close="close" ></cal>
     </div>
@@ -116,7 +112,9 @@ import Vue from 'vue'
 import productInfo from '../../../model/productInfo'
 import counter from '../../../components/counter.vue'
 import cal from '../../../components/CalendarPicker.vue'
+import { Toast } from 'mint-ui'
 import axios from 'axios'
+ import qs from 'qs'
  export default{
     data() {
       return {
@@ -131,7 +129,10 @@ import axios from 'axios'
        selectedProductCat:[],
        selectedProductService:[],
        amount:0.00,
-       traveler:localStorage.travel
+       traveler:localStorage.travel,
+       checkToUseIntegral:false,
+       contactName:'',
+       contactPhone:''
       }
     },
     mounted(){
@@ -168,7 +169,8 @@ import axios from 'axios'
     },   
     components:{
         counter,
-        cal
+        cal,
+        Toast
     },
     methods:{
         travelId(n){
@@ -185,23 +187,24 @@ import axios from 'axios'
             this.showCal = !this.showCal
        },
        loadProductService(str){
-         let url = 'https://app.playnet.cc/index/goods/get_price/dates/'+str+'/goodsid/' + this.product.id
-         log(url)
-         if(localStorage.key && typeof(localStorage.key) == 'string'){
-             url = url + '/wjkey/' + localStorage.key
-         }
-         let that = this
-         axios.get(url).then(response=>{
-            var res = response.data;
-            if(res.ret_code == 0) {
-               that.productCat = res.data
+            let url = 'https://app.playnet.cc/index/goods/get_price/dates/'+str+'/goodsid/' + this.product.id
+            log(url)
+            if(localStorage.key && typeof(localStorage.key) == 'string'){
+                url = url + '/wjkey/' + localStorage.key
             }
-            else{
-                
-            }
-        })
+            let that = this
+            axios.get(url).then(response=>{
+                var res = response.data;
+                if(res.ret_code == 0) {
+                  that.productCat = res.data
+                }
+                else{
+                    
+                }
+            })
         },
         selectedDate(str){
+           this.selectedDateString = str
            this.loadProductService(str)
         },
         decrementCat(count,model){
@@ -244,6 +247,107 @@ import axios from 'axios'
         },
         chooseTraveler(){
             this.$router.push({ name: 'wbChooseTraveler'})
+        },
+        toast(msg){
+            Toast({
+                message: msg,
+                position: 'bottom',
+                duration: 2000
+            })
+        },
+    
+        pay(){
+            let url = 'https://app.playnet.cc/index/order/post'
+            if(this.selectedDateString.length<=0){
+                this.toast('你没有选择日期')
+                return
+            }
+            if(this.selectedProductCat.length <=0){
+                this.toast('你没有选择类型')
+                return
+            }
+            if(this.contactName.length<=0){
+                this.toast('联系人不能为空')
+                return
+            }
+            if(this.contactPhone.length<=0){
+                this.toast('联系人手机不能为空')
+                return
+            }
+            if(!/^1(3|4|5|7|8)\d{9}$/.test(this.this.contactPhone)){
+                this.toast('联系人手机号格式错误')
+                return
+            }
+            let travelerPeople = this.$store.state.choosedPeople
+            if(this.traveler > 0){
+                if(!travelerPeople || travelerPeople.length <= 0){
+                    this.toast('出行人不能为空')
+                   return
+                }
+                if(travelerPeople.length != this.traveler){
+                    this.toast('出行人数量不符合商品数量')
+                   return
+                }
+            }
+            let count = 0
+            let pros = []
+            for(let item in this.selectedProductCat){
+                let i = this.productCat.find(function(v){
+                    v.id == item
+                })
+                let pro = i.id+'-'+this.selectedProductCat[item]+'-'+i.price
+                count = count + this.selectedProductCat[item]
+                pros.push(pro)
+            }
+            let travels = []
+            for(let tra of travelerPeople){
+                let t = tra.name + '-' + tra.identityCard
+                travels.push(t)
+            }
+            let services = []
+            for(let ser in this.selectedProductService){
+                let i = this.productService.find(function(v){
+                    v.id == ser
+                })
+                let s = i.id+'-'+this.selectedProductService[item]+'-'+i.servicePrice
+                services.push(s)
+            }
+            let inte = 0
+            let deductPrice = 0
+            let totalPrice = this.amount
+            if(this.integral>0){
+                if(this.checkToUseIntegral){
+                    inte = this.integral
+                    deductPrice = this.integralDeduction
+                    totalPrice = totalPrice - deductPrice
+                }
+            }
+
+            let para = {
+                projectId:this.product.id,
+                date:this.selectedDateString,
+                contactName:this.contactName,
+                contactPhone:this.contactPhone,
+                count:count,
+                products:pros,
+                travelers:travels,
+                integral:inte,
+                deductible:deductPrice,
+                services:services,
+                wjkey:localStorage.key,
+                price:totalPrice
+            }
+            
+             axios.post(url,qs.stringify(para)).then(response=>{ //目前不能添加，只能个性，不知道为什么
+                var res = response.data;
+                if(res.ret_code == 0) {
+                    
+                }
+                else{
+                    
+                }
+            })
+
         }
     },
  }
