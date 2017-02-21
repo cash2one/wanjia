@@ -71,3 +71,7 @@ global.findChildWithClass = function(ele,name){
 global.log = function(obj){
     console.log(obj)
 }
+
+global.login = function(){
+     localStorage.key = 'wj_58510d203709d4.01008923'
+}

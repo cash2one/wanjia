@@ -41,7 +41,8 @@
                 <span class="wbProductCatPrice">
                     单价￥{{cat.price}}
                 </span>
-                <counter class="wbCounter" :count = "0" :maxCount="10" @increment="increment" @decrement="decrement"  ></counter>
+                <counter class="wbCounter"  :maxCount="cat.stock" :model = "cat"  @decrement = "decrementCat"
+                @increment="incrementCat"  ></counter>
             </div>
         </div>
 
@@ -56,7 +57,8 @@
                 <span class="wbProductCatPrice">
                     单价￥{{cat.servicePrice}}
                 </span>
-                <counter class="wbCounter" :count = "0" :maxCount="10"></counter>
+                <counter class="wbCounter" :maxCount="cat.stock"  @decrement = "decrementService"
+                @increment="incrementService"  :model = "cat" ></counter>
             </div>
         </div>
 
@@ -68,6 +70,18 @@
             <div class="wbContacterItem">
               <span class="catName">手机号</span>
               <input class="inputPhone" placeholder="仅支持中国大陆手机号" type="tel">
+            </div>
+        </div>
+
+        <div class="wbContacter">
+            <div>
+                出行人信息
+
+                <button type="" @click="chooseTraveler">选择出行人</button>
+            </div>
+            <div class="wbContacterItem">
+              <span class="catName">成人</span>
+              <input class="inputName" placeholder="姓名">
             </div>
         </div>
 
@@ -92,7 +106,7 @@
 
         </div>
 
-        <button class="wbPayButton" >{{}}元 <span>立刻支付></span></button>
+        <button class="wbPayButton" >{{amount}}元 <span>立刻支付></span></button>
         <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" @dateSelected="selectedDate"
          :title="product.goodsName" @close="close" ></cal>
     </div>
@@ -114,6 +128,9 @@ import axios from 'axios'
        integral:0,
        integralDeduction:0,
        showCal:false,
+       selectedProductCat:[],
+       selectedProductService:[],
+       amount:0.00
       }
     },
     mounted(){
@@ -158,6 +175,7 @@ import axios from 'axios'
        },
        loadProductService(str){
          let url = 'https://app.playnet.cc/index/goods/get_price/dates/'+str+'/goodsid/' + this.product.id
+         log(url)
          if(localStorage.key && typeof(localStorage.key) == 'string'){
              url = url + '/wjkey/' + localStorage.key
          }
@@ -171,16 +189,52 @@ import axios from 'axios'
                 
             }
         })
-       },
-       selectedDate(str){
+        },
+        selectedDate(str){
            this.loadProductService(str)
-       }
-    },
-    computed:{
-        amount(){
-
+        },
+        decrementCat(count,model){
+            this.selectedProductCat[model.id] = count
+            this.updateAmount()
+        },
+        incrementCat(count,model){
+           this.selectedProductCat[model.id] = count
+           
+           this.updateAmount()
+        },
+        incrementService(count,model){
+            this.selectedProductService[model.id] = count
+            this.updateAmount()
+        },
+        decrementService(count,model){
+            this.selectedProductService[model.id] = count
+            this.updateAmount()
+        },
+        updateAmount(){
+            var tmp = 0.0
+ 
+            for(var cat in this.selectedProductCat){
+                if(this.selectedProductCat[cat] > 0){
+                    let c = this.productCat.find(function(ele){
+                        return ele.id == cat
+                    })
+                    tmp += c.price * this.selectedProductCat[cat]
+                }
+            }
+             for(var cat in this.selectedProductService){
+                if(this.selectedProductService[cat] > 0){
+                    let c = this.productService.find(function(ele){
+                        return ele.id == cat
+                    })
+                    tmp += Number(c.servicePrice) * this.selectedProductService[cat]
+                }
+            }
+            this.amount = tmp
+        },
+        chooseTraveler(){
+            this.$router.push({ name: 'wbChooseTraveler'})
         }
-    }
+    },
  }
 </script>
 <style>

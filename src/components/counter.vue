@@ -13,34 +13,32 @@
   export default {
     props: {
       count: {
-        type: Number
+        type: Number,
+        default:0
       },
       maxCount:{
         type: Number,
         default:0
+      },
+      model:{
+        type:Object
       }
     },
     methods: {
       add(event) {
-        console.log(this.maxCount)
-       
-        
         if(this.maxCount != 0){
           if(this.count >= this.maxCount){
             return
           }
-        }
-        
-          this.count ++
-        
-        this.$emit('increment', count); // 子组件通过 $emit触发父组件的方法 increment   还
+        }    
+         this.count ++
+         this.$emit('increment', this.count,this.model); // 子组件通过 $emit触发父组件的方法 increment   还
       },
       minus(event) {
         if(this.count > 0){
           this.count --
-          this.$emit('decrement', count); // 子组件通过 $emit触发父组件的方法 increment   还
+          this.$emit('decrement', this.count,this.model); // 子组件通过 $emit触发父组件的方法 increment   还
         }
-        
       }
     }
   };

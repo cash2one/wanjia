@@ -15,8 +15,11 @@ import webchatMain from './views/webchat/wbmain.vue'
 import webchatProductList from './views/webchat/main/wbProductList.vue'
 import webchatProduct from './views/webchat/main/wbProduct.vue'
 import webchatOrder from './views/webchat/main/wbOrder.vue'
+import wbChooseTraveler from './views/webchat/main/wbChooseTraveler.vue'
 import webchatWeb from './views/webchat/wbWeb.vue'
 import demo from './views/demo.vue'
+
+
 export default[{
    path:'/',
    component:index,
@@ -105,6 +108,12 @@ export default[{
    path:'/wborder/:id',
    component:webchatOrder,
    name:'webchatOrder'
+},
+
+{
+   path:'/wbChooseTraveler',
+   component:wbChooseTraveler,
+   name:'wbChooseTraveler'
 },
 
 {

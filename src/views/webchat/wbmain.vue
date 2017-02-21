@@ -38,7 +38,10 @@
     },
     mounted(){
       document.title = "玩加"
-      console.log(isWebchat())  //是不是微信
+      if(!isWebchat()){
+        login()
+      }
+      
       if(localStorage.key && typeof(localStorage.key) == 'string'){  //如果存在 Key，就获取用户信息
         this.getUserInfo()
         return
