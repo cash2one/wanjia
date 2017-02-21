@@ -30,7 +30,6 @@ Vue.component(TabContainerItem.name, TabContainerItem)
 
 
 import { Cell } from 'mint-ui'
-
 Vue.component(Cell.name, Cell)
 
 
@@ -49,7 +48,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     webViewUrl:'',
-    product:{}
+    product:{},
+    editPeople:{}
   },
   mutations: {
    setWebUrl(state,url){
@@ -58,7 +58,10 @@ const store = new Vuex.Store({
    },
    setProduct(state,product){
      state.product = product
-   }
+   },
+   setEditPeople(state,people){
+     state.editPeople = people
+   },
   },
   actions: {
     

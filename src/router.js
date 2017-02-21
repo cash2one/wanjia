@@ -16,7 +16,9 @@ import webchatProductList from './views/webchat/main/wbProductList.vue'
 import webchatProduct from './views/webchat/main/wbProduct.vue'
 import webchatOrder from './views/webchat/main/wbOrder.vue'
 import wbChooseTraveler from './views/webchat/main/wbChooseTraveler.vue'
+import wbAddTraveler from './views/webchat/main/wbAddTraveler.vue'
 import webchatWeb from './views/webchat/wbWeb.vue'
+
 import demo from './views/demo.vue'
 
 
@@ -115,6 +117,13 @@ export default[{
    component:wbChooseTraveler,
    name:'wbChooseTraveler'
 },
+
+{
+   path:'/wbAddTraveler',
+   component:wbAddTraveler,
+   name:'wbAddTraveler'
+},
+
 
 {
    path:'/wb/web',
