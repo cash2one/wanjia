@@ -1,5 +1,5 @@
 <template>
-    <div class="mainProductListDiv">
+    <div >
        <div class="productsTitle">
             <div class="titleTabBar">
             <mt-navbar v-model="selected">
