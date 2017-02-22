@@ -16,7 +16,7 @@
                         {{date.date.substring(5,10)}}
                     </div>
                     <div>
-                        {{date.price}}
+                        ￥{{date.price}}
                     </div>
                 </div>
                 <div class="wbDateItem" @click="MoreCal"> 
@@ -102,7 +102,7 @@
 
         </div>
 
-        <button class="wbPayButton" @click="pay" >{{amount}}元 <span>立刻支付></span></button>
+        <button class="wbPayButton" @click="createOrder" >{{amount}}元 <span>立刻支付</span></button>
         <cal v-show='showCal' :value='selectedDateString' :events="product.goodsCalendar" @dateSelected="selectedDate"
          :title="product.goodsName" @close="close" ></cal>
     </div>
@@ -132,7 +132,8 @@ import axios from 'axios'
        traveler:localStorage.travel,
        checkToUseIntegral:false,
        contactName:'',
-       contactPhone:''
+       contactPhone:'',
+       orderInfo:{}
       }
     },
     mounted(){
@@ -213,7 +214,6 @@ import axios from 'axios'
         },
         incrementCat(count,model){
            this.selectedProductCat[model.id] = count
-           
            this.updateAmount()
         },
         incrementService(count,model){
@@ -256,7 +256,7 @@ import axios from 'axios'
             })
         },
     
-        pay(){
+        createOrder(){
             let url = 'https://app.playnet.cc/index/order/post'
             if(this.selectedDateString.length<=0){
                 this.toast('你没有选择日期')
@@ -274,7 +274,7 @@ import axios from 'axios'
                 this.toast('联系人手机不能为空')
                 return
             }
-            if(!/^1(3|4|5|7|8)\d{9}$/.test(this.this.contactPhone)){
+            if(!/^1(3|4|5|7|8)\d{9}$/.test(this.contactPhone)){
                 this.toast('联系人手机号格式错误')
                 return
             }
@@ -292,10 +292,10 @@ import axios from 'axios'
             let count = 0
             let pros = []
             for(let item in this.selectedProductCat){
-                let i = this.productCat.find(function(v){
-                    v.id == item
+                let result = this.productCat.find(function(v){
+                   return v.id == parseInt(item)
                 })
-                let pro = i.id+'-'+this.selectedProductCat[item]+'-'+i.price
+                let pro = result.id+'-'+this.selectedProductCat[item]+'-'+result.price
                 count = count + this.selectedProductCat[item]
                 pros.push(pro)
             }
@@ -307,9 +307,9 @@ import axios from 'axios'
             let services = []
             for(let ser in this.selectedProductService){
                 let i = this.productService.find(function(v){
-                    v.id == ser
+                   return v.id == parseInt(ser)
                 })
-                let s = i.id+'-'+this.selectedProductService[item]+'-'+i.servicePrice
+                let s = i.id+'-'+this.selectedProductService[ser]+'-'+i.servicePrice
                 services.push(s)
             }
             let inte = 0
@@ -323,7 +323,7 @@ import axios from 'axios'
                 }
             }
 
-            let para = {
+            this.orderInfo = {
                 projectId:this.product.id,
                 date:this.selectedDateString,
                 contactName:this.contactName,
@@ -335,19 +335,27 @@ import axios from 'axios'
                 deductible:deductPrice,
                 services:services,
                 wjkey:localStorage.key,
-                price:totalPrice
+                price:totalPrice,
+                orderId:0,
+                orderNum:''
             }
-            
-             axios.post(url,qs.stringify(para)).then(response=>{ //目前不能添加，只能个性，不知道为什么
+            let that = this
+             axios.post(url,this.orderInfo).then(response=>{ //目前不能添加，只能个性，不知道为什么
                 var res = response.data;
                 if(res.ret_code == 0) {
-                    
+                    log(res)
+                    that.orderInfo.orderId = res.orderId
+                    that.orderInfo.ordrerNum = res.orderNumber
+                    that.pay()
                 }
                 else{
                     
                 }
             })
 
+        },
+        pay(){
+            consol.log('use this to pay')
         }
     },
  }
