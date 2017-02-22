@@ -15,7 +15,7 @@
         <mt-tab-container   class="orderContainer" v-model="selected">
             <mt-tab-container-item id="0">
                 <div v-for="or in orders" >
-                    <div class="orderMainDiv">
+                    <div class="orderMainDiv" @click="orderInfo(or)">
                         <img class="orderProductImg" :src="or.goodsThumb" alt="">
 
                         <div class="orderProductInfo">
@@ -273,6 +273,9 @@ import Vue from 'vue'
             default:
                 break;
         }
+      },
+      orderInfo(order){
+           this.$router.push({ name: 'wbOrderInfo', params: { id:order.id }})
       }
      
       
