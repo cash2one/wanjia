@@ -6,7 +6,7 @@
              <mainPage></mainPage>
             </mt-tab-container-item>
             <mt-tab-container-item id="我的">
-              <mt-cell v-for="n in 5" :title="'我的 ' + n" />
+              <orderList></orderList>
             </mt-tab-container-item>
 
          
@@ -28,6 +28,7 @@
 <script>
  import Vue from 'vue'
  import mainPage from './main/mainPage.vue'
+ import orderList from './order/wbOrderList.vue'
  import axios from 'axios'
  import qs from 'qs'
  export default{
@@ -112,7 +113,8 @@
       }
     },
     components:{
-      mainPage
+      mainPage,
+      orderList
     }
  
    

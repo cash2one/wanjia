@@ -114,7 +114,8 @@ import counter from '../../../components/counter.vue'
 import cal from '../../../components/CalendarPicker.vue'
 import { Toast } from 'mint-ui'
 import axios from 'axios'
- import qs from 'qs'
+import FormData from 'form-data'
+import qs from 'qs'
  export default{
     data() {
       return {
@@ -137,6 +138,9 @@ import axios from 'axios'
       }
     },
     mounted(){
+      if(!isWebchat()){
+        login()
+      }
       this.product = this.$store.state.product
       this.integral = localStorage.integral
       this.integralDeduction = this.integral / 10
@@ -340,7 +344,9 @@ import axios from 'axios'
                 orderNum:''
             }
             let that = this
-             axios.post(url,this.orderInfo).then(response=>{ //目前不能添加，只能个性，不知道为什么
+            log(this.orderInfo)
+            
+            axios.post(url,qs.stringify(this.orderInfo)).then(response=>{ //目前不能添加，只能个性，不知道为什么
                 var res = response.data;
                 if(res.ret_code == 0) {
                     log(res)
@@ -355,7 +361,7 @@ import axios from 'axios'
 
         },
         pay(){
-            consol.log('use this to pay')
+            console.log('use this to pay')
         }
     },
  }
