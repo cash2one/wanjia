@@ -1,24 +1,21 @@
 <template>
     <div style="font-size: 0.5rem;">
-        <div class="orderProductInfo">
+        <div class="orderProductDetail">
             <img :src="orderInfo.goodsThumb" alt="">
             <div class="orderProductInfoDetail">
                 <div>
                     {{orderInfo.goodsName}}
                 </div>
-                <div class="orderProductInfoDetails">
-                    数量: {{orderInfo.goodsNums}}
-                </div>
-                <div class="orderProductInfoDetails">
-                    总价: {{orderInfo.orderAmount}}
-                </div>
+                <div class="orderProductInfoDetails">数量: {{orderInfo.goodsNums}}</div>
+                <div class="orderProductInfoDetails">总价: {{orderInfo.orderAmount}}</div>
             </div>
         </div>
         <div class="orderProductTag">
             <div>
                 
             </div>
-            <span>{{canRefund}}</span>
+            <img class="orderFeatureImg" src="../../../static/img/select_green.png" alt="">
+            <span class="orderFeatureSpan">{{canRefund}}</span>
         </div>
         <div class="mainOrderInfo">
             <div class="orderToken">
@@ -27,7 +24,8 @@
                         <div>玩+券</div>
                        <div style="font-size: 0.37rem;">有效期至: {{orderInfo.goodsDeadline}}</div>
                     </div>
-                    <button class="tokenTitleHandle" type="" v-if="!(orderInfo.isCancel == 1 && (orderInfo.status == 1 || orderInfo.status == 2))" >{{orderAction}}</button>
+                    <button class="tokenTitleHandle" type="" @click = "handleOrder"
+                     v-if="!(orderInfo.isCancel == 1 && (orderInfo.status == 1 || orderInfo.status == 2))" >{{orderAction}}</button>
                 </div>
                 <div class="orderTokens">
                     <div v-for="tos of totenTitle">
@@ -45,41 +43,44 @@
             </div>
 
             <div class="orderContactInfo">
-                <div>
+                <div class="orderDetailInfoTitle">
                     预定信息
                 </div>
-                <div>
+                <div class="orderDetailInfoTitleContent">
                     联系人: {{orderInfo.contactName}}
                 </div>
-                <div>
+                <div class="orderDetailInfoTitleContent">
                     联系电话: {{orderInfo.contactPhone}}
                 </div>
             </div>
 
-             <div class="orderOtherInfo">
-                <div>
+             <div class="orderContactInfo">
+                <div class="orderDetailInfoTitle">
                     其他信息
                 </div>
-                <div>
+                <div class="orderDetailInfoTitleContent">
                     订单编号: {{orderInfo.orderNumber}}
                 </div>
-                <div>
+                <div class="orderDetailInfoTitleContent">
                     预定日期: {{orderInfo.create_time}}
                 </div>
             </div>
         </div>
         <div class="orderServerInfo">
-            <div>
+            <div class="orderDetailInfoTitle">
                 商家信息
             </div>
-            <div>
-                <div>
-                    <div>
+            <div class="orderServerInfoContent">
+                <div style="width: 80%;">
+                    <div style="color: #444;margin-top: 0.1rem;margin-bottom: 0.15rem;">
                         {{orderInfo.businessName}}
                     </div>
                     <div>
                         {{orderInfo.address}}
                     </div>
+                </div>
+                <div class="orderServerInfoPhone">
+                    <img  src="../../../static/img/phone_green.png" alt="">
                 </div>
             </div>
         </div>
@@ -156,6 +157,11 @@ import axios from 'axios'
             else{
                 return '不可用'
             }
+        },
+        handleOrder(){
+            if(this.orderAction == '去付款'){
+                this.$router.push({ name: 'wbPayOrder', params: { id:this.orderInfo.id }})
+            }
         }
     },
     computed:{
@@ -190,35 +196,46 @@ import axios from 'axios'
  }
 </script>
 <style>
-.orderProductInfo{
+.orderProductDetail{
     padding: 0.3rem 0.3rem;
     background: white;
     width: 100%;
     display: flex;
 }
-.orderProductInfo img{
+.orderProductDetail img{
     width: 2rem;
     height: 2rem;
     margin-right: 0.2rem;
 }
 .orderProductInfoDetail{
-    margin-top: -0.15rem;
-    font-size: 0.47rem;
+    margin-top: -0.05rem;
+    font-size: 0.45rem;
 }
 .orderProductInfoDetails{
    font-size: 0.42rem;
-   margin-top: 0.13rem;
+   margin-top: 0.1rem;
    color: #aaa;
 }
 .orderProductTag{
     background: white;
     padding: 0rem 0.3rem;
     padding-bottom: 0.2rem;
+    vertical-align: middle;
+}
+.orderFeatureImg{
+    width: 0.5rem;
+    vertical-align: middle;
+}
+.orderFeatureSpan{
+    font-size: 0.45rem;
+    color: green;
+    vertical-align: middle;
 }
 .orderProductTag div{
     height: 1px;
     background: #ccc;
     margin-bottom: 0.15rem;
+    
 }
 
 .mainOrderInfo{
@@ -245,9 +262,43 @@ import axios from 'axios'
 .orderTokens{
     background: white;
     padding: 0.3rem 0.3rem;
-    
+    font-size: 0.45rem;
 }
 .tokenDetail {
     margin-top: 0.15rem;
+}
+.orderContactInfo{
+    padding: 0.3rem 0.3rem;
+    margin-top: 0.3rem;
+    background: white;
+    font-size: 0.43rem;
+    color: #999;
+}
+.orderDetailInfoTitle{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
+}
+.orderDetailInfoTitleContent{
+    padding-top: 0.1rem;
+}
+.orderServerInfo{
+    background: white;
+    padding: 0.3rem 0.3rem;
+    font-size: 0.43rem;
+    color: #aaa;
+}
+.orderServerInfoContent{
+    display: flex;
+    
+}
+.orderServerInfoPhone{
+    text-align: center;
+    width: 20%;
+    line-height: 2rem;
+}
+.orderServerInfoPhone img{
+    width: 0.6rem;
+    
 }
 </style>

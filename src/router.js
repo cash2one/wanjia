@@ -18,7 +18,7 @@ import webchatOrder from './views/webchat/order/wbOrder.vue'
 import wbChooseTraveler from './views/webchat/order/wbChooseTraveler.vue'
 import wbAddTraveler from './views/webchat/order/wbAddTraveler.vue'
 import wbOrderInfo from './views/webchat/order/wbOrderInfo.vue'
-
+import wbPayOrder from './views/webchat/order/wbPayOrder.vue'
 
 import webchatWeb from './views/webchat/wbWeb.vue'
 
@@ -131,6 +131,11 @@ export default[{
    path:'/wbOrderInfo/:id',
    component:wbOrderInfo,
    name:'wbOrderInfo'
+},
+{
+   path:'/wbPayOrder/:id',
+   component:wbPayOrder,
+   name:'wbPayOrder'
 },
 
 

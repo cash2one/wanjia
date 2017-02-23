@@ -135,7 +135,7 @@
                         <div class="orderProductStatus">
                             <span>{{getStatus(or.status)}}</span>
 
-                            <button class="orderProductHandleButton">{{getStatusHandle(or.status)}}</button>
+                            <button @click="orderhandle(or)" class="orderProductHandleButton">{{getStatusHandle(or.status)}}</button>
                         </div>
                     </div>
                 </div>
@@ -276,6 +276,16 @@ import Vue from 'vue'
       },
       orderInfo(order){
            this.$router.push({ name: 'wbOrderInfo', params: { id:order.id }})
+      },
+      orderhandle(order){
+         switch (order.status) {
+             case 0:
+                 this.$router.push({ name: 'wbPayOrder', params: { id:order.id }})
+                 break;
+         
+             default:
+                 break;
+         }
       }
      
       
