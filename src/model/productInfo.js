@@ -1,5 +1,4 @@
 import axios from 'axios'
-import vueResource from "vue-resource"
 import resultInfo from './resultInfo'
 const productInfo = {
     title:'我很好',

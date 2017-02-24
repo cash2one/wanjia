@@ -1,26 +1,28 @@
 <template>
     <div>
-     
-    <div class="wbMainContent">
-      <div class="wbMainContent1">
-        <mainPage></mainPage>
-      </div>
-      <div class="wbMainContent2">
-        <orderList></orderList>
-      </div>
-    </div>
+      <div>
+          <mt-tab-container class="page-tabbar-container" v-model="selected">
+            <mt-tab-container-item id="首页">
+             <mainPage></mainPage>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="我的">
+              <orderList></orderList>
+            </mt-tab-container-item>
 
-      <tabbar class="wbTabBar" >
-      <tabbar-item :selected="selected == '预定'" >
-        <img slot="icon" src="../../static/img/preorder.png">
-        <span slot="label">预定</span>
-      </tabbar-item>
-      <tabbar-item :selected="selected == '我的'">
-        <img slot="icon" src="../../static/img/my.png">
-        <span slot="label">我的</span>
-      </tabbar-item>
-    </tabbar>
+         
+          </mt-tab-container>
+      </div>
+      <mt-tabbar  v-model="selected" fixed class="mainTabBar">
+        <mt-tab-item id="首页">
+          首页
+        </mt-tab-item>
 
+        <mt-tab-item id="我的">
+         
+          我的
+        </mt-tab-item>
+
+     </mt-tabbar>
     </div>  
 </template>
 <script>
@@ -29,11 +31,10 @@
  import orderList from './order/wbOrderList.vue'
  import axios from 'axios'
  import qs from 'qs'
- import { Tabbar, TabbarItem } from 'vux'
  export default{
     data() {
       return {
-       selected: '预定'
+       selected: '首页'
       }
     },
     mounted(){
@@ -42,8 +43,6 @@
         login()
       }
       
-   
-
       if(localStorage.key && typeof(localStorage.key) == 'string'){  //如果存在 Key，就获取用户信息
         this.getUserInfo()
         return
@@ -75,9 +74,6 @@
       
     },
     methods:{
-      click(){
-        console.log('1111')
-      },
       login(){
         let para = {uid:localStorage.uid}
         console.log(para)
@@ -118,39 +114,27 @@
     },
     components:{
       mainPage,
-      orderList,
-      Tabbar, 
-      TabbarItem
+      orderList
     }
  
    
  }
 </script>
-<style  lang="stylus">
-.wbMainContent{
-  z-index: 1;
-  
+<style>
+.mainTabBar{
+  height: 1.5rem;
+
 }
-.wbMainContent1{
-  height: 90vh;
-  overflow: scroll;
+/*.mainTabBar a div:last-child{
+  border-right: none;
+}*/
+.is-selected{
+  background: white !important;
 }
-.wbMainContent2{
-  display: none;
-}
-.wbTabBar{
-  height: 2rem;
-  font-size: 0.5rem;
-  z-index: 100;
-  position: fixed !important;
-}
-.weui-tabbar__label{
-  font-size: 0.5rem !important;
-  margin-top: 0rem !important;
-  
-}
-.weui-tabbar__item{
-  text-decoration: none;
+.mainTabBar a div{
+  font-size:0.55rem;
+  margin-top: 0.2rem;
+  border-right: 1px solid #aaa;
 }
 
 </style>

@@ -114,7 +114,6 @@ import counter from '../../../components/counter.vue'
 import cal from '../../../components/CalendarPicker.vue'
 import { Toast } from 'mint-ui'
 import axios from 'axios'
-import FormData from 'form-data'
 import qs from 'qs'
  export default{
     data() {

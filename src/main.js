@@ -1,7 +1,6 @@
 import './tool/tool'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import vueResource from 'vue-resource'
 import app from './app.vue'
 import routes from './router.js'
 import { Loadmore } from 'mint-ui';
@@ -39,7 +38,6 @@ Vue.component(Tabbar.name, Tabbar)
 
 
 Vue.use(VueRouter)
-Vue.use(vueResource)
 Vue.use(Vuex)
 
 
@@ -75,4 +73,4 @@ const store = new Vuex.Store({
 
 var router = new VueRouter({routes})
 
-new Vue({router,vueResource,store,render:h=>h(app)}).$mount('#app')
+new Vue({router,store,render:h=>h(app)}).$mount('#app')
