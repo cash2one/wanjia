@@ -1,58 +1,67 @@
 <template>
     <div class="mainProductListDiv">
        <div class="productsTitle">
-            <div class="titleTabBar">
-            <mt-navbar v-model="selected">
-                 <mt-tab-item class="productCatTitle" id="0" >运动休闲</mt-tab-item>
-                 <mt-tab-item class="productCatTitle" id="1"  >旅游商务</mt-tab-item>
-                 <mt-tab-item class="productCatTitle" id="2"  >社交活动</mt-tab-item>
-                 <mt-tab-item class="productCatTitle" id="3"  >定制服务</mt-tab-item>
-            </mt-navbar>
+
+              <tab :line-width=2 active-color='#fc378c' v-model="index">
+                 <tab-item class="productCatTitle"  :selected="index == 0" @click="index = 0" >运动休闲</tab-item>
+                 <tab-item class="productCatTitle"  :selected="index == 1" @click="index = 1" >旅游商务</tab-item>
+                 <tab-item class="productCatTitle"  :selected="index == 2" @click="index = 2" >社交活动</tab-item>
+                 <tab-item class="productCatTitle"  :selected="index == 3" @click="index = 3" >定制服务</tab-item>
+
+             </tab>
          </div>
-       </div>
+       
       
-        <mt-tab-container  class="productItem" v-model="selected">
-            <mt-tab-container-item id="0" class="productScroll1">
+
+
+       
+        <swiper v-model="index" class="productItem" :show-dots="false">
+            <swiper-item  >
+                <div>
                 <div class="catProductList">
                     <div v-bind:class="[{catProductListItemSelected:item == selectedCat1} ,'catProductListItem']" v-for="item in cat1" @click="selectCat(item,$event)">
                         <img :src="item.thumb" alt="">
                         <span class="catProductListItemTitle">{{item.fullName}}</span>
-                    </div>
-                </div>
-                <mt-cell v-for="item in cat1"  >
-                    <div >
-                        {{item.fullName}}
-                    </div>
-                    <div>
-                        <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products1[item.id]">
-                            <img class="productImg" :src="pros.goodsThumb" alt="">
-                            <div class="divLike">
-                                <img src="../../product/like.png" alt="">
-                                <span>{{pros.zan}}</span>
-                            </div>
-                            <div class="divSelled">
-                                <img src="../../product/selled.png" alt="">
-                                <span>{{pros.zan}}</span>
-                            </div>
-                            <img class="productImgServiceLogo" :src="pros.thumb" alt="">
-                            <span class="productServiceName">{{pros.businessName}}</span>
-                            <span class="productTitle">{{pros.goodsName}}</span>
-                            <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
                         </div>
                     </div>
-                </mt-cell>
-            </mt-tab-container-item>
+                    <div v-for="item in cat1">
+                        <div class="catProductListCatTitle">
+                            {{item.fullName}}
+                        </div>
+                        <div>
+                            <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products1[item.id]">
+                                <img class="productImg" :src="pros.goodsThumb" alt="">
+                                <div class="divLike">
+                                    <img src="../../product/like.png" alt="">
+                                    <span>{{pros.zan}}</span>
+                                </div>
+                                <div class="divSelled">
+                                    <img src="../../product/selled.png" alt="">
+                                    <span>{{pros.zan}}</span>
+                                </div>
+                                <img class="productImgServiceLogo" :src="pros.thumb" alt="">
+                                <span class="productServiceName">{{pros.businessName}}</span>
+                                <span class="productTitle">{{pros.goodsName}}</span>
+                                <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </swiper-item>
 
 
-            <mt-tab-container-item id="1">
-                <div class="catProductList">
+             <swiper-item >
+                <div>
+                    
+            
+                 <div class="catProductList">
                      <div v-bind:class="[{catProductListItemSelected:item == selectedCat2} ,'catProductListItem']" v-for="item in cat2" @click="selectCat(item,$event)">
                         <img :src="item.thumb" alt="">
                         <span class="catProductListItemTitle">{{item.fullName}}</span>
                     </div>
                 </div>
-                <mt-cell v-for="item in cat2"  >
-                    <div >
+                <div v-for="item in cat2">
+                     <div >
                         {{item.fullName}}
                     </div>
                     <div>
@@ -72,19 +81,19 @@
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
                         </div>
                     </div>
-                </mt-cell>
-            </mt-tab-container-item>
+                    </div> 
+            </swiper-item>
 
-
-             <mt-tab-container-item id="2">
-                <div class="catProductList">
+          <swiper-item >
+             <div> 
+                 <div class="catProductList">
                     <div v-bind:class="[{catProductListItemSelected:item == selectedCat3} ,'catProductListItem']" v-for="item in cat3" @click="selectCat(item,$event)">
                         <img :src="item.thumb" alt="">
                         <span class="catProductListItemTitle">{{item.fullName}}</span>
                     </div>
                 </div>
-                <mt-cell v-for="item in cat3"  >
-                    <div >
+                <div v-for="item in cat3">
+                     <div >
                         {{item.fullName}}
                     </div>
                     <div>
@@ -104,22 +113,28 @@
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
                         </div>
                     </div>
-                </mt-cell>
-            </mt-tab-container-item>
+                 </div>
+                 </div>
+              </swiper-item>
 
-             <mt-tab-container-item id="3">
-                <div class="catProductList">
-                     <div v-bind:class="[{catProductListItemSelected:item == selectedCat4} ,'catProductListItem']" v-for="item in cat4" @click="selectCat(item,$event)">
+
+    
+            <swiper-item >
+              <div>
+                  
+          
+                 <div class="catProductList">
+                    <div v-bind:class="[{catProductListItemSelected:item == selectedCat3} ,'catProductListItem']" v-for="item in cat3" @click="selectCat(item,$event)">
                         <img :src="item.thumb" alt="">
                         <span class="catProductListItemTitle">{{item.fullName}}</span>
                     </div>
                 </div>
-                <mt-cell v-for="item in cat4"  >
-                    <div >
+                <div v-for="item in cat3">
+                     <div >
                         {{item.fullName}}
                     </div>
                     <div>
-                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products4[item.id]">
+                        <div @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products3[item.id]">
                             <img class="productImg" :src="pros.goodsThumb" alt="">
                              <div class="divLike">
                                 <img src="../../product/like.png" alt="">
@@ -135,21 +150,38 @@
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
                         </div>
                     </div>
-                </mt-cell>
-            </mt-tab-container-item>
+                 </div>
+                     </div>
+              </swiper-item>
+    
+    
+    
+    
+    
+      </swiper>
 
-        </mt-tab-container>
-        
+
+
+
+         
+       
+
+
+          
+          
+          
+        </div>
     </div>
 </template>
 <script>
 import axios from 'axios'
 import Vue from 'vue'
+import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
 // import BScroll from 'better-scroll'
   export default {
     data() {
       return {
-        selected:'0',
+        index:0,
         cat1:{},
         selectedCat1:{},
         cat2:{},
@@ -166,7 +198,7 @@ import Vue from 'vue'
   },
   mounted(){
       let selectedId = this.$route.params.type
-      this.selected = (selectedId - 1).toString()
+      this.index = (selectedId - 1)
       this.loadData(selectedId.toString())
       this.$nextTick(() => {
         this._initScroll()
@@ -177,17 +209,17 @@ import Vue from 'vue'
       selectCat(item,event){
           console.log(event.currentTarget)
           let ele = event.currentTarget
-          switch (this.selected) {
-              case '0':
+          switch (this.index) {
+              case 0:
                    this.selectedCat1 = item
                   break;
-              case '1':
+              case 1:
                    this.selectedCat2 = item
                   break;
-             case '2':
+             case 2:
                    this.selectedCat3 = item
                   break;
-             case '3':
+             case 3:
                    this.selectedCat4 = item
                   break;
               default:
@@ -253,26 +285,29 @@ import Vue from 'vue'
 
       }
   },
+  components:{
+      Tab, TabItem, Swiper, SwiperItem
+  },
   watch:{
-      selected:function(val){
+      index:function(val){
           switch (val) {
-             case '0':
+             case 0:
                   if(isEmpty(this.cat1)){
                       this.loadData('1')
                   }
                   break;
                   break;
-             case '1':
+             case 1:
                   if(isEmpty(this.cat2)){
                       this.loadData('2')
                   }
                   break;
-            case '2':
+            case 2:
                   if(isEmpty(this.cat3)){
                       this.loadData('3')
                   }
                   break;
-            case '3':
+            case 3:
                   if(isEmpty(this.cat4)){
                       this.loadData('4')
                   }
@@ -285,3 +320,15 @@ import Vue from 'vue'
   // props: ['selected']
 }
 </script>
+<style>
+    .vux-swiper{
+        height: 95vh !important;
+    }
+    .vux-swiper-item{
+        overflow: scroll;
+    }
+    .catProductListCatTitle{
+        text-align: center;
+        font-size: 0.7rem;
+    }
+</style>

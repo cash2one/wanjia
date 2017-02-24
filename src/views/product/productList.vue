@@ -291,6 +291,7 @@ import Vue from 'vue'
      height: 1.3rem;
      width: 100%;
      position: fixed;
+     top: 0px;
 }
 .titleTabBar{
     position: fixed;
@@ -358,6 +359,7 @@ import Vue from 'vue'
 .productItemClass{
    padding: 0.2rem;
     position: relative;
+    background: white;
 }
 .productItemClass .productImg{
    height: 5.5rem;
@@ -375,6 +377,7 @@ import Vue from 'vue'
     vertical-align: middle;
     color: white;
     line-height: 0.5rem;
+    font-size: 0.32rem;
 }
 .divLike img{
     width: 0.3rem;
@@ -391,7 +394,7 @@ import Vue from 'vue'
     background:rgba(200, 200, 200, 0.5);
     border-radius: 0.1rem;
     text-align: center;
-    
+    vertical-align: middle;
     color: white;
     width: 0.8rem;
     font-size: 0.32rem;
@@ -401,6 +404,10 @@ import Vue from 'vue'
 .divSelled img{
     width: 0.3rem;
     margin-top: -0.05rem;
+    vertical-align: middle;
+}
+.divSelleds span{
+    vertical-align: middle;
 }
 .productItemClass .productImgServiceLogo{
    border-radius: 0.5rem;
@@ -411,13 +418,15 @@ import Vue from 'vue'
 .productServiceName{
     font-size: 0.3rem;
     margin-left: 1.25rem;
+    position: absolute;
 }
 .productTitle{
     display: block;
     font-weight: bold;
     color: #333;
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
     margin-right: 1.5rem;
+    font-size: 0.5rem;
 }
 .productPrice{
     position: absolute;
