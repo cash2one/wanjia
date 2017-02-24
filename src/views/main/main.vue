@@ -301,9 +301,11 @@ div.newProductsDiv{
   display: flex;
   justify-content: space-around;
   padding-bottom: 0.3rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 .catImageDiv img{
-  width: 3rem;
+  width:30%;
   height: 3rem;
 }
 .imgBigCat{

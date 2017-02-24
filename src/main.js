@@ -40,7 +40,8 @@ Vue.component(Tabbar.name, Tabbar)
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
-
+import  { ToastPlugin } from 'vux'
+Vue.use(ToastPlugin)
 
 
 const store = new Vuex.Store({

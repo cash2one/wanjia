@@ -10,12 +10,12 @@
       </div>
     </div>
 
-      <tabbar class="wbTabBar" >
-      <tabbar-item :selected="selected == '预定'" >
+    <tabbar class="wbTabBar" >
+      <tabbar-item :selected="selected == '预定'" @on-item-click='tanBarClick(0)' >
         <img slot="icon" src="../../static/img/preorder.png">
         <span slot="label">预定</span>
       </tabbar-item>
-      <tabbar-item :selected="selected == '我的'">
+      <tabbar-item :selected="selected == '我的'" @on-item-click='tanBarClick(1)'>
         <img slot="icon" src="../../static/img/my.png">
         <span slot="label">我的</span>
       </tabbar-item>
@@ -75,8 +75,15 @@
       
     },
     methods:{
-      click(){
-        console.log('1111')
+      tanBarClick(index){
+        if(index ==0 ){
+          document.getElementsByClassName('wbMainContent2')[0].style.display = 'none'
+          document.getElementsByClassName('wbMainContent1')[0].style.display = 'inherit'
+        }
+        else{
+           document.getElementsByClassName('wbMainContent1')[0].style.display = 'none'
+           document.getElementsByClassName('wbMainContent2')[0].style.display = 'inherit'
+        }
       },
       login(){
         let para = {uid:localStorage.uid}
@@ -132,25 +139,29 @@
   
 }
 .wbMainContent1{
-  height: 90vh;
+  height: 93vh;
   overflow: scroll;
 }
 .wbMainContent2{
   display: none;
 }
 .wbTabBar{
-  height: 2rem;
+  height: 1.5rem;
   font-size: 0.5rem;
   z-index: 100;
   position: fixed !important;
 }
 .weui-tabbar__label{
   font-size: 0.5rem !important;
-  margin-top: 0rem !important;
+  margin-top: -0.2rem !important;
   
 }
 .weui-tabbar__item{
   text-decoration: none;
 }
-
+.weui-tabbar__icon{
+  width: 0.8rem !important;
+  height: 0.8rem !important;
+  margin-top: -0.1rem;
+}
 </style>
