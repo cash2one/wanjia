@@ -43,6 +43,17 @@
                                 <span class="productServiceName">{{pros.businessName}}</span>
                                 <span class="productTitle">{{pros.goodsName}}</span>
                                 <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                                <div class="productComment">
+                                    <div  v-if="pros.goodsScore <= 0"  class="productCommentNew">
+                                        <img src="../../../static/img/new_product.png" alt="">
+                                        <span>新品推荐</span>
+                                    </div>
+                                    <div v-else class="productCommentScore">
+                                        <img src="../../../static/img/product_score.png" alt="">
+                                        <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                        <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +72,7 @@
                     </div>
                 </div>
                 <div v-for="item in cat2">
-                     <div >
+                     <div class="catProductListCatTitle" >
                         {{item.fullName}}
                     </div>
                     <div>
@@ -79,6 +90,17 @@
                             <span class="productServiceName">{{pros.businessName}}</span>
                             <span class="productTitle">{{pros.goodsName}}</span>
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                            <div class="productComment">
+                                    <div v-if="pros.goodsScore <= 0" class="productCommentNew">
+                                        <img src="../../../static/img/new_product.png" alt="">
+                                        <span>新品推荐</span>
+                                    </div>
+                                    <div v-else class="productCommentScore">
+                                        <img src="../../../static/img/product_score.png" alt="">
+                                        <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                        <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     </div> 
@@ -93,7 +115,7 @@
                     </div>
                 </div>
                 <div v-for="item in cat3">
-                     <div >
+                     <div class="catProductListCatTitle">
                         {{item.fullName}}
                     </div>
                     <div>
@@ -130,7 +152,7 @@
                     </div>
                 </div>
                 <div v-for="item in cat3">
-                     <div >
+                     <div class="catProductListCatTitle">
                         {{item.fullName}}
                     </div>
                     <div>
@@ -228,6 +250,7 @@ import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
       },
       loadData(cat){
            let url = 'https://app.playnet.cc/index/goods/category/id/' + cat
+           console.log(url)
           axios.get(url).then(response=>{
             var res = response.data;
                 if(res.ret_code == 0) {
@@ -274,6 +297,20 @@ import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
                     
                 }
           })
+      },
+      getTagFromScore(score){
+        if(score == 5.0){
+            return "完美"
+        }
+        else if(score < 5.0 && score >= 4.7){
+            return "完美"
+        }
+        else if(score < 4.7 && score >= 4.5){
+            return "很好"
+        }
+        else if(score < 4.5 && score >= 4.0){
+            return "不错"
+        }
       },
       gotoProduct(pro){
         this.$router.push({ name: 'webchatProduct', params: { id:pro.id }})
@@ -329,6 +366,27 @@ import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
     }
     .catProductListCatTitle{
         text-align: center;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        padding: 0.1rem 0rem;
+    }
+    .productComment{
+        font-size: 0.33rem;
+        margin-bottom: 0.2rem;
+    }
+    .productCommentNew img{
+        width: 0.6rem;
+    }
+    .productCommentNew{
+        color: orange;
+    }
+    .productCommentScore img{
+      width: 0.37rem;
+      vertical-align: middle;
+    }
+    .productCommentScoreSpan{
+        color: orange;
+    }
+    .productCommentScoreTag{
+        color: #aaa;
     }
 </style>

@@ -11,7 +11,7 @@
            <div class="productTitle">
                {{product.goodsName}}
            </div>
-           <div class="productPrice">
+           <div class="productPriceClass">
                <span style="font-size: 0.4rem">￥</span>
                <span style="font-size: 0.8rem;font-weight: bold">{{product.goodsPrice}}</span>
                <span style="font-size: 0.5rem">/人</span>

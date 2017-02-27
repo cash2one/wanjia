@@ -237,6 +237,9 @@ div.productServiceList span{
     margin-bottom: 0.1rem;
     width: 2rem;
 }
+div.productServiceList span img{
+    width: 1rem; 
+}
 div.productServiceList span span{
     margin-left: 0rem;
 }

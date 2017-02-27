@@ -38,6 +38,7 @@
                             <span class="productServiceName">{{pros.businessName}}</span>
                             <span class="productTitle">{{pros.goodsName}}</span>
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                            
                         </div>
                     </div>
                 </mt-cell>
@@ -425,14 +426,16 @@ import Vue from 'vue'
     font-weight: bold;
     color: #333;
     margin-top: 0.5rem;
-    margin-right: 1.5rem;
+    margin-right: 1.6rem;
     font-size: 0.5rem;
+    max-height: 0.8rem;
+    overflow: hidden;
 }
 .productPrice{
     position: absolute;
     right: 0.2rem;
-    top: 6.2rem;
+    top: 6.45rem;
     color: red;
-    font-size: 0.6rem;
+    font-size: 0.56rem;
 }
 </style>
