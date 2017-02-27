@@ -6,21 +6,25 @@
             </swiper-slide>
             <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
        </swiper>
-       <div class="productNum" >产品编号{{product.goodsCode}}</div>
+       <div class="productNum" >产品编号: {{product.goodsCode}}</div>
        <div class="productTitleInfo">
-           <div class="productTitle">
+           <div >
                {{product.goodsName}}
            </div>
            <div class="productPriceClass">
                <span style="font-size: 0.4rem">￥</span>
-               <span style="font-size: 0.8rem;font-weight: bold">{{product.goodsPrice}}</span>
+               <span style="font-size: 0.7rem;font-weight: bold">{{product.goodsPrice}}</span>
                <span style="font-size: 0.5rem">/人</span>
+           </div>
+           <div class="productIntegral">
+               <span class="productIntegralTitle">积分</span>
+               <span class="productIntegralCount">购买可{{product.integral}}</span>
            </div>
        </div>
 
        <div class="productService">
            <div class="productServiceTitle">
-               费用包含服务
+               费用包含服务 <span>(注: 灰色为自选)</span>
            </div>
            <div class="productServiceList">
                <span v-for="service in services" @click="serviceClick(service,$event)">
@@ -146,5 +150,20 @@
     color: white;
     font-size: 0.6rem;
     border: 0px;
+}
+.productIntegral{
+    height: 0.7rem;
+}
+.productIntegralTitle{
+    color: orange;
+    font-size: 0.3rem;
+    border: 0.5px solid orange;
+    border-radius: 0.05rem;
+   
+}
+.productIntegralCount{
+    font-size: 0.33rem;
+    color: #aaa;
+    margin-left: 0.2rem;
 }
 </style>

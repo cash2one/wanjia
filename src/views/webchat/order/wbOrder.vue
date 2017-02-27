@@ -10,16 +10,16 @@
             <div class="wbChooseDateTitle">
                 选择日期
             </div>
-            <div class="wbDateList">
-                <div v-bind:class="[{wbDateItemSelected:date.date == selectedDateString} ,'wbDateItem']" v-for="date in listedDates" @click="selectDate(date)">
+            <checker class="wbDateList" default-item-class="wbDateItem" selected-item-class="wbDateItemSelected"  :value="selectedDateString" type="radio">
+                <checker-item  :value="date.date" v-for="date in listedDates" @on-item-click="selectDate">
                     <div>
                         {{date.date.substring(5,10)}}
                     </div>
                     <div>
                         ￥{{date.price}}
                     </div>
-                </div>
-                <div class="wbDateItem" @click="MoreCal"> 
+                </checker-item>
+                <div class="wbDateItem"  @click="MoreCal"> 
                      <div>
                         更多
                     </div>
@@ -28,7 +28,7 @@
                     </div>
                   
                 </div>
-            </div>
+            </checker>
         </div>
 
          <div class="wbProductCat">
@@ -115,6 +115,7 @@ import cal from '../../../components/CalendarPicker.vue'
 import { Toast } from 'mint-ui'
 import axios from 'axios'
 import qs from 'qs'
+import { Checker, CheckerItem } from 'vux'
  export default{
     data() {
       return {
@@ -172,16 +173,15 @@ import qs from 'qs'
       }
     },   
     components:{
-        counter,
-        cal,
-        Toast
+        counter,cal,Toast,Checker, CheckerItem
     },
     methods:{
         travelId(n){
             return "travelId" + n
         },
         selectDate(item){
-            this.selectedDateString = item.date
+         
+            this.selectedDateString = item
             this.loadProductService(this.selectedDateString)
         },
         MoreCal(){
@@ -400,6 +400,7 @@ import qs from 'qs'
 }
 .wbDateItemSelected{
     border-color: red;
+     background: #ffffff url(../../../static/img/check_selected.png) no-repeat right bottom;
 }
 .wbMoreDate{
    padding: 0rem 0.3rem;

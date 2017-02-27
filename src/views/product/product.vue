@@ -6,7 +6,7 @@
             </swiper-slide>
             <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
        </swiper>
-       <div class="productNum" >产品编号{{product.goodsCode}}</div>
+       <div class="productNum" >产品编号: {{product.goodsCode}}</div>
        <div class="productTitleInfo">
            <div>
                {{product.goodsName}}
@@ -24,7 +24,7 @@
 
        <div class="productService">
            <div class="productServiceTitle">
-               费用包含服务
+               费用包含服务<span>(注: 灰色为自选)</span>
            </div>
            <div class="productServiceList">
                <span v-for="service in services" @click="serviceClick(service,$event)">
@@ -201,7 +201,7 @@ div.productTitleInfo{
 div.productTitleInfo div{
     font-size: 0.4rem;
     padding: 0.1rem;
-    font-size: 0.55rem;
+    font-size: 0.5rem;
     margin-left: 0.2rem;
 }
 
@@ -219,6 +219,10 @@ div.productServiceTitle{
     font-size: 0.45rem;
     padding: 0.3rem;
     color: #444444;
+}
+div.productServiceTitle span{
+    color:#aaa;
+    font-size: 0.38rem;
 }
 div.productServiceList{
     margin:0.1rem 0rem;
@@ -296,11 +300,13 @@ div.customComment{
 }
 span.allComment{
     padding-left: 0.2rem;
+    font-size: 0.35rem;
 }
 span.allScore{
     float: right;
     padding-right: 0.2rem;
     color: #c40000;
+    font-size: 0.35rem;
 }
 div.commentTag{
     margin-left: 0.2rem;
