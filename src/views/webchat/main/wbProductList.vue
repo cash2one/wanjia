@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="divSelled">
                                     <img src="../../product/selled.png" alt="">
-                                    <span>{{pros.zan}}</span>
+                                    <span>已售 {{pros.goodsSellNums}}</span>
                                 </div>
                                 <img class="productImgServiceLogo" :src="pros.thumb" alt="">
                                 <span class="productServiceName">{{pros.businessName}}</span>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="divSelled">
                                 <img src="../../product/selled.png" alt="">
-                                <span>{{pros.zan}}</span>
+                                <span>已售 {{pros.goodsSellNums}}</span>
                             </div>
                             <img class="productImgServiceLogo" :src="pros.thumb" alt="">
                             <span class="productServiceName">{{pros.businessName}}</span>
@@ -103,7 +103,7 @@
                                 </div>
                         </div>
                     </div>
-                    </div> 
+                </div> 
             </swiper-item>
 
           <swiper-item >
@@ -127,12 +127,23 @@
                             </div>
                             <div class="divSelled">
                                 <img src="../../product/selled.png" alt="">
-                                <span>{{pros.zan}}</span>
+                                <span>已售 {{pros.goodsSellNums}}</span>
                             </div>
                             <img class="productImgServiceLogo" :src="pros.thumb" alt="">
                             <span class="productServiceName">{{pros.businessName}}</span>
                             <span class="productTitle">{{pros.goodsName}}</span>
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                            <div class="productComment">
+                                    <div  v-if="pros.goodsScore <= 0"  class="productCommentNew">
+                                        <img src="../../../static/img/new_product.png" alt="">
+                                        <span>新品推荐</span>
+                                    </div>
+                                    <div v-else class="productCommentScore">
+                                        <img src="../../../static/img/product_score.png" alt="">
+                                        <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                        <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                  </div>
+                              </div>
                         </div>
                     </div>
                  </div>
@@ -164,12 +175,23 @@
                             </div>
                             <div class="divSelled">
                                 <img src="../../product/selled.png" alt="">
-                                <span>{{pros.zan}}</span>
+                                <span>已售 {{pros.goodsSellNums}}</span>
                             </div>
                             <img class="productImgServiceLogo" :src="pros.thumb" alt="">
                             <span class="productServiceName">{{pros.businessName}}</span>
                             <span class="productTitle">{{pros.goodsName}}</span>
                             <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                            <div class="productComment">
+                                <div  v-if="pros.goodsScore <= 0"  class="productCommentNew">
+                                    <img src="../../../static/img/new_product.png" alt="">
+                                    <span>新品推荐</span>
+                                </div>
+                                <div v-else class="productCommentScore">
+                                    <img src="../../../static/img/product_score.png" alt="">
+                                    <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                    <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                  </div>
@@ -371,7 +393,7 @@ import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
     }
     .productComment{
         font-size: 0.33rem;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.1rem;
     }
     .productCommentNew img{
         width: 0.6rem;

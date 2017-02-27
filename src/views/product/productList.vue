@@ -397,7 +397,7 @@ import Vue from 'vue'
     text-align: center;
     vertical-align: middle;
     color: white;
-    width: 0.8rem;
+    width: 1.5rem;
     font-size: 0.32rem;
     height: 0.4rem;
     line-height: 0.4rem;
@@ -407,7 +407,7 @@ import Vue from 'vue'
     margin-top: -0.05rem;
     vertical-align: middle;
 }
-.divSelleds span{
+.divSelled span{
     vertical-align: middle;
 }
 .productItemClass .productImgServiceLogo{

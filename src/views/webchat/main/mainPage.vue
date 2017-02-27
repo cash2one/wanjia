@@ -208,4 +208,8 @@ import { Scroller } from 'vux'
     z-index: 100;
     height: 1.5rem;
   }
+  .xs-plugin-pullup-container{
+    font-size: 0.5rem;
+  }
+
 </style>
