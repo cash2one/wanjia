@@ -1,21 +1,21 @@
 
 <template>
-  <div>
+  <div style="font-size: 1rem;">
     <head-top class="mainHead"  headImage="static/img/main/LOGO.png" >
         <span slot='logo' class="head_logo"   >深圳</span>
     </head-top>
-    <scroller  lock-x :scrollbar-y=false height='-50' ref='scroller' use-pullup  @on-pullup-loading="loadBottom" :pullup-config="pullupConfig"
+    <scroller  class="mainContent" lock-x :scrollbar-y=false height='-50' ref='scroller' use-pullup  @on-pullup-loading="loadBottom" :pullup-config="pullupConfig"
        >
       <div class="indexPage"   >  
         <swiper :options="swiperOption" class="swiper-box-main headSwiper">
             <swiper-slide class="swiper-item" v-for="baner in pageData.banner">
-                <img style="width: 100%;height: 8rem;" :src="baner.imagePath" @click="gotoAd(baner)">
+                <img style="width: 100%;height: 10rem;" :src="baner.imagePath" @click="gotoAd(baner)">
             </swiper-slide>
             <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
         </swiper>
         <div class="wanplustoutiaoDiv">
           <img class="wanplusToutiao" src="static/img/main/wanplustoutiao.png" alt="">
-          <div class="scrollAd">
+          <div class="scrollAd">∂
                 <marquee class="scrollAdMarquee"  :msgs = "marquees" @click='click' ></marquee>
           </div>
         </div>
@@ -23,7 +23,7 @@
           <div class="fourCatDic">
             <div v-for="cat in pageData.ad_category" @click="gotoProductList(cat)">
               <img :src="cat.adImage" alt="">
-              <span style="display: block;font-size: 0.36rem">{{cat.adText}}</span>
+              <span style="display: block;font-size: 0.57rem; color: #666 !important">{{cat.adText}}</span>
             </div>
           </div>
           <div class="twoCatDic">
@@ -194,16 +194,23 @@ import { Scroller } from 'vux'
     }
  }
 </script>
-<style>
-div.indexPage{
-  font-size: 0.5rem;
+<style lang="scss" scoped>
+@import '../../style/mixin';
+.head_logo{
+ color: white;
+ font-size: 0.8rem;
+ margin-left: 0.5rem;
+  @include ct;
 }
-.mainHead{
- 
+
+.mainContent{
+  
+  margin-top: 2rem;
 }
+
  .swiper-box-main {
     width: 100%;
-    height: 7rem;
+    height: 10rem;
     margin: 0 auto;
   }
   .swiper-item {
@@ -235,21 +242,22 @@ div.wanplustoutiaoDiv{
   background: white;
   vertical-align: middle;
   display: flex;
-  height: 1rem;
+  height: 1.8rem;
 }
 img.wanplusToutiao{
-  width: 2rem;
+  width: 3.3rem;
   vertical-align: middle;
-  padding: 0.28rem 0.3rem;
+  padding: 0.6rem 0.4rem;
 }
 div.scrollAd{
-  font-size: 0.37rem;
-  color: #aaa;
-  padding: 0rem 0.3rem;
+  font-size: 0.55rem;
+  color: #aaa !important;
+  margin-left: 0.7rem;
 }
 .scrollAdMarquee{
   height: 1rem;
   width: 100%;
+  margin-top: -0.2rem;
 }
 div.productCatDiv{
   background: white;
@@ -269,20 +277,24 @@ div.fourCatDic div img{
   width: 65%;
 }
 
-div.twoCatDic img{
-  width: 45%;
-  padding-top: 0.3rem;
-  padding-left: 0.35rem;
+div.twoCatDic{
+  img {
+      width: 45%;
+     padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-bottom:0.3rem;
+  }
 }
+
 div.newProductsDiv{
   background: white;
   margin-top: 0.3rem;
   text-align: center;
 }
 .imgTitle{
-  height: 0.45rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.2rem;
+  height: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 .catImageDiv{
   display: flex;
