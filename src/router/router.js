@@ -3,6 +3,8 @@ const web = r => require.ensure([], () => r(require('../page/web/web')), 'web')
 
 const product = r => require.ensure([], () => r(require('../page/product/product')), 'product')
 
+const productList = r => require.ensure([], () => r(require('../page/product/productList')), 'productList')
+
 
 
 export default [
@@ -23,5 +25,10 @@ export default [
         path: '/product/:id',
         component: product,
         name:'product'
+    },
+     {
+        path: '/productList/:id',
+        component: productList,
+        name:'productList'
     },
 ]

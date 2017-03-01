@@ -11,7 +11,7 @@ export const getUidFromWebchat = ()=>{
 	})
 }
 
-export const  getProducts = (id)=> { 
+export const  getProducts = function(id) { 
     const url = "https://app.playnet.cc/index/goods/detail/id/" + id
     console.log(url)
     return new Promise(function(resolve,reject){
@@ -27,3 +27,21 @@ export const  getProducts = (id)=> {
 
     })
 }
+
+export const getProductList = function(id){
+      const url = 'https://app.playnet.cc/index/goods/category/id/' + id
+      console.log(url)
+     return new Promise(function(resolve,reject){
+        axios.get(url).then(response=>{
+            var res = response.data;
+            if(res.ret_code == 0) {
+                resolve(res)
+            }
+            else{
+                reject(res)
+            }
+        })
+
+    })
+}
+

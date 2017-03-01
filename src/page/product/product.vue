@@ -2,7 +2,7 @@
     <div class="productImg">
         <swiper :options="swiperOption" class="swiper-box">
             <swiper-slide class="swiper-item" v-for="img in product.goodsImg">
-                <img style="width: 100%;height: 9rem;" :src="img.pic">
+                <img style="width: 100%;height: 14rem;" :src="img.pic">
             </swiper-slide>
             <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
        </swiper>
@@ -12,13 +12,13 @@
                {{product.goodsName}}
            </div>
            <div class="productPriceClass">
-               <span style="font-size: 0.4rem">￥</span>
-               <span style="font-size: 0.7rem;font-weight: bold">{{product.goodsPrice}}</span>
-               <span style="font-size: 0.5rem">/人</span>
+               <span style="font-size: 0.6rem">￥</span>
+               <span style="font-size: 1rem;font-weight: bold">{{product.goodsPrice}}</span>
+               <span style="font-size: 0.7rem">/人</span>
            </div>
            <div class="productIntegral">
                <span class="productIntegralTitle">积分</span>
-               <span class="productIntegralCount">购买可{{product.integral}}</span>
+               <span class="productIntegralCount">购买可{{product.integral}}积分</span>
            </div>
        </div>
 
@@ -36,7 +36,7 @@
        <div class="productLocation">
            <img class="productLocationImg" src="static/img/product/btn_address.png" alt="">
            <span>{{address.address}}</span>
-           <img  class="productPhoneImg" src="static/img/product/product/btn_phone.png" alt="">
+           <img  class="productPhoneImg" src="static/img/product/btn_phone.png" alt="">
        </div>
 
        <div class="commentDiv">
@@ -54,10 +54,6 @@
                 </span>
            </div>
        </div>
-       <div style="text-align: center">
-           <button class="btnCheckDetail" type="" @click="checkDetail">查看商品详情</button>
-       </div>
-
        <button class="byButtonClass" @click="order">开始预定</button>
    
     </div>
@@ -65,7 +61,7 @@
 <script>
  import Vue from 'vue'
  import { swiper, swiperSlide } from 'vue-awesome-swiper'
-  import getProducts from '../../store/service'
+ import {getProducts} from '../../store/service'
   export default {
     data() {
       return {
@@ -76,7 +72,6 @@
           spaceBetween: 30,
           mousewheelControl: true
         },
-        loading:true,
         product:{},
         services:[],
         address:{},
@@ -104,13 +99,13 @@
                 localStorage.travel = that.product.isTraveler
             },function(error){
                 console.log(data.msg)
-                that.loading = false
+               this.$refs.scroller.disablePullup()
+                 this.$vux.toast.show({
+                   text: '网络错误，请重新再试',
+                   position:"bottom",
+                   type:'text'
+                })
             })
-        // this.$http.jsonp("https://app.playnet.cc/index/assist/balance").then((response)=>{
-        //     console.log(response)
-        // }).catch(function(response) {
-		//  	console.log(response)
-		// })
     },
     methods:{
         serviceClick:function(service,event){
@@ -141,7 +136,7 @@
 <style>
 .swiper-box {
     width: 100%;
-    height: 9rem;
+    height: 14rem;
     margin: 0 auto;
   }
   .swiper-item {
@@ -172,9 +167,9 @@ div.swiper-pagination span{
 div.productNum{
     position: absolute;
     right: 0.3rem;
-    top: 8.1rem;
+    top: 12.9rem;
     z-index: 100;
-    font-size: 0.35rem;
+    font-size: 0.54rem;
     color: white;
     padding: 0.2rem 0rem;
 }
@@ -185,28 +180,28 @@ div.productTitleInfo{
 div.productTitleInfo div{
     font-size: 0.4rem;
     padding: 0.1rem;
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     margin-left: 0.2rem;
 }
 
 div.productPriceClass{
-    color: #fe6734;
+    color: #fe6734 !important;
     text-align: center;
     margin-right: 0.2rem;
     border-bottom: solid 1px #aaa;
 }
 div.productService{
     background: white;
-    margin-top: 0.15rem;
+    margin-top: 0.25rem;
 }
 div.productServiceTitle{
-    font-size: 0.45rem;
+    font-size: 0.55rem;
     padding: 0.3rem;
     color: #444444;
 }
 div.productServiceTitle span{
     color:#aaa;
-    font-size: 0.38rem;
+    font-size: 0.45rem;
 }
 div.productServiceList{
     margin:0.1rem 0rem;
@@ -218,16 +213,16 @@ span.selectedService{
     color:#14CC81;
 }
 div.productServiceList span{
-    font-size: 0.37rem;
+    font-size: 0.5rem;
     display: block;
     text-align: center;
     margin-left: 0.15rem;
     margin-bottom: 0.1rem;
-    width: 2rem;
+    width: 2.5rem;
 }
 div.productServiceList span img{
-    width: 1rem; 
-    height: 1rem;
+    width: 1.5rem; 
+    height: 1.5rem;
 }
 div.productServiceList span span{
     margin-left: 0rem;
@@ -235,21 +230,22 @@ div.productServiceList span span{
 div.productLocation{
     margin-top: 0.15rem;
     background: white;
-    font-size: 0.4rem;
-    line-height: 1rem;
+    font-size: 0.6rem;
+    line-height: 1.5rem;
+    height: 1.5rem;
 }
 img.productLocationImg{
-    width: 0.3rem;
+    width: 0.4rem;
     padding-left: 0.3rem;
     float: left;
     padding-right: 0.2rem;
-    padding-top: 0.25rem;
+    padding-top: 0.44rem;
 }
 img.productPhoneImg{
-    width: 0.4rem;
+    width: 0.6rem;
     float: right;
     padding-right: 0.3rem;
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
 }
 div.openAppDiv{
     position: fixed;
@@ -274,10 +270,11 @@ button.btnOpenApp{
     margin: 0.3rem 0.3rem;
 }
 div.commentDiv{
-    font-size: 0.4rem;
+    font-size: 0.55rem;
     background: white;
-    margin-top: 0.15rem;
+    margin-top: 0.35rem;
     margin-bottom: 0.5rem;
+    padding-left: 0.3rem;
 }
 div.customComment{
     padding-top: 0.1rem;
@@ -285,13 +282,13 @@ div.customComment{
 }
 span.allComment{
     padding-left: 0.2rem;
-    font-size: 0.35rem;
+    font-size: 0.5rem;
 }
 span.allScore{
     float: right;
     padding-right: 0.2rem;
     color: #c40000;
-    font-size: 0.35rem;
+    font-size: 0.5rem;
 }
 div.commentTag{
     margin-left: 0.2rem;
@@ -308,38 +305,28 @@ div.commentTag span{
     margin-bottom: 0.2rem;
     margin-right: 0.1rem;
 }
-.btnCheckDetail{
-    width: 85%;
-    margin-bottom: 2rem;
-    background: #fe6734;
-    color: white;
-    height: 1rem;
-    border: 0px;
-    border-radius: 0.1rem;
-    font-size: 0.4rem;
-}
 .byButtonClass{
     position: fixed;
     bottom: 0px;
     width: 100%;
-    height: 1.3rem;
+    height: 1.6rem;
     background: #fe6734;
     color: white;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     border: 0px;
 }
 .productIntegral{
-    height: 0.7rem;
+    height: 1.2rem;
 }
 .productIntegralTitle{
     color: orange;
-    font-size: 0.3rem;
+    font-size: 0.45rem;
     border: 0.5px solid orange;
     border-radius: 0.05rem;
    
 }
 .productIntegralCount{
-    font-size: 0.33rem;
+    font-size: 0.5rem;
     color: #aaa;
     margin-left: 0.2rem;
 }

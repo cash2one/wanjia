@@ -151,7 +151,6 @@ import { Scroller } from 'vux'
     },
     methods:{
       loadBottom(){ 
-
         //let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
         let url = "https://app.playnet.cc/index/index/index?page=" + this.pageIndex
         console.log('首页url:' + url)
@@ -167,7 +166,11 @@ import { Scroller } from 'vux'
             }
             else{
               this.$refs.scroller.disablePullup()
-                this.toast('已经全部加载完')
+                 this.$vux.toast.show({
+                   text: '已经全部加载完',
+                   position:"bottom",
+                   type:'text'
+                })
             }
         })
       },
@@ -186,11 +189,11 @@ import { Scroller } from 'vux'
       },
       gotoProductList(type){
         console.log(type)
-         this.$router.push({ name: 'webchatProductList', params: { type:type.id - 3 }})
+         this.$router.push({ name: 'productList', params: { id:type.id - 3 }})
       },
       click(msg){
         this.$store.commit('setWebUrl', msg.url)
-        this.$router.push({ name: 'webchatWeb'})
+        this.$router.push({ name: 'web'})
       },
     }
  }
@@ -361,5 +364,8 @@ span.productZan img{
 <style>
   .xs-plugin-pullup-container{
     font-size: 0.8rem;
+  }
+  .vux-toast-bottom{
+    bottom: 80px !important;
   }
 </style>
