@@ -1,25 +1,27 @@
-import App from '../App'
-
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
+const web = r => require.ensure([], () => r(require('../page/web/web')), 'web')
+
+const product = r => require.ensure([], () => r(require('../page/product/product')), 'product')
 
 
 
+export default [
+    {
+        path: '/',
+        component: home, //顶层路由，对应index.html
+        name:'home'
+    },
+
+    {
+        path: '/web',
+        component: web,
+        name:'web'
+    },
 
 
-export default [{
-    path: '/',
-    component: App, //顶层路由，对应index.html
-    children: [ //二级路由。对应App.vue
-        //地址为空时跳转home页面 
-        {
-            path: '',
-            redirect: '/home'
-        },
-        //首页城市列表页
-        {
-            path: '/home',
-            component: home
-        },
-        //当前选择城市页
-    ]
-}]
+    {
+        path: '/product/:id',
+        component: product,
+        name:'product'
+    },
+]

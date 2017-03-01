@@ -59,7 +59,7 @@
         </div>
         <div class="hotProject">
           <div>
-            <img src="static/img/main/hot.png" style="height: 0.6rem;margin: 0.3rem 0.3rem;" alt="">
+            <img src="static/img/main/hot.png" style="height: 0.8rem;margin-top: 0.3rem;margin-bottom: 0.2rem" alt="">
           </div>
           <div class="hotProjects">
             <div class="hotProjectItem" v-for="pro in hotProjects" @click="gotoProduct(pro.id)">
@@ -67,14 +67,14 @@
                 <div>
                   {{pro.goodsName}}
                 </div>
-                <span class="productZan"> <img src="static/img/main/like.png" alt=""> <span style="vertical-align: middle">{{pro.zan}}</span> </span>
+                <span class="productZan"> <img src="static/img/main/like.png" alt=""> <span style="vertical-align: middle;color: white">{{pro.zan}}</span> </span>
             </div>
             <div style="clear: both"></div>
           </div>
         </div>
      </div>
     </scroller>
-  <openApp class="topOpenApp"></openApp>
+    <openApp class="topOpenApp"></openApp>
     </div>
 </template>
 <script>
@@ -177,10 +177,11 @@ import { Scroller } from 'vux'
         }
         else{
           this.$store.commit('setWebUrl', adInfo.adUrl)
-          this.$router.push({ name: 'webchatWeb'})
+          this.$router.push({ name: 'web'})
         }
       },
       gotoProduct(id){
+        console.log('gotoProduct'+id)
         this.$router.push({ name: 'product', params: { id:id }})
       },
       gotoProductList(type){
@@ -204,7 +205,7 @@ import { Scroller } from 'vux'
 }
 
 .mainContent{
-  
+  margin-bottom: 1.2rem;
   margin-top: 2rem;
 }
 
@@ -299,13 +300,13 @@ div.newProductsDiv{
 .catImageDiv{
   display: flex;
   justify-content: space-around;
-  padding-bottom: 0.3rem;
-  padding-left: 0.2rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.25rem;
   padding-right: 0.2rem;
 }
 .catImageDiv img{
   width:30%;
-  height: 3rem;
+  height: 4.8rem;
 }
 .imgBigCat{
   width: 94%;
@@ -319,41 +320,46 @@ div.hotProjects{
   padding-top: 0.3rem;
 }
 div.hotProjectItem{
-  width: 46%;
-  padding: 0.2rem;
+  width: 50%;
+  padding: 0.3rem;
   float: left;
-  height: 3.6rem;
+  height: 6.7rem;
   overflow: hidden;
-  font-size: 0.28rem;
+  font-size: 0.53em;
   text-align: left;
   position: relative;
 }
 div.hotProjectItem img{
   width: 100%;
-  height: 3rem;
+  height: 4.8rem;
+  border-radius: 0.15rem;
 }
 span.productZan{
-  background: #444;
-  opacity: 0.5;
+  background: rgba(100, 100, 100, 0.5);
+  
   color: white;
   padding: 0.05rem 0.1rem;
   border-radius: 0.1rem;
   position: absolute;
   right: 0.5rem;
-  top: 0.4rem;
+  top: 0.5rem;
 }
 span.productZan img{
-  width: 0.2rem;
-  height: 0.2rem;
+  width: 0.5rem;
+  height: 0.5rem;
   vertical-align: middle;
 }
   .topOpenApp{
     top: 0px;
     z-index: 100;
-    height: 1.5rem;
-  }
-  .xs-plugin-pullup-container{
-    font-size: 0.5rem;
+   
+    position: fixed;
   }
 
+
+</style>
+<style>
+  .xs-plugin-pullup-container{
+    font-size: 0.8rem;
+  }
 </style>
