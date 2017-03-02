@@ -5,7 +5,7 @@
                 <mainPage></mainPage>
             </div>
             <div class="mainContent2">
-                <orderList></orderList>
+                <orderList :isShow="isShowOrder"></orderList>
             </div>
             </div>
 
@@ -32,7 +32,8 @@
 export default {
     data(){
         return{
-          selected: '预定'
+          selected: '预定',
+          isShowOrder:false
         }
     },
 	mounted(){
@@ -54,10 +55,12 @@ export default {
         if(index ==0 ){
           document.getElementsByClassName('mainContent2')[0].style.display = 'none'
           document.getElementsByClassName('mainContent1')[0].style.display = 'inherit'
+          this.isShowOrder = false
         }
         else{
            document.getElementsByClassName('mainContent1')[0].style.display = 'none'
            document.getElementsByClassName('mainContent2')[0].style.display = 'inherit'
+           this.isShowOrder = true
         }
       },
     },
