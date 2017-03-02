@@ -7,15 +7,15 @@
     <scroller  class="mainContent" lock-x :scrollbar-y=false height='-50' ref='scroller' use-pullup  @on-pullup-loading="loadBottom" :pullup-config="pullupConfig"
        >
       <div class="indexPage"   >  
-        <swiper :options="swiperOption" class="swiper-box-main headSwiper">
+        <swiper :options="swiperOption" class="swiper-box-main headSwiper" ref="mainSwiper">
             <swiper-slide class="swiper-item" v-for="baner in pageData.banner">
-                <img style="width: 100%;height: 10rem;" :src="baner.imagePath" @click="gotoAd(baner)">
+                <img style="width: 100%;height: 10rem;" :src="baner.imagePath" >
             </swiper-slide>
             <div class="swiper-pagination" style="line-height: 0.7rem;bottom: 1px;height: 1rem;background: #383f49" slot="pagination"></div>
         </swiper>
         <div class="wanplustoutiaoDiv">
           <img class="wanplusToutiao" src="static/img/main/wanplustoutiao.png" alt="">
-          <div class="scrollAd">∂
+          <div class="scrollAd">
                 <marquee class="scrollAdMarquee"  :msgs = "marquees" @click='click' ></marquee>
           </div>
         </div>
@@ -116,6 +116,7 @@ import { Scroller } from 'vux'
       }
     },
     mounted(){
+     
      // let url = "http://localhost:8880/index/index/index?page=" + this.pageIndex
       let url = "https://app.playnet.cc/index/index/index?page=" + this.pageIndex
       axios.get(url).then(response=>{
@@ -134,6 +135,10 @@ import { Scroller } from 'vux'
                 this.marquees = res.data.ad_marquee
                 this.$nextTick(() => {
                   this.$refs.scroller.reset()
+                  let that = this
+                   this.swiper.params.onClick = function(swiper){
+                      that.gotoAd(that.pageData.banner[swiper.realIndex])
+                  }
                 })
             }
             else{
@@ -195,7 +200,12 @@ import { Scroller } from 'vux'
         this.$store.commit('setWebUrl', msg.url)
         this.$router.push({ name: 'web'})
       },
-    }
+    },
+    computed: {
+      swiper() {
+        return this.$refs.mainSwiper.swiper
+      }
+    },
  }
 </script>
 <style lang="scss" scoped>
@@ -261,7 +271,7 @@ div.scrollAd{
 .scrollAdMarquee{
   height: 1rem;
   width: 100%;
-  margin-top: -0.2rem;
+  margin-top:0.35rem;
 }
 div.productCatDiv{
   background: white;

@@ -12,7 +12,7 @@
          </div>
        
 
-            <div class="productList">
+            <div class="productList" id = "cat1">
                 <div class="catProductList">
                     <div v-bind:class="[{catProductListItemSelected:item == selectedCat1} ,'catProductListItem']" v-for="item in cat1" @click="selectCat(item,$event)">
                         <img :src="item.thumb" alt="">
@@ -56,22 +56,153 @@
                 </div>
             </div>
    
+             <div class="productList" id="cat2" style="display: none">
+                <div class="catProductList">
+                    <div v-bind:class="[{catProductListItemSelected:item == selectedCat2} ,'catProductListItem']" v-for="item in cat2" @click="selectCat(item,$event)">
+                        <img :src="item.thumb" alt="">
+                        <span class="catProductListItemTitle">{{item.fullName}}</span>
+                    </div>
+                </div>
+                <div  class="catProductListContent" ref="cat1Scroll">
+                   <div v-for="item in cat2">
+                        <div class="catProductListCatTitle">
+                            {{item.fullName}}
+                        </div>
+                        <div>
+                            <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products2[item.id]">
+                                <img class="productImg" :src="pros.goodsThumb" alt="">
+                                <div class="divLike">
+                                    <img src="static/img/main/like.png" alt="">
+                                    <span>{{pros.zan}}</span>
+                                </div>
+                                <div class="divSelled">
+                                    <img src="static/img/product/selled.png" alt="">
+                                    <span>已售 {{pros.goodsSellNums}}</span>
+                                </div>
+                                <img class="productImgServiceLogo" :src="pros.thumb" alt="">
+                                <span class="productServiceName">{{pros.businessName}}</span>
+                                <span class="productTitle">{{pros.goodsName}}</span>
+                                <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                                <div class="productComment">
+                                    <div  v-if="pros.goodsScore <= 0"  class="productCommentNew">
+                                        <img src="static/img/product/new_product.png" alt="">
+                                        <span>新品推荐</span>
+                                    </div>
+                                    <div v-else class="productCommentScore">
+                                        <img src="static/img/product_score.png" alt="">
+                                        <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                        <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
 
 
+             <div class="productList" id="cat3" style="display: none">
+                <div class="catProductList">
+                    <div v-bind:class="[{catProductListItemSelected:item == selectedCat3} ,'catProductListItem']" v-for="item in cat3" @click="selectCat(item,$event)">
+                        <img :src="item.thumb" alt="">
+                        <span class="catProductListItemTitle">{{item.fullName}}</span>
+                    </div>
+                </div>
+                <div  class="catProductListContent" ref="cat1Scroll">
+                   <div v-for="item in cat3">
+                        <div class="catProductListCatTitle">
+                            {{item.fullName}}
+                        </div>
+                        <div>
+                            <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products3[item.id]">
+                                <img class="productImg" :src="pros.goodsThumb" alt="">
+                                <div class="divLike">
+                                    <img src="static/img/main/like.png" alt="">
+                                    <span>{{pros.zan}}</span>
+                                </div>
+                                <div class="divSelled">
+                                    <img src="static/img/product/selled.png" alt="">
+                                    <span>已售 {{pros.goodsSellNums}}</span>
+                                </div>
+                                <img class="productImgServiceLogo" :src="pros.thumb" alt="">
+                                <span class="productServiceName">{{pros.businessName}}</span>
+                                <span class="productTitle">{{pros.goodsName}}</span>
+                                <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                                <div class="productComment">
+                                    <div  v-if="pros.goodsScore <= 0"  class="productCommentNew">
+                                        <img src="static/img/product/new_product.png" alt="">
+                                        <span>新品推荐</span>
+                                    </div>
+                                    <div v-else class="productCommentScore">
+                                        <img src="static/img/product_score.png" alt="">
+                                        <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                        <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+
+            
 
 
-       
+            
+             <div class="productList" id="cat4" style="display: none">
+                <div class="catProductList">
+                    <div v-bind:class="[{catProductListItemSelected:item == selectedCat4} ,'catProductListItem']" v-for="item in cat4" @click="selectCat(item,$event)">
+                        <img :src="item.thumb" alt="">
+                        <span class="catProductListItemTitle">{{item.fullName}}</span>
+                    </div>
+                </div>
+                <div  class="catProductListContent" ref="cat1Scroll">
+                   <div v-for="item in cat4">
+                        <div class="catProductListCatTitle">
+                            {{item.fullName}}
+                        </div>
+                        <div>
+                            <div  @click="gotoProduct(pros)" class="productItemClass" v-for="pros in products4[item.id]">
+                                <img class="productImg" :src="pros.goodsThumb" alt="">
+                                <div class="divLike">
+                                    <img src="static/img/main/like.png" alt="">
+                                    <span>{{pros.zan}}</span>
+                                </div>
+                                <div class="divSelled">
+                                    <img src="static/img/product/selled.png" alt="">
+                                    <span>已售 {{pros.goodsSellNums}}</span>
+                                </div>
+                                <img class="productImgServiceLogo" :src="pros.thumb" alt="">
+                                <span class="productServiceName">{{pros.businessName}}</span>
+                                <span class="productTitle">{{pros.goodsName}}</span>
+                                <span class="productPrice"> <span style="font-size: 0.4rem" >￥</span> {{pros.goodsPrice}}</span>
+                                <div class="productComment">
+                                    <div  v-if="pros.goodsScore <= 0"  class="productCommentNew">
+                                        <img src="static/img/product/new_product.png" alt="">
+                                        <span>新品推荐</span>
+                                    </div>
+                                    <div v-else class="productCommentScore">
+                                        <img src="static/img/product_score.png" alt="">
+                                        <span class="productCommentScoreSpan">评分: {{pros.goodsScore}} </span>
+                                        <span class="productCommentScoreTag"> {{getTagFromScore(pros.goodsScore)}} {{pros.tag}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
        
      </div>
 </template>
 <script>
-import { Tab, TabItem,Scroller} from 'vux'
+import { Tab, TabItem} from 'vux'
 
  import {getProductList} from '../../store/service'
   export default {
     data() {
       return {
-        index:0,
+        index:-1,
         cat1:{},
         cat1Height:{},
         selectedCat1:{},
@@ -95,11 +226,8 @@ import { Tab, TabItem,Scroller} from 'vux'
   mounted(){
       let selectedId = this.$route.params.id
       this.index = (selectedId - 1)
-      this.loadData(selectedId.toString())
-      this.$nextTick(() => {
-        this._initScroll()
-      })
-        
+    //   this.loadData(selectedId.toString())
+      console.log(this.index)
   },
   methods:{
       selectCat(item,event){
@@ -169,9 +297,11 @@ import { Tab, TabItem,Scroller} from 'vux'
                     default:
                         break;
                 }
+                that.$nextTick(() => {
+                 that._initScroll()
+               })
             },function(error){
                 console.log(data.msg)
-                 this.$refs.scroller.disablePullup()
                  this.$vux.toast.show({
                    text: '网络错误，请重新再试',
                    position:"bottom",
@@ -200,9 +330,9 @@ import { Tab, TabItem,Scroller} from 'vux'
       },
       _initScroll(){
         // document.body.scrollTop
-         window.onscroll = function(e){
-             console.log(document.body.scrollTop)
-         }
+        //  window.onscroll = function(e){
+        //      console.log(document.body.scrollTop)
+        //  }
          let that = this
          setTimeout(function() {
              if(that.barHeight == 0 || that.cellHeight == 0){
@@ -212,69 +342,88 @@ import { Tab, TabItem,Scroller} from 'vux'
             let previousHeight = 0
             if(!isEmpty(that.cat1) &&isEmpty(that.cat1Height)){ 
                 for(var a of that.cat1){
-                     that.cat1Height[a.id] = previousHeight
+                    that.cat1Height[a.id] = previousHeight
                     previousHeight += that.barHeight
                     previousHeight += that.products1[a.id].length * that.cellHeight
                 }
+                previousHeight = 0
             }
             if(!isEmpty(that.cat2) &&isEmpty(that.cat2Height)){
                 for(var a of that.cat2){
+                    that.cat2Height[a.id] = previousHeight
                     previousHeight += that.barHeight
                     previousHeight += that.products2[a.id].length * that.cellHeight
-                    that.cat2Height[a.id] = previousHeight
+                    
                 }
+                previousHeight = 0
             }
             if(!isEmpty(that.cat3) &&isEmpty(that.cat4Height)){
                 for(var a of that.cat3){
+                    that.cat3Height[a.id] = previousHeight
                     previousHeight += that.barHeight
                     previousHeight += that.products3[a.id].length * that.cellHeight
-                    that.cat3Height[a.id] = previousHeight
                 }
+                previousHeight = 0
             }
             if(!isEmpty(that.cat4) &&isEmpty(that.cat4Height)){
                 for(var a of that.cat4){
+                     that.cat4Height[a.id] = previousHeight
                     previousHeight += that.barHeight
                     previousHeight += that.products4[a.id].length * that.cellHeight
-                    that.cat4Height[a.id] = previousHeight
                 }
+                previousHeight = 0
             }
          }, 100);
-         console.log(this.cat1Height)
+         console.log(this.cat3Height)
       }
   },
   components:{
-      Tab, TabItem,Scroller
+      Tab, TabItem
   },
   watch:{
       index:function(val){
+          console.log("watch" + val)
           switch (val) {
              case 0:
                   if(isEmpty(this.cat1)){
                       this.loadData('1')
                   }
-                  break;
+                  document.getElementById('cat1').style.display = 'inherit'
+                  document.getElementById('cat2').style.display = 'none'
+                  document.getElementById('cat3').style.display = 'none'
+                  document.getElementById('cat4').style.display = 'none'
                   break;
              case 1:
                   if(isEmpty(this.cat2)){
                       this.loadData('2')
                   }
+                  document.getElementById('cat1').style.display = 'none'
+                  document.getElementById('cat2').style.display = 'inherit'
+                  document.getElementById('cat3').style.display = 'none'
+                  document.getElementById('cat4').style.display = 'none'
                   break;
             case 2:
                   if(isEmpty(this.cat3)){
                       this.loadData('3')
                   }
+                  document.getElementById('cat1').style.display = 'none'
+                  document.getElementById('cat2').style.display = 'none'
+                  document.getElementById('cat3').style.display = 'inherit'
+                  document.getElementById('cat4').style.display = 'none'
                   break;
             case 3:
                   if(isEmpty(this.cat4)){
                       this.loadData('4')
                   }
+                  document.getElementById('cat1').style.display = 'none'
+                  document.getElementById('cat2').style.display = 'none'
+                  document.getElementById('cat3').style.display = 'none'
+                  document.getElementById('cat4').style.display = 'inherit'
                   break;
               default:
                   break;
           }
-        this.$nextTick(() => {
-            this._initScroll()
-        })
+      
       }
   }
   // props: ['selected']
@@ -310,7 +459,7 @@ import { Tab, TabItem,Scroller} from 'vux'
     top: 2rem;
 }
 .catProductList{
-    height: 2rem;
+    height: 3rem;
     display: flex;
     font-size: 0.3rem;
     overflow: scroll;
@@ -319,10 +468,11 @@ import { Tab, TabItem,Scroller} from 'vux'
     width: 100%;
     position: fixed;
     z-index: 100;
+    padding-top: 0.2rem;
 }
 
 .catProductListContent{
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 .catProductListItem{
@@ -338,15 +488,16 @@ import { Tab, TabItem,Scroller} from 'vux'
     color: #999;
 }
 .catProductListItem img{
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 .catProductListItemSelected img{
-   width: 1.2rem;
-    height: 1.2rem;
+   width: 1.8rem;
+    height: 1.8rem;
 } 
 .catProductListItemTitle{
     display: block;
+    font-size: 0.5rem;
 }
 .productCatSelected{
     color: #444;
@@ -358,13 +509,13 @@ import { Tab, TabItem,Scroller} from 'vux'
     background: white;
 }
 .productItemClass .productImg{
-   height: 5.5rem;
+   height: 9.5rem;
    width: 100%;
 }
 .divLike{
     position: absolute;
-    width: 0.8rem;
-    height: 0.5rem;
+    width: 1.5rem;
+    height: 0.7rem;
     right: 0.5rem;
     top: 0.5rem;
     background: rgba(200, 200, 200, 0.5);
@@ -372,12 +523,12 @@ import { Tab, TabItem,Scroller} from 'vux'
     text-align: center;
     vertical-align: middle;
     color: white;
-    line-height: 0.5rem;
-    font-size: 0.32rem;
+    line-height: 0.6rem;
+    font-size: 0.45rem;
 }
 .divLike img{
-    width: 0.3rem;
-    height: 0.25rem;
+    width: 0.5rem;
+    height: 0.4rem;
     vertical-align: middle;
 }
 .divLike span{
@@ -386,34 +537,34 @@ import { Tab, TabItem,Scroller} from 'vux'
 .divSelled{
     position: absolute;
     right: 0.5rem;
-    top: 5rem;
+    top: 8.5rem;
     background:rgba(200, 200, 200, 0.5);
     border-radius: 0.1rem;
     text-align: center;
     vertical-align: middle;
     color: white;
-    width: 1.5rem;
-    font-size: 0.32rem;
-    height: 0.4rem;
-    line-height: 0.4rem;
+    width: 1.8rem;
+    font-size: 0.35rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
 }
 .divSelled img{
-    width: 0.3rem;
-    margin-top: -0.05rem;
+    width: 0.4rem;
+    /*margin-top: -0.05rem;*/
     vertical-align: middle;
 }
 .divSelled span{
     vertical-align: middle;
 }
 .productItemClass .productImgServiceLogo{
-   border-radius: 0.5rem;
+   border-radius: 1rem;
    position: absolute;
    left: 0.4rem;
-   top: 5.25rem;
+   top: 8.7rem;
 }
 .productServiceName{
-    font-size: 0.3rem;
-    margin-left: 1.25rem;
+    font-size: 0.37rem;
+    margin-left: 1.9rem;
     position: absolute;
 }
 .productTitle{
@@ -422,16 +573,16 @@ import { Tab, TabItem,Scroller} from 'vux'
     color: #333;
     margin-top: 0.5rem;
     margin-right: 1.6rem;
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     max-height: 0.8rem;
     overflow: hidden;
 }
 .productPrice{
     position: absolute;
     right: 0.2rem;
-    top: 6.45rem;
+    top: 10.45rem;
     color: red;
-    font-size: 0.56rem;
+    font-size: 0.55rem;
 }
     .vux-swiper{
         height: 95vh !important;
@@ -449,10 +600,11 @@ import { Tab, TabItem,Scroller} from 'vux'
         margin-bottom: 0.1rem;
     }
     .productCommentNew img{
-        width: 0.6rem;
+        width: 0.8rem;
     }
     .productCommentNew{
         color: orange;
+        font-size: 0.37rem;
     }
     .productCommentScore img{
       width: 0.37rem;

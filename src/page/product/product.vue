@@ -85,7 +85,7 @@
         this.$store.commit('setWebUrl', 'https://app.playnet.cc/index/goods/content/id/' + id)
         console.log('the url is :' + this.$store.state.webViewUrl)
         getProducts(id).then(function(data){
-            console.log(data)
+                console.log(data)
                 that.product = data.data
                 let ser =  that.product.goodsInclude
                 for(var s of ser){
