@@ -1,4 +1,4 @@
-<!--<template>
+<template>
     <div class="eventDiv"  v-infinite-scroll="loadMore"
   infinite-scroll-disabled="loading"
   infinite-scroll-distance="10" >
@@ -33,9 +33,9 @@
                <img :src="img.pic" v-for="img in event.goodsImg" alt="">
              </div>
              <div class="eventStatus">
-                 <span class="eventFans">  <img src="./学院粉丝图标.png" alt=""> {{publisher.fans}}粉丝</span>
-                 <span class="eventLikers" > <img src="./like_icon.png" alt="">  {{event.zan}}喜欢</span>
-                 <span class="eventShare">  <img src="./学院分享图标.png" alt=""> {{event.share}}分享</span>
+                 <span class="eventFans">  <img src="state/img/college/fans.png" alt=""> {{publisher.fans}}粉丝</span>
+                 <span class="eventLikers" > <img src="state/img/college/like.png" alt="">  {{event.zan}}喜欢</span>
+                 <span class="eventShare">  <img src="state/img/college/share.png" alt=""> {{event.share}}分享</span>
              </div>
              <div style="display: flex;justify-content: center">
                  <div class="line_left">  </div>
@@ -57,10 +57,10 @@
                 </div>
                 <div class="commentIcon">
                     <span class="commentZan">
-                         <img src="./学院赞图标.png" alt="">
+                         <img src="state/img/college/praise.png" alt="">
                         <span style="font-size: 0.3rem;position: relative;top: -0rem;left: 0rem">{{comment.zan}}</span>
                       </span>
-                   <img  style="width: 0.3rem;height: 0.3rem;" src="./学院评论图标.png" alt="">
+                   <img  style="width: 0.3rem;height: 0.3rem;" src="state/img/college/comment.png" alt="">
                 </div>
                 <div class="subComment" v-if="comment.list">
                     <div v-for="com in comment.list">
@@ -78,11 +78,9 @@
 </template>
 <script>
  import Vue from 'vue'
- import Spinner  from '../../components/spinner.vue'
- import eventInfo from '../../model/eventInfo'
+
  import openApp from '../../components/openApp.vue'
-import { Toast } from 'mint-ui';
- import 'mint-ui/lib/toast/style.css'
+ import {getCollegeEventInfo} from '../../store/service'
 export default {
     data() {
       return {
@@ -108,7 +106,7 @@ export default {
                 pageIndex = that.event.comments.length / 15
             }
             if(pageIndex == 0){
-                eventInfo.getEvent(id,pageIndex).then(function(data){
+                getCollegeEventInfo(id,pageIndex).then(function(data){
                     that.event = data.data
                     that.loading = false
                     that.publisher = that.event.goodsService
@@ -123,15 +121,13 @@ export default {
            
         },
         joinEvent(){
-            this.toast('请打开APP')
-        },
-        toast(msg){
-            Toast({
-            message: msg,
-            position: 'bottom',
-            duration: 2000
+            this.$vux.toast.show({
+                text: '请打开APP',
+                position:"bottom",
+                type:'text'
             })
-      }
+        },
+        
     },
     computed:{
         eventTime(){
@@ -362,4 +358,4 @@ div.commentLine{
     margin-top: 0.3rem;
 }
 
-</style>-->
+</style>

@@ -8,6 +8,14 @@ const productList = r => require.ensure([], () => r(require('../page/product/pro
 const orderInfo = r => require.ensure([], () => r(require('../page/order/orderInfo')), 'orderInfo')
 const payOrder = r => require.ensure([], () => r(require('../page/order/payOrder')), 'payOrder')
 
+
+
+
+
+//college route
+const collegeEventInfo = r => require.ensure([], () => r(require('../page/college/collegeEventInfo')), 'collegeEventInfo')
+
+
 const demo = r => require.ensure([], () => r(require('../page/demo')), 'demo')
 
 
@@ -54,6 +62,20 @@ export default [
         component: payOrder,
         name:'payOrder'
      },
+
+
+
+    //college route
+    {
+        path: '/collegeEventInfo/:id',
+        component: collegeEventInfo,
+        name:'collegeEventInfo'
+     },
+
+
+
+
+
 
       {
         path: '/demo',
