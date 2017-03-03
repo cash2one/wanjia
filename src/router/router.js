@@ -11,6 +11,12 @@ const payOrder = r => require.ensure([], () => r(require('../page/order/payOrder
 
 
 
+// people route
+
+const addTraveler = r => require.ensure([], () => r(require('../page/people/addTraveler')), 'addTraveler')
+const chooseTraveler = r => require.ensure([], () => r(require('../page/people/chooseTraveler')), 'chooseTraveler')
+
+
 
 //college route
 const collegeEventInfo = r => require.ensure([], () => r(require('../page/college/collegeEventInfo')), 'collegeEventInfo')
@@ -90,6 +96,23 @@ export default [
         name:'payOrder'
      },
 
+
+
+
+
+
+
+     // people for traveler
+     {
+        path: '/addTraveler/:id',
+        component: addTraveler,
+        name:'addTraveler'
+     },
+     {
+        path: '/chooseTraveler',
+        component: chooseTraveler,
+        name:'chooseTraveler'
+     },
 
 
     //college route

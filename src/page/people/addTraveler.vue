@@ -33,8 +33,10 @@
                <input class="addTravelerInput" placeholder="出行人联系方式" type="tel" v-model="contact">
            </div>
        </div>
-
-       <button type="" class="btnCheckDetail saveTraveler" @click="save" >保存</button>
+       <div style="text-align: center">
+            <button type="" class="chooseTravelerButton" @click="save" >保存</button>
+       </div>
+      
 
     </div>
 </template>
@@ -112,7 +114,7 @@ import axios from 'axios'
 </script>
 <style>
 .addTravelerMainDiv{
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     color: #565
 }
 .addTravelerDiv{
@@ -130,7 +132,7 @@ import axios from 'axios'
     padding-top: 0.16rem;
 }  
 .addTravelerInput{
-    font-size: 0.35rem;
+    font-size: 0.5rem;
 }      
 .saveTraveler{
     margin-top: 1rem;

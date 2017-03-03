@@ -21,13 +21,15 @@
                             {{tra.identityCard}}
                         </div>
                     </span>
-                    <span class="alterTravel"><img src="../../../static/img/alter_travel.png" alt="" @click="editTralver(tra)" ></span>
+                    <span class="alterTravel"><img src="static/img/main/alter_travel.png" alt="" @click="editTralver(tra)" ></span>
                     
             </div>
            
         </div>
 
-         <button type="" class="btnCheckDetail saveTraveler" @click="sure" >确定</button>
+         <div style="text-align: center">
+             <button type="" class="chooseTravelerButton" @click="sure" >确定</button>
+         </div>
 
     </div>
 </template>
@@ -47,7 +49,6 @@ import Vue from 'vue'
       }
       this.$store.commit('setEditPeople', {})
       let url = 'https://app.playnet.cc/index/assist/get_contacts/wjkey/' + localStorage.key
-      log(url)
       let that = this
       axios.get(url).then(response=>{
             var res = response.data;
@@ -66,11 +67,11 @@ import Vue from 'vue'
   },
   methods:{
       addTraveler(){
-           this.$router.push({ name: 'wbAddTraveler'})
+           this.$router.push({ name: 'addTraveler'})
       },
       editTralver(tra){
           this.$store.commit('setEditPeople', tra)
-          this.$router.push({ name: 'wbAddTraveler'})
+          this.$router.push({ name: 'addTraveler'})
       },
       chooseTravel(tra){
         let index = this.selectedTraveler.indexOf(tra)
@@ -116,33 +117,32 @@ import Vue from 'vue'
        
    }
    .addTraveler button{
-       font-size: 0.45rem;
+       font-size: 0.6rem;
        color: red;
        background: white;
        width: 86%;
        border: 0px;
        margin: 0.2rem 0.2rem;
        padding: 0.1rem 0.1rem;
+       height: 1rem;
    }
    .travererList{
        margin-top: 0.2rem;
    }
     .oneTraverer{
         display: flex;
-        height: 2.2rem;
+        height: 3rem;
         
         background: white;
-        font-size: 0.4rem;
+        font-size: 0.5rem;
         border-bottom: 1px solid #ddd;
         margin-bottom: 0.2rem;
     }
     .imgNotChoosed{
-        background-image: url('../../../static/img/select_gray.png');
-        
-        
+        background-image: url('../../../static/img/main/select_gray.png'); 
     }
     .imgChoosed{
-        background-image: url('../../../static/img/select_green.png');
+        background-image: url('../../../static/img/main/select_green.png');
 
         
     }
@@ -159,23 +159,35 @@ import Vue from 'vue'
     .chooseTravelIcon img{
         width: 0.5rem;
         height: 0.5rem;
-        margin-top: 0.07rem;
+        margin-top: 0.5rem;
         background-size: 0.5rem 0.5rem;
     }
     .travelInfo{
         width: 75%;
-        margin-top: 0.15rem;
+        margin-top: 0.2rem;
     }
-
+    
+      .travelInfo div{
+          margin-top: 0.15rem;
+      }
 
     .alterTravel{
         width: 15%;
         text-align: center;
         border-left: 1px solid #ddd;
-        line-height: 2.5rem;
+        line-height: 3rem;
     }
     .alterTravel img{
         width: 0.6rem;
        
+    }
+    .chooseTravelerButton{
+        margin-top: 1rem;
+        width: 90%;
+        background: orangered;
+        color: white;
+        height: 1.3rem;
+        font-size: 0.6rem;
+        border-radius: 0.2rem;
     }
 </style>
