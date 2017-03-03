@@ -1,8 +1,8 @@
 <template>
     <div class="applyVipSuccessMainDiv">
-        <img class="wanjiaVip"  src="./wanPlusVIP.png" alt="">
+        <img class="wanjiaVip"  src="static/img/vip/wanPlusVIP.png" alt="">
         <div class="getVip">
-           <img src="./getSuccess.png" alt="">
+           <img src="static/img/vip/getSuccess.png" alt="">
         </div>
       
         <div>
@@ -41,17 +41,17 @@ div.applyVipSuccessMainDiv{
 }
 .getVip img{
     width: 40%;
-    height: 0.9rem;
+    height: 1.2rem;
 }
 .enterWanjiaButton{
      margin-top: 0.4rem;
-    height: 1.2rem;
+    height: 1.5rem;
     background: orangered;
     border: 0px;
     border-radius: 0.2rem;
     width: 84%;
     color: white;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
 }
 .imgAppluSuccess img{
     width: 100%;

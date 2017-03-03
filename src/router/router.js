@@ -32,10 +32,10 @@ const menu = r => require.ensure([], () => r(require('../page/menu')), 'menu')
 
 
 //this is for vip
-const applySuccess = r => require.ensure([], () => r(require('../vip/applySuccess')), 'applySuccess')
-const applyVip = r => require.ensure([], () => r(require('../vip/applyVip')), 'applyVip')
-const firmApplied = r => require.ensure([], () => r(require('../vip/firmApplied')), 'firmApplied')
-const firmVipAuth = r => require.ensure([], () => r(require('../vip/firmVipAuth')), 'firmVipAuth')
+const applySuccess = r => require.ensure([], () => r(require('../page/vip/applySuccess')), 'applySuccess')
+const applyVip = r => require.ensure([], () => r(require('../page/vip/applyVip')), 'applyVip')
+const firmApplied = r => require.ensure([], () => r(require('../page/vip/firmApplied')), 'firmApplied')
+const firmVipAuth = r => require.ensure([], () => r(require('../page/vip/firmVipAuth')), 'firmVipAuth')
 
 export default [
     {

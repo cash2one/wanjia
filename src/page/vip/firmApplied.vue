@@ -2,7 +2,7 @@
     <div class="applyVipSuccessMainDiv">
         <div id="divApplySuccessMain">
             <div class="applySuccess">
-              <img src="./OK_orange.png" alt=""> <span> 提交成功</span>
+              <img src="static/img/vip/OK_orange.png" alt=""> <span> 提交成功</span>
             </div>
             <div class="applyContact">
                 VIP会员经理会在24小时内与你联系
@@ -41,16 +41,16 @@
 <style>
 div.applyVipSuccessMainDiv{
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 0.9rem;
     background: white;
 }
 div.applySuccess{
     color: orangered;
-    padding-top: 5rem;
+    padding-top: 7rem;
 }
 div.applySuccess img{
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 1rem;
+    height: 1rem;
     vertical-align: middle;
 }
 div.applySuccess span{
@@ -58,7 +58,7 @@ div.applySuccess span{
 }
 div.applyContact{
     padding-top: 0.4rem;
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     color: #666;
 }
 div.applyProcess{
@@ -70,7 +70,7 @@ div.applyProcess {
 }
 div.applyProcess div{
     margin-top: 0.4rem;
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     padding-bottom: 0.4rem;
     display: flex;
     justify-content: space-around;

@@ -21,9 +21,8 @@
     </div>
 </template>
 <script>
-    import { Toast } from 'mint-ui';
     import {validate} from '../../tool/tool'
-    import 'mint-ui/lib/toast/style.css'
+
     export default {
     data() {
       return {
@@ -48,7 +47,12 @@
                 return
             }
             if(!/\S+/.test(this.companyName)){
-                this.toast('公司单位名称不能为空')
+                console.log(data.msg)
+                 this.$vux.toast.show({
+                   text: '公司单位名称不能为空',
+                   position:"bottom",
+                   type:'text'
+                })
                 return
             }
             let dict = {
@@ -61,30 +65,23 @@
 
            
         },
-        toast(msg){
-             Toast({
-                message: msg,
-                position: 'bottom',
-                duration: 2000
-            })
-        }
     }
    }
 </script>
 <style>
 div.applyVipSuccessMainDiv{
     text-align: center;
-    font-size: 0.5rem;
+    
 }
 div.whyVIP{
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     color: orangered;
     padding-top: 0.5rem;
     padding-bottom: 0.1rem;
 }
 div.vipReason ul{
     margin-left: 3.5rem;
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     list-style: none;
     color: #666;
 }
@@ -92,24 +89,24 @@ div.vipReason ul li{
     text-align: left;
 }
 input.applyInput{
-    margin-top: 0.4rem;
+    margin-top: 0.7rem;
     width: 70%;
     border: 1px solid #888;
-    height: 1rem;
+    height: 1.3rem;
     border-radius: 0.2rem;
-    font-size: 0.38rem;
+    font-size: 0.55rem;
     color: #999;
     padding-left: 0.3rem;
 }
 button.applyButton{
-     margin-top: 0.4rem;
-    height: 1rem;
+     margin-top: 0.8rem;
+    height: 1.3rem;
     background: orangered;
     border: 0px;
     border-radius: 0.2rem;
     width: 75%;
     color: white;
-    font-size: 0.4rem;
+    font-size: 0.7rem;
 }
 div.imgVipAuth img{
 margin-top: 2rem;
