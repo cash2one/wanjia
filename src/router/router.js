@@ -2,6 +2,7 @@ const home = r => require.ensure([], () => r(require('../page/home/home')), 'hom
 const web = r => require.ensure([], () => r(require('../page/web/web')), 'web')
 
 const product = r => require.ensure([], () => r(require('../page/product/product')), 'product')
+const buyProduct = r => require.ensure([], () => r(require('../page/product/buyProduct')), 'buyProduct')
 
 const productList = r => require.ensure([], () => r(require('../page/product/productList')), 'productList')
 const orderInfo = r => require.ensure([], () => r(require('../page/order/orderInfo')), 'orderInfo')
@@ -26,6 +27,11 @@ export default [
 
     {
         path: '/product/:id',
+        component: buyProduct,
+        name:'buyProduct'
+    },
+    {
+        path: '/buyProduct/:id',
         component: product,
         name:'product'
     },

@@ -61,7 +61,7 @@
 <script>
  import Vue from 'vue'
  import { swiper, swiperSlide } from 'vue-awesome-swiper'
- import {getProducts} from '../../store/service'
+ import {getProductInfo} from '../../store/service'
   export default {
     data() {
       return {
@@ -84,7 +84,7 @@
         let id = this.$route.params.id
         this.$store.commit('setWebUrl', 'https://app.playnet.cc/index/goods/content/id/' + id)
         console.log('the url is :' + this.$store.state.webViewUrl)
-        getProducts(id).then(function(data){
+        getProductInfo(id).then(function(data){
                 console.log(data)
                 that.product = data.data
                 let ser =  that.product.goodsInclude
@@ -122,7 +122,7 @@
          },
          order(){
              this.$store.commit('setProduct', this.product)
-             this.$router.push({ name: 'webchatOrder', params: { id:this.product.id }})
+             this.$router.push({ name: 'buyProduct', params: { id:this.product.id }})
          }
     },
     components: {

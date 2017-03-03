@@ -159,18 +159,20 @@
         background: white;
         position: absolute !important;
     .datepicker-inner{
-        width: 10rem;
-        font-size:0.4rem;
+        width: 16rem;
+        font-size:0.6rem;
     }
     .datepicker-body{
+        font-size:0.8rem;
         span{
-        width: 1.3rem;
-        height: 1.3rem;
+        width: 2.1rem;
+        height: 2.2rem;
         vertical-align: top;
+        
         }
         .event{
          color: #E56700;
-         font-size: 0.35rem;
+         font-size: 0.5rem;
         }
         .low{
         color: red;

@@ -326,7 +326,7 @@ import { Tab, TabItem} from 'vux'
         }
       },
       gotoProduct(pro){
-        this.$router.push({ name: 'webchatProduct', params: { id:pro.id }})
+           this.$router.push({ name: 'product', params: { id:pro.id }})
       },
       _initScroll(){
         // document.body.scrollTop
