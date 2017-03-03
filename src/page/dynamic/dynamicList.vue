@@ -45,7 +45,7 @@
 import axios from 'axios'
  import openApp from '../../components/openApp.vue'
  import imgBoswer from '../../components/photoBowser.vue'
-    // https://app.playnet.cc/index/discovery/index/page/0/wjkey/wj_587de84111e5c6.15126938
+  import {getDynamicList} from '../../store/service'
     export default{
 
         data(){
@@ -56,18 +56,18 @@ import axios from 'axios'
             }
         },
         mounted(){
-             let url = "https://app.playnet.cc/index/discovery/index/page/" + this.pageIndex
-            //let url = "http://localhost:8880/index/discovery/index/page/" + this.pageIndex
-            axios.get(url).then(response=>{
-            var res = response.data;
-                if(res.ret_code == 0) {
-                    this.pageIndex ++ 
-                    this.dynamics = res.data.list
-                }
-                else{
-                    
-                }
-          })
+            var that = this
+            getDynamicList(this.pageIndex).then(function(data){
+                 that.pageIndex ++ 
+                 that.dynamics = data.data.list
+            },function(error){
+                console.log(data.msg)
+                 this.$vux.toast.show({
+                   text: '网络错误，请重新再试',
+                   position:"bottom",
+                   type:'text'
+                })
+            })
       },
       methods:{
           dynamicInfo(item){

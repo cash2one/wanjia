@@ -71,6 +71,9 @@
                 <div class="commentLine"></div>
             </div>
         </div>
+         <div style="height: 1.5rem">
+            
+        </div>
         <openApp></openApp>
     </div>
 </template>
@@ -111,6 +114,11 @@ export default {
                     document.title = that.event.goodsName
                 },function(error){
                     console.log(data.msg)
+                     this.$vux.toast.show({
+                        text: '网络错误，请重新再试',
+                        position:"bottom",
+                        type:'text'
+                    })
                 })
             }
             else{

@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-             <div style="height: 1.5rem">
+         <div style="height: 1.5rem">
             
         </div>
           <openApp></openApp>
@@ -45,6 +45,7 @@
 <script>
 import axios from 'axios'
  import openApp from '../../components/openApp.vue'
+import {getDynamicInfo} from '../../store/service'
  export default{
 
         data(){
@@ -58,20 +59,20 @@ import axios from 'axios'
         mounted(){
             document.title = "玩+"
              let id = this.$route.params.id
-             let url = "https://app.playnet.cc/index/content/detailforh5/id/" + id
-            //let url = "http://localhost:8880/index/discovery/index/page/" + this.pageIndex
-            axios.get(url).then(response=>{
-            var res = response.data;
-                if(res.ret_code == 0) {
-                    this.dynamic = res.data.detail
-                    this.imgList = this.dynamic.imgList.split(',')
-                    this.zanList = this.dynamic.zanlist
-                    this.comments = res.data.comment
-                }
-                else{
-                    
-                }
-          })
+             var that = this
+           getDynamicInfo(id).then(function(data){
+                that.dynamic = data.data.detail
+                that.imgList = that.dynamic.imgList.split(',')
+                that.zanList = that.dynamic.zanlist
+                that.comments = res.data.comment
+            },function(error){
+                console.log(data.msg)
+                 this.$vux.toast.show({
+                   text: '网络错误，请重新再试',
+                   position:"bottom",
+                   type:'text'
+                })
+            })
       },
       components:{
           openApp

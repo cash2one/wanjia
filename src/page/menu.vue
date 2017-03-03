@@ -2,6 +2,11 @@
   <div>
         <router-link :to="{ name: 'collegeEventInfo', params: { id: 60 }}">活动</router-link>
         <router-link :to="{ name: 'dynamicList'}">动态</router-link>
+        <router-link :to="{ name: 'applyVip'}">申请VIP</router-link>
+        <router-link :to="{ name: 'applySuccess'}">申请VIP成功</router-link>
+        <router-link :to="{ name: 'firmVipAuth'}">企业主认证</router-link>
+        <router-link :to="{ name: 'firmApplied'}">企业主认证申请成功</router-link>
+
   </div>
 </template>
 

@@ -60,3 +60,12 @@ export const getProductDateCat = function(date,id){
     }
     return setpromise(url)
 }
+export const getDynamicList = function(id){
+    const url = "https://app.playnet.cc/index/discovery/index/page/" + id
+    return setpromise(url)
+}
+
+export const getDynamicInfo= function(id){
+    const url = "https://app.playnet.cc/index/content/detailforh5/id/" + id
+    return setpromise(url)
+}

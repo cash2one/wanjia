@@ -54,6 +54,9 @@
                 </span>
            </div>
        </div>
+        <div style="height: 1.5rem">
+            
+        </div>
        <button class="byButtonClass" @click="order">开始预定</button>
    
     </div>
@@ -99,7 +102,6 @@
                 localStorage.travel = that.product.isTraveler
             },function(error){
                 console.log(data.msg)
-               this.$refs.scroller.disablePullup()
                  this.$vux.toast.show({
                    text: '网络错误，请重新再试',
                    position:"bottom",

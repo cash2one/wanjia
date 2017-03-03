@@ -28,6 +28,15 @@ const demo = r => require.ensure([], () => r(require('../page/demo')), 'demo')
 const menu = r => require.ensure([], () => r(require('../page/menu')), 'menu')
 
 
+
+
+
+//this is for vip
+const applySuccess = r => require.ensure([], () => r(require('../vip/applySuccess')), 'applySuccess')
+const applyVip = r => require.ensure([], () => r(require('../vip/applyVip')), 'applyVip')
+const firmApplied = r => require.ensure([], () => r(require('../vip/firmApplied')), 'firmApplied')
+const firmVipAuth = r => require.ensure([], () => r(require('../vip/firmVipAuth')), 'firmVipAuth')
+
 export default [
     {
         path: '/',
@@ -108,6 +117,30 @@ export default [
         name:'dynamicInfo'
     },
 
+
+
+    //Vip route
+
+    {
+        path: '/applySuccess',
+        component: applySuccess,
+        name:'applySuccess'
+    },
+    {
+        path: '/applyVip',
+        component: applyVip,
+        name:'applyVip'
+    },
+    {
+        path: '/firmApplied',
+        component: firmApplied,
+        name:'firmApplied'
+    },
+    {
+        path: '/firmVipAuth',
+        component: firmVipAuth,
+        name:'firmVipAuth'
+    },
 
     {
         path: '/demo',
