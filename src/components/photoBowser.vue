@@ -2,7 +2,7 @@
     <transition name="fade">
         <div v-show="showFlag" class="imgSwiperClass">
             <div class="scrollBack">
-            <i class="scrollBackDiv" @click="back" >  
+            <i class="scrollBackDiv" @click="back" > </i>
                 <
             </div>
             <swiper :options="swiperOption" class="swiper-box" ref="imgSwiper">

@@ -22,6 +22,8 @@
     background: rgba(200, 200, 200, 0.8);
     width: 100%;
     height: 2rem;
+    position: fixed;
+    bottom: 0rem;
 }
 img.imgLogo{
     height: 1.5rem;

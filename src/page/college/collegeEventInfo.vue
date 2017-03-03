@@ -268,6 +268,7 @@ div.line_text{
     font-size: 0.5rem;
     margin-top: 0.2rem;
     padding: 0rem 0.1rem;
+    color: #999;
 }
 div.line_right{
     width: 1.5rem;

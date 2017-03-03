@@ -1,6 +1,7 @@
 <template>
   <div>
         <router-link :to="{ name: 'collegeEventInfo', params: { id: 60 }}">活动</router-link>
+        <router-link :to="{ name: 'dynamicList'}">动态</router-link>
   </div>
 </template>
 

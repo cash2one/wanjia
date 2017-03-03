@@ -16,6 +16,14 @@ const payOrder = r => require.ensure([], () => r(require('../page/order/payOrder
 const collegeEventInfo = r => require.ensure([], () => r(require('../page/college/collegeEventInfo')), 'collegeEventInfo')
 
 
+
+
+
+//dynamic route
+const dynamicList = r => require.ensure([], () => r(require('../page/dynamic/dynamicList')), 'dynamicList')
+const dynamicInfo = r => require.ensure([], () => r(require('../page/dynamic/dynamicInfo')), 'dynamicInfo')
+
+
 const demo = r => require.ensure([], () => r(require('../page/demo')), 'demo')
 const menu = r => require.ensure([], () => r(require('../page/menu')), 'menu')
 
@@ -80,11 +88,25 @@ export default [
         path: '/collegeEventInfo/:id',
         component: collegeEventInfo,
         name:'collegeEventInfo'
-     },
+    },
 
 
-
-
+    
+    
+    
+    
+    
+    //dynamic route
+    {
+        path: '/dynamicList',
+        component: dynamicList,
+        name:'dynamicList'
+    },
+    {
+        path: '/dynamicInfo/:id',
+        component: dynamicInfo,
+        name:'dynamicInfo'
+    },
 
 
     {
