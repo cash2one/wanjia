@@ -49,3 +49,14 @@ export const getCollegeEventInfo = function(id,pageIndex){
     const url = "https://app.playnet.cc/index/xueyuan/detail/id/" + id
     return setpromise(url)
 }
+
+export const getProductDateCat = function(date,id){
+    let url = 'https://app.playnet.cc/index/goods/get_price/dates/'+date+'/goodsid/' + id
+    if(localStorage.key && typeof(localStorage.key) == 'string'){
+        url = url + '/wjkey/' + localStorage.key
+    }
+    else{
+        return
+    }
+    return setpromise(url)
+}

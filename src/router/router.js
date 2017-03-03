@@ -17,6 +17,7 @@ const collegeEventInfo = r => require.ensure([], () => r(require('../page/colleg
 
 
 const demo = r => require.ensure([], () => r(require('../page/demo')), 'demo')
+const menu = r => require.ensure([], () => r(require('../page/menu')), 'menu')
 
 
 export default [
@@ -25,7 +26,16 @@ export default [
         component: home, //顶层路由，对应index.html
         name:'home'
     },
-
+    {
+        path: '/demo',
+        component: demo,
+        name:'demo'
+    },
+    {
+        path: '/menu',
+        component: menu,
+        name:'menu'
+    },
     {
         path: '/web',
         component: web,
@@ -77,7 +87,7 @@ export default [
 
 
 
-      {
+    {
         path: '/demo',
         component: demo,
         name:'demo'

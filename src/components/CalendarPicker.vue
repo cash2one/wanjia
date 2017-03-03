@@ -150,8 +150,11 @@
     }
     .calTitleDiv button{
         color: white;
-        width: 1rem;
-        font-size: 0.6rem;
+        width: 2rem;
+        margin-top: 0.5rem;
+        font-size: 1.5rem;
+        float: right;
+        background: transparent;
     }
     .event-calendar {
         width: 100%;

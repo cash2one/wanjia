@@ -109,7 +109,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import {getProducts} from '../../store/service'
+import {getProductInfo,getProductDateCat} from '../../store/service'
 import counter from '../../components/counter.vue'
 import cal from '../../components/CalendarPicker.vue'
 import qs from 'qs'
@@ -157,7 +157,7 @@ import { Checker, CheckerItem } from 'vux'
       else{
         let that = this
         let id = this.$route.params.id
-         getProducts(id).then(function(data){
+         getProductInfo(id).then(function(data){
                 console.log(data)
                 that.product = data.data
                 that.listedDates =  that.product.goodsCalendar.slice(0,4)
@@ -193,20 +193,17 @@ import { Checker, CheckerItem } from 'vux'
             this.showCal = !this.showCal
        },
        loadProductService(str){
-            let url = 'https://app.playnet.cc/index/goods/get_price/dates/'+str+'/goodsid/' + this.product.id
-            log(url)
-            if(localStorage.key && typeof(localStorage.key) == 'string'){
-                url = url + '/wjkey/' + localStorage.key
-            }
-            let that = this
-            axios.get(url).then(response=>{
-                var res = response.data;
-                if(res.ret_code == 0) {
-                  that.productCat = res.data
-                }
-                else{
-                    
-                }
+           let that = this
+           getProductDateCat(str,this.product.id).then(function(data){
+               that.productCat = data.data
+           },function(error){
+                console.log(data.msg)
+                this.$refs.scroller.disablePullup()
+                 this.$vux.toast.show({
+                   text: '网络错误，请重新再试',
+                   position:"bottom",
+                   type:'text'
+                })
             })
         },
         selectedDate(str){
@@ -412,16 +409,18 @@ import { Checker, CheckerItem } from 'vux'
     font-size: 0.6rem;
 }
 .wbProductCatItem{
-    padding:0.3rem 0rem;
+    /*padding:0.3rem 0rem;*/
     padding-left: 0.5rem;
     padding-right: 0.2rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
 }
 .catTitle{
     font-size: 0.6rem;
     width: 3rem;
 }
 .catName{
-    font-size: 0.45rem;
+    font-size: 0.6rem;
     width: 3rem;
     font-weight: bold;
 }
@@ -431,11 +430,13 @@ import { Checker, CheckerItem } from 'vux'
     font-size: 0.5rem;
 }
 .wbCounter{
-    width: 2rem;
-    vertical-align: middle;
-    height: 0.6rem ;
-    line-height: 0.6rem ;
+    width: 3rem;
+    /*vertical-align: middle;*/
+    margin-top: 0.3rem;
+    height: 1rem ;
+    line-height: 0.9rem ;
     float: right;
+    font-size: 0.7rem;
 }
 .wbProductService{
 
@@ -457,13 +458,15 @@ import { Checker, CheckerItem } from 'vux'
     padding-left: 0.5rem;
     font-size: 0.45rem;
     line-height: 0.5rem;
+    height: 1.5rem;
+    line-height: 1rem;
 }
 .inputName{
-    font-size: 0.4rem;
+    font-size: 0.55rem;
     margin-left: 0.4rem;
 }
 .inputPhone{
-    font-size: 0.4rem;
+    font-size: 0.55rem;
     margin-left: 0.4rem;
 }
 .wbproductIntegral{
@@ -472,9 +475,11 @@ import { Checker, CheckerItem } from 'vux'
     padding: 0.3rem 0rem;
     padding-left: 0.5rem;
     padding-right: 0.3rem;
+    height: 1.5rem;
+    line-height: 1rem;
 }
 .wbUntegralNum{
-    font-size: 0.4rem;
+    font-size: 0.5rem;
     margin-left: 0.9rem;
 }
 .wbUseUntegral{
@@ -487,14 +492,14 @@ import { Checker, CheckerItem } from 'vux'
     padding-bottom: 3rem;
     padding-top: 0.4rem;
     padding-left: 0.24rem;
-    font-size: 0.45rem;
+    font-size: 0.6rem;
 }
 .wbPayWay{
     padding: 0.3rem 0rem;
     vertical-align: middle;    
 }
 .wbPayWay img{
-    width: 0.8rem;
+    width: 1.5rem;
     vertical-align: middle;    
 }
 .wbPayWay span{
@@ -502,17 +507,17 @@ import { Checker, CheckerItem } from 'vux'
 }
 .wbPayWay input{
     float: right;
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
     /*font-size: 1rem;*/
     margin-right: 0.3rem;
 }
 .wbPayButton{
     width: 100%;
-    height: 1rem;
+    height: 1.5rem;
     color: white;
     background-color: #e24241;
     border: 0px;
-    font-size: 0.35rem;
+    font-size: 0.65rem;
     position: fixed;
     bottom: 0px;
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="counterClass">
-     <span v-bind:class="[{cartMinusActive:count>0},'cartMinus']" @click.stop.prevent="minus($event)">-</span>
+     <span v-bind:class="[{cartMinusActive:count>0},'cartMinus']" @click.stop.prevent="minus($event)"  style="font-weight: bold" >-</span>
      <span v-bind:class="[{cartCountActive:count>0},'cartCount']">
       {{count}}
     </span>
-    <span v-bind:class="[{cartAddActive:count<maxCount || maxCount==0},'cartAdd']" @click.stop.prevent="add($event)">+</span>
+    <span style="font-weight: bold" v-bind:class="[{cartAddActive:count<maxCount || maxCount==0},'cartAdd']" @click.stop.prevent="add($event)">+</span>
   </div>
 </template>
 
@@ -52,22 +52,22 @@
     text-align: center;
   }
   .cartMinus{
-    border-right: 1px solid #ccc;
+   
    width: 33%;
   }
   .cartMinusActive{
     color: green;
   }
   .cartAdd{
-    border-left: 1px solid #ccc;
+    
    width: 33%;
   }
   .cartAddActive{
     color: green;
   }
   .cartCount{
-    font-size: 0.45rem;
-    padding-top: 0.02rem;
+border-left: 1px solid #ccc;
+ border-right: 1px solid #ccc;
     width: 33%;
   }
   .cartCountActive{

@@ -1,7 +1,5 @@
 <template>
-    <div class="eventDiv"  v-infinite-scroll="loadMore"
-  infinite-scroll-disabled="loading"
-  infinite-scroll-distance="10" >
+    <div class="eventDiv"  >
 
         <div class="eventHead">
             <img :src="event.goodsThumb" alt="">
@@ -12,7 +10,7 @@
                 {{event.goodsName}}
             </div>
             <div class="eventPrice">
-                <span style="font-size: 0.3rem">￥</span> <span style="font-size: 0.5rem">{{event.goodsPrice}}</span>
+                <span style="font-size: 0.5rem">￥</span> <span style="font-size: 0.7rem">{{event.goodsPrice}}</span>
             </div>
             <button class="applyEvent" type="" @click="joinEvent">我要报名</button>
         </div>
@@ -33,9 +31,9 @@
                <img :src="img.pic" v-for="img in event.goodsImg" alt="">
              </div>
              <div class="eventStatus">
-                 <span class="eventFans">  <img src="state/img/college/fans.png" alt=""> {{publisher.fans}}粉丝</span>
-                 <span class="eventLikers" > <img src="state/img/college/like.png" alt="">  {{event.zan}}喜欢</span>
-                 <span class="eventShare">  <img src="state/img/college/share.png" alt=""> {{event.share}}分享</span>
+                 <span class="eventFans">  <img src="static/img/college/fans.png" alt=""> {{publisher.fans}}粉丝</span>
+                 <span class="eventLikers" > <img src="static/img/college/like.png" alt="">  {{event.zan}}喜欢</span>
+                 <span class="eventShare">  <img src="static/img/college/share.png" alt=""> {{event.share}}分享</span>
              </div>
              <div style="display: flex;justify-content: center">
                  <div class="line_left">  </div>
@@ -57,10 +55,10 @@
                 </div>
                 <div class="commentIcon">
                     <span class="commentZan">
-                         <img src="state/img/college/praise.png" alt="">
-                        <span style="font-size: 0.3rem;position: relative;top: -0rem;left: 0rem">{{comment.zan}}</span>
+                         <img src="static/img/college/praise.png" alt="">
+                        <span style="font-size: 0.6rem;position: relative;top: -0.1rem;left: 0rem">{{comment.zan}}</span>
                       </span>
-                   <img  style="width: 0.3rem;height: 0.3rem;" src="state/img/college/comment.png" alt="">
+                   <img  style="width: 0.6rem;height: 0.6rem;" src="static/img/college/comment.png" alt="">
                 </div>
                 <div class="subComment" v-if="comment.list">
                     <div v-for="com in comment.list">
@@ -180,30 +178,30 @@ Date.prototype.Format = function (fmt) { //author: meizz
 </script>
 <style>
 div.eventDiv{
-    font-size: 0.5rem;
+    font-size: 0.6rem;
 }
 div.eventHead{
     background: white;
 }   
 div.eventHead img{
     width: 100%;
-    height: 6.3rem;
+    height: 8.3rem;
 }
 div.eventTime{
     position: absolute;
-    top: 5.4rem;
+    top: 7rem;
     padding-left: 0.5rem;
     background: #444;
-    width: 95%;
-    height: 0.9rem;
-    line-height: 0.9rem;
+    width: 100%;
+    height: 1.3rem;
+    line-height: 1.3rem;
     color: white; 
-    font-size: 0.35rem;
+    font-size: 0.5rem;
     opacity: 0.8;
 } 
 div.eventTitle{
     padding:0.1rem 0.3rem;
-    font-size: 0.35rem;
+    font-size: 0.6rem;
     font-weight: bold;
 }
 div.eventPrice{
@@ -214,49 +212,49 @@ div.eventPrice{
 
 button.applyEvent{
     position: absolute;
-    right: 0.3rem;
-    top: 6.8rem;
-    width: 1.6rem;
-    font-size: 0.3rem;
+    right: 0.5rem;
+    top: 8.8rem;
+    width: 2.5rem;
+    font-size: 0.5rem;
     border: 0px;
     border-radius: 0.1rem;
     color: white;
     padding: 0.15rem 0.02rem;
     background: #14CC81;
-    height: 0.6rem;
+    height: 1rem;
     line-height: 0.2rem;
 }
 div.eventInfo{
-    margin-top: 0.3rem;
+    margin-top: 0.5rem;
     background: white;
 }
 div.publisher{
     border-bottom: 1px solid #ddd;
-    padding: 0.3rem 0.3rem;
-    padding-bottom: 0.1rem;
+    padding: 0.5rem 0.5rem;
+    padding-bottom: 0.3rem;
 }
 div.publisher img{
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border-radius: 1.2rem;
-    margin-right: 0.1rem;
+    margin-right: 0.3rem;
 }   
 div.publisher span{
     position: relative;
-    top: -0.5rem;
-    font-size: 0.38rem;
+    top: -0.7rem;
+    font-size: 0.55rem;
 }
 div.publisher button{
     border: 1px solid #14CC81;
     border-radius: 0.1rem;
     float: right;
-    height: 0.6rem;
-    font-size: 0.3rem;
+    height: 1rem;
+    font-size: 0.5rem;
     margin-top: 0.3rem;
     background: white;
     color: green;
-    width: 1.6rem;
-    line-height: 0.5rem;
+    width: 2.5rem;
+    line-height: 1rem;
 }
 div.line_left{
     width: 1.5rem;
@@ -267,7 +265,7 @@ div.line_left{
 }
 div.line_text{
     display: inline-block;
-    font-size: 0.4rem;
+    font-size: 0.5rem;
     margin-top: 0.2rem;
     padding: 0rem 0.1rem;
 }
@@ -280,39 +278,39 @@ div.line_right{
 }
 div.eventImages{
     padding: 0rem 0.4rem;
-    margin-top: 0.2rem;
+    margin-top: 0.5rem;
 }
 div.eventImages img{
     width: 100%;
-    height: 6rem;
+    height: 8rem;
     margin-bottom: 0.2rem;
 }
 div.eventStatus{
     padding: 0.6rem 1.5rem 0.4rem 1.5rem;
     display: flex;
     justify-content: space-between;
-    font-size: 0.33rem;
+    font-size: 0.5rem;
 }
 div.eventStatus span{
-    width: 1.2rem;
+    width: 2rem;
     text-align: center;
 }
 div.eventStatus span img{
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border-radius: 1.2rem;
 }
 div.comment{
-    margin-top: 0.3rem;
+    margin-top: 0.5rem;
     background: white;
     margin-bottom: 2rem;
 }
 div.commentCell{
-    padding: 0.3rem 0.3rem 0.05rem 0.3rem;
+    padding: 0.4rem 0.4rem 0.1rem 0.4rem;
 }
 .commenterHead{
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1。2rem;
     border-radius: 1rem;
     margin-right: 0.1rem;
     position: relative
@@ -320,16 +318,16 @@ div.commentCell{
 span.commenter{
     position: relative;
     top: -0.35rem;
-    font-size: 0.4rem;
+    font-size: 0.55rem;
 }
 div.commentContent{
     margin-left: 1.3rem;
-    font-size: 0.4rem;
+    font-size: 0.6rem;
 }
 div.commentTime{
     margin-left: 1.3rem;
     margin-top: 0.1rem;
-    font-size: 0.37rem;
+    font-size: 0.5rem;
 }
 div.commentIcon{
     text-align: right;
@@ -338,13 +336,13 @@ div.commentIcon{
 }
 
 span.commentZan img{
-     width: 0.3rem;
-    height: 0.3rem;
+     width: 0.6rem;
+    height: 0.6rem;
    
 }
 div.subComment{
     background: #ddd;
-    font-size: 0.4rem;
+    font-size: 0.5rem;
     margin-left: 1.3rem;
     padding:0.05rem 0.15rem;
 }
