@@ -165,6 +165,8 @@ import { Checker, CheckerItem } from 'vux'
                 that.listedDates =  that.product.goodsCalendar.slice(0,4)
                 that.productCat = that.product.goodsGuige
                 that.productService = that.product.goodsInclude
+                that.integral = that.product.integral
+                that.integralDeduction = that.integral / 10
             },function(error){
                 console.log(data.msg)
                 this.$refs.scroller.disablePullup()
@@ -184,7 +186,6 @@ import { Checker, CheckerItem } from 'vux'
             return "travelId" + n
         },
         selectDate(item){
-         
             this.selectedDateString = item
             this.loadProductService(this.selectedDateString)
         },
@@ -252,44 +253,66 @@ import { Checker, CheckerItem } from 'vux'
         chooseTraveler(){
             this.$router.push({ name: 'chooseTraveler'})
         },
-        toast(msg){
-            Toast({
-                message: msg,
-                position: 'bottom',
-                duration: 2000
-            })
-        },
     
         createOrder(){
             let url = 'https://app.playnet.cc/index/order/post'
             if(this.selectedDateString.length<=0){
-                this.toast('你没有选择日期')
+                this.$vux.toast.show({
+                   text: '你没有选择日期',
+                   position:"bottom",
+                   type:'text'
+                })
                 return
             }
             if(this.selectedProductCat.length <=0){
-                this.toast('你没有选择类型')
+                this.$vux.toast.show({
+                   text: '你没有选择商品',
+                   position:"bottom",
+                   type:'text'
+                })
                 return
             }
             if(this.contactName.length<=0){
                 this.toast('联系人不能为空')
+                this.$vux.toast.show({
+                   text: '你没有选择日期',
+                   position:"bottom",
+                   type:'text'
+                })
                 return
             }
             if(this.contactPhone.length<=0){
-                this.toast('联系人手机不能为空')
+                this.$vux.toast.show({
+                   text: '你没有选择日期',
+                   position:"bottom",
+                   type:'text'
+                })
                 return
             }
             if(!/^1(3|4|5|7|8)\d{9}$/.test(this.contactPhone)){
-                this.toast('联系人手机号格式错误')
+                this.$vux.toast.show({
+                   text: '你没有选择日期',
+                   position:"bottom",
+                   type:'text'
+                })
                 return
             }
             let travelerPeople = this.$store.state.choosedPeople
             if(this.traveler > 0){
                 if(!travelerPeople || travelerPeople.length <= 0){
-                    this.toast('出行人不能为空')
+                    this.$vux.toast.show({
+                        text: '你没有选择日期',
+                        position:"bottom",
+                        type:'text'
+                    })
                    return
                 }
                 if(travelerPeople.length != this.traveler){
-                    this.toast('出行人数量不符合商品数量')
+                    this.$vux.toast.show({
+                        text: '出行人数量不符合商品数量',
+                        position:"bottom",
+                        type:'text'
+                    })
                    return
                 }
             }
