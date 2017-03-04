@@ -77,7 +77,7 @@
                 <span class="catTitle">出行人信息</span>
                 
 
-                <button type="" @click="chooseTraveler" class="chooseTravelerButton">选择出行人</button>
+                <button type="" @click="chooseTraveler" class="chooseTravelerBtn">选择出行人</button>
             </div>
             <div class="wbContacterItem" v-for="n in traveler">
               <span class="catName">成人</span>
@@ -451,7 +451,7 @@ import { Checker, CheckerItem } from 'vux'
     font-size: 0.43rem;
     color: #aaa;
 }
-.chooseTravelerButton{
+.chooseTravelerBtn{
     float: right;
     background: transparent;
     margin-top: 0.3rem;

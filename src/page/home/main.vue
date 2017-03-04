@@ -4,7 +4,7 @@
     <head-top class="mainHead"  headImage="static/img/main/LOGO.png" >
         <span slot='logo' class="head_logo"   >深圳</span>
     </head-top>
-    <scroller  class="mainContent" lock-x :scrollbar-y=false height='-50' ref='scroller' use-pullup  @on-pullup-loading="loadBottom" :pullup-config="pullupConfig"
+    <scroller  class="mainContent" lock-x :scrollbar-y=false height='-90' ref='scroller' use-pullup  @on-pullup-loading="loadBottom" :pullup-config="pullupConfig"
        >
       <div class="indexPage"   >  
         <swiper :options="swiperOption" class="swiper-box-main headSwiper" ref="mainSwiper">
@@ -72,6 +72,9 @@
             <div style="clear: both"></div>
           </div>
         </div>
+     </div>
+     <div style="height: 2rem;">
+       
      </div>
     </scroller>
     <openApp class="topOpenApp"></openApp>
@@ -218,8 +221,8 @@ import { Scroller } from 'vux'
 }
 
 .mainContent{
-  margin-bottom: 1.2rem;
   margin-top: 2rem;
+  background: white;
 }
 
  .swiper-box-main {
@@ -346,6 +349,9 @@ div.hotProjectItem img{
   width: 100%;
   height: 4.8rem;
   border-radius: 0.15rem;
+}
+div.hotProjectItem div{
+  max-height: 1.5rem;
 }
 span.productZan{
   background: rgba(100, 100, 100, 0.5);

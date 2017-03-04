@@ -164,10 +164,4 @@ export default [
         component: firmVipAuth,
         name:'firmVipAuth'
     },
-
-    {
-        path: '/demo',
-        component: demo,
-        name:'demo'
-    },
 ]

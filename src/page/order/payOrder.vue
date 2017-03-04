@@ -24,7 +24,7 @@
 
         </div>
         <div style="text-align: center;margin-top: 1rem;">
-            <button  class="btnPay" type="" >确认支付 ￥{{orderInfo.orderAmount}}</button>
+            <button  class="btnPay"  @click = "pay" type="" >确认支付 ￥{{orderInfo.orderAmount}}</button>
         </div>
         
        
@@ -62,7 +62,9 @@ import {getOrderInfo} from '../../store/service'
      
     },
     methods:{
-       
+       pay(){
+           console.log(this.$wechat);
+       }
     },
   
  }

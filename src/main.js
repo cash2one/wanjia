@@ -26,6 +26,10 @@ import  { ToastPlugin } from 'vux'
 Vue.use(ToastPlugin)
 Vue.use(Vuex)
 
+import { WechatPlugin } from 'vux'
+Vue.use(WechatPlugin)
+
+
 
 const store = new Vuex.Store({
   state: {
