@@ -68,13 +68,13 @@ export default [
 
     {
         path: '/product/:id',
-        component: buyProduct,
-        name:'buyProduct'
+        component: product,
+        name:'product'
     },
     {
         path: '/buyProduct/:id',
-        component: product,
-        name:'product'
+        component: buyProduct,
+        name:'buyProduct'
     },
     {
         path: '/productList/:id',
