@@ -77,3 +77,11 @@ global.findChildWithClass = function(ele,name){
 global.login = function(){
      localStorage.key = 'wj_58510d203709d4.01008923'
 }
+
+global.toast = function(vue,msg){
+    vue.$vux.toast.show({
+        text: msg,
+        position:"bottom",
+        type:'text'
+    })
+}

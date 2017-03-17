@@ -43,6 +43,13 @@ const applyVip = r => require.ensure([], () => r(require('../page/vip/applyVip')
 const firmApplied = r => require.ensure([], () => r(require('../page/vip/firmApplied')), 'firmApplied')
 const firmVipAuth = r => require.ensure([], () => r(require('../page/vip/firmVipAuth')), 'firmVipAuth')
 
+
+
+
+
+//other page
+const question = r => require.ensure([], () => r(require('../page/other/question')), 'question')
+
 export default [
     {
         path: '/',
@@ -163,5 +170,16 @@ export default [
         path: '/firmVipAuth',
         component: firmVipAuth,
         name:'firmVipAuth'
+    },
+
+
+
+
+
+    //other route
+    {
+        path: '/question',
+        component: question,
+        name:'question'
     },
 ]
