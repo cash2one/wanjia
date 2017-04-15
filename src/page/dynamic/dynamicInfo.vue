@@ -111,11 +111,11 @@ span.postTime{
 button.btnConcern{
     position: absolute;
     right: 0.5rem;
-    color: limegreen;
-    border: 1px solid limegreen;
+    color: #9bca31;
+    border: 1px solid #9bca31;
     border-radius: 0.1rem;
     background: white;
-    padding: 0.1rem 0.2rem;
+    /*padding: 0.1rem 0.2rem;*/
     top: 0.8rem;
     width: 2rem;
     height: 0.8rem;

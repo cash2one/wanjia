@@ -31,7 +31,7 @@ img.imgLogo{
     margin-top: 0.3rem;
 }
 button.btnOpenApp{
-    background: #fe6734;
+    background: #9bca31;
     color: white;
     font-size: 0.6rem;
     border-radius: 0.1rem;
