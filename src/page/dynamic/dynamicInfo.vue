@@ -60,6 +60,7 @@ import {getDynamicInfo} from '../../store/service'
             document.title = "玩+"
              let id = this.$route.params.id
              var that = this
+             localStorage.shareUr = "http://app.playnet.cc/dynamicInfo/" + id
            getDynamicInfo(id).then(function(data){
                 that.dynamic = data.data.detail
                 that.imgList = that.dynamic.imgList.split(',')
