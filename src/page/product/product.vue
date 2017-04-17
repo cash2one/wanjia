@@ -85,7 +85,8 @@
       
         var that = this
         let id = this.$route.params.id
-        localStorage.shareUr = "http://app.playnet.cc/productInfo/" + id
+
+        localStorage.shareUrl = "http://app.playnet.cc/" + "?productInfo=" + id
         this.$store.commit('setWebUrl', 'https://app.playnet.cc/index/goods/content/id/' + id)
         console.log('the url is :' + this.$store.state.webViewUrl)
         getProductInfo(id).then(function(data){

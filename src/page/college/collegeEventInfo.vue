@@ -103,7 +103,7 @@ export default {
             //这个页面不做下拉刷新了
             var pageIndex = 0
             let id = this.$route.params.id
-            localStorage.shareUr = "http://app.playnet.cc/collegeInfo/" + id
+            localStorage.shareUrl = "http://app.playnet.cc/" + "?collegeInfo=" + id
             if(!isEmplyObject(this.event)){
                 pageIndex = that.event.comments.length / 15
             }

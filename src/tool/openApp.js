@@ -7,7 +7,14 @@ export const APPCommon = {
         var this_  =  this;
         //微信
         if(this_.isWeixin()){
-            location.href = localStorage.shareUrl
+            console.log(localStorage.shareUrl)
+            if(localStorage.shareUrl){
+                location.href = localStorage.shareUrl
+            }
+            else{
+                location.href = "http://app.playnet.cc"
+            }
+            
         }else{//非微信浏览器
             if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
                 window.location = this.iphoneSchema;
