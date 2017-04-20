@@ -229,7 +229,7 @@ button.applyEvent{
     border-radius: 0.1rem;
     color: white;
     padding: 0.15rem 0.02rem;
-    background: #14CC81;
+    background: #9bca31;
     height: 1rem;
     line-height: 0.2rem;
 }
@@ -254,14 +254,14 @@ div.publisher span{
     font-size: 0.55rem;
 }
 div.publisher button{
-    border: 1px solid #14CC81;
+    border: 1px solid #9bca31;
     border-radius: 0.1rem;
     float: right;
     height: 1rem;
     font-size: 0.5rem;
     margin-top: 0.3rem;
     background: white;
-    color: green;
+    color: #9bca31;
     width: 2.5rem;
     line-height: 1rem;
 }
@@ -292,8 +292,8 @@ div.eventImages{
 }
 div.eventImages img{
     width: 100%;
-    height: 8rem;
-    margin-bottom: 0.2rem;
+    height: auto;
+
 }
 div.eventStatus{
     padding: 0.6rem 1.5rem 0.4rem 1.5rem;
